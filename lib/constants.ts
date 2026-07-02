@@ -12,6 +12,5 @@ export const CTA = {
 } as const;
 
 export const BRAND = {
-  name: "Lilian",
   logoAlt: "Lilian Logo",
 } as const;
