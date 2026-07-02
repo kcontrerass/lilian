@@ -37,9 +37,27 @@ Fonts load via `next/font/google` in `app/layout.tsx` and are exposed as CSS var
 ## Components & routing
 
 - `app/layout.tsx` is the root server layout (Spanish metadata, font variables).
-- `app/page.tsx` is the home page and is a client component (`"use client"`).
+- `app/page.tsx` is the home page and should remain a thin orchestrator of feature sections. Business logic and section markup live inside `features/`.
 - Shared UI lives in `components/` and is imported as `@/components/<Name>`.
 - Anchor links on the page reference `#catalogo`, `#historia`, `#galeria`, `#testimonios`.
+
+## Clean Architecture rule
+
+This project follows a **feature-based Clean Architecture** as the default organization pattern:
+
+- Each page section or domain lives in `features/<feature-name>/` with a flat structure:
+  - `components/` — presentational components and section orchestrators.
+  - `hooks/` — custom hooks for feature-specific logic (state, effects, computations).
+  - `constants.ts` — feature-specific text, asset paths, anchors, and config.
+  - `types.ts` — feature-specific TypeScript types and interfaces.
+- `components/` is reserved for genuinely shared UI (e.g., `Header`, future `Footer`, `Button`).
+- `lib/constants.ts` is reserved for constants used by more than one feature (navigation links, CTA, brand).
+- `app/page.tsx` should only import and render feature sections; it must not contain section markup, data definitions, or business logic.
+- Keep components small and focused on one responsibility.
+- Extract logic into custom hooks instead of leaving it inline in components.
+- Avoid magic strings: text, asset paths, anchors, and labels must live in `constants.ts`.
+- Prefer Server Components by default; add `"use client"` only when interactivity or browser APIs are required.
+- Do not add external libraries unless explicitly requested.
 
 ## Images & assets
 
