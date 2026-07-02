@@ -6,6 +6,12 @@ export const NAV_LINKS = {
   testimonials: { href: "#testimonios", label: "Testimonios" },
 } as const;
 
-export const CTA_LABELS = {
-  orderNow: "Ordena en Pedidos ya",
+export const CTA = {
+  href: "#",
+  label: "Ordena en Pedidos ya",
+} as const;
+
+export const BRAND = {
+  name: "Lilian",
+  logoAlt: "Lilian Logo",
 } as const;

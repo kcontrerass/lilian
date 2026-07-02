@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import { CTA_LABELS, NAV_LINKS } from "@/lib/constants";
+import { BRAND, CTA, NAV_LINKS } from "@/lib/constants";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -14,10 +14,10 @@ export default function Header() {
       <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-8 flex items-center justify-between relative">
         
         {/* Lilian Logo */}
-        <Link href="/" className="relative w-32 sm:w-40 md:w-48 h-20 hover:scale-105 transition-transform duration-200 mt-2">
+        <Link href={NAV_LINKS.home.href} className="relative w-32 sm:w-40 md:w-48 h-20 hover:scale-105 transition-transform duration-200 mt-2">
           <Image
             src="/assets/bdd1bcfba9ab9c71befc317985ccfb5cd63b9ecd.svg"
-            alt="Lilian Logo"
+            alt={BRAND.logoAlt}
             fill
             className="object-contain"
             priority
@@ -53,11 +53,11 @@ export default function Header() {
 
           {/* Desktop Call to Action Button */}
           <Link
-            href="#"
+            href={CTA.href}
             className="bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-medium text-[16px] px-8 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform shadow-md"
           >
             <span className="w-4 h-4 block bg-white rounded-sm" />
-            {CTA_LABELS.orderNow}
+            {CTA.label}
           </Link>
         </div>
 
@@ -122,11 +122,11 @@ export default function Header() {
               {NAV_LINKS.testimonials.label}
             </Link>
             <Link
-              href="#"
+              href={CTA.href}
               onClick={() => setMobileMenuOpen(false)}
               className="inline-flex justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white px-6 py-3 mt-4 rounded-full"
             >
-              {CTA_LABELS.orderNow}
+              {CTA.label}
             </Link>
           </nav>
         </div>
