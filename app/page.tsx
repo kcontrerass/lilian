@@ -1,5 +1,3 @@
-"use client";
-
 import Header from "@/components/Header";
 import HeroSection from "@/features/hero/components/HeroSection";
 import MissionSection from "@/features/mission/components/MissionSection";
