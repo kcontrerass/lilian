@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import { CTA_LABELS, NAV_LINKS } from "@/lib/constants";
+
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -24,20 +26,20 @@ export default function Header() {
 
         {/* Desktop Navigation Links */}
         <nav className="hidden lg:flex items-center gap-8 text-[17px] font-medium text-lilian-purple font-chronica">
-          <Link href="/" className="hover:text-lilian-orange transition-colors">
-            Inicio
+          <Link href={NAV_LINKS.home.href} className="hover:text-lilian-orange transition-colors">
+            {NAV_LINKS.home.label}
           </Link>
-          <Link href="#historia" className="hover:text-lilian-orange transition-colors">
-            Nuestra Historia
+          <Link href={NAV_LINKS.history.href} className="hover:text-lilian-orange transition-colors">
+            {NAV_LINKS.history.label}
           </Link>
-          <Link href="#catalogo" className="hover:text-lilian-orange transition-colors">
-            Catálogo
+          <Link href={NAV_LINKS.catalog.href} className="hover:text-lilian-orange transition-colors">
+            {NAV_LINKS.catalog.label}
           </Link>
-          <Link href="#galeria" className="hover:text-lilian-orange transition-colors">
-            Galería
+          <Link href={NAV_LINKS.gallery.href} className="hover:text-lilian-orange transition-colors">
+            {NAV_LINKS.gallery.label}
           </Link>
-          <Link href="#testimonios" className="hover:text-lilian-orange transition-colors">
-            Testimonios
+          <Link href={NAV_LINKS.testimonials.href} className="hover:text-lilian-orange transition-colors">
+            {NAV_LINKS.testimonials.label}
           </Link>
         </nav>
 
@@ -54,8 +56,8 @@ export default function Header() {
             href="#"
             className="bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-medium text-[16px] px-8 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform shadow-md"
           >
-            <span className="w-4 h-4 block bg-white rounded-sm" /> 
-            Ordena en Pedidos ya
+            <span className="w-4 h-4 block bg-white rounded-sm" />
+            {CTA_LABELS.orderNow}
           </Link>
         </div>
 
@@ -85,46 +87,46 @@ export default function Header() {
         <div className="lg:hidden absolute top-[100px] left-0 right-0 bg-[#aebac9] shadow-lg border-t border-white/20 z-50">
           <nav className="flex flex-col px-6 py-8 gap-4 text-[17px] font-chronica font-medium text-lilian-purple">
             <Link
-              href="/"
+              href={NAV_LINKS.home.href}
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
             >
-              Inicio
+              {NAV_LINKS.home.label}
             </Link>
             <Link
-              href="#historia"
+              href={NAV_LINKS.history.href}
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
             >
-              Nuestra Historia
+              {NAV_LINKS.history.label}
             </Link>
             <Link
-              href="#catalogo"
+              href={NAV_LINKS.catalog.href}
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
             >
-              Catálogo
+              {NAV_LINKS.catalog.label}
             </Link>
             <Link
-              href="#galeria"
+              href={NAV_LINKS.gallery.href}
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
             >
-              Galería
+              {NAV_LINKS.gallery.label}
             </Link>
             <Link
-              href="#testimonios"
+              href={NAV_LINKS.testimonials.href}
               onClick={() => setMobileMenuOpen(false)}
               className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
             >
-              Testimonios
+              {NAV_LINKS.testimonials.label}
             </Link>
             <Link
               href="#"
               onClick={() => setMobileMenuOpen(false)}
               className="inline-flex justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white px-6 py-3 mt-4 rounded-full"
             >
-              Ordena en Pedidos ya
+              {CTA_LABELS.orderNow}
             </Link>
           </nav>
         </div>
