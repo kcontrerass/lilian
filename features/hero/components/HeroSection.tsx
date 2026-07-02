@@ -2,6 +2,7 @@ import Link from "next/link";
 import HeroBackground from "./HeroBackground";
 import HeroHeadline from "./HeroHeadline";
 import HeroSliderProgress from "./HeroSliderProgress";
+import { CTA } from "@/lib/constants";
 import { HERO_TEXTS } from "../constants";
 
 export default function HeroSection() {
@@ -13,7 +14,7 @@ export default function HeroSection() {
         <HeroHeadline />
 
         <Link
-          href="#"
+          href={CTA.href}
           className="mt-8 bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white px-8 py-4 rounded-full font-chronica text-[20px] uppercase flex items-center gap-3 hover:scale-105 transition-transform"
         >
           <span className="w-4 h-4 block bg-white rounded-sm" />
