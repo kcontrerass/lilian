@@ -7,10 +7,9 @@ export const MISSION_IMAGES = {
 } as const;
 
 export const MISSION_TEXTS = {
-  titlePart1: "Cada ",
+  title: "Cada receta tiene",
   highlightedWord: "receta",
-  titlePart2: " tiene",
-  titlePart3: "una historia",
+  subtitle: "una historia",
   missionLabel: "Nuestra Misión:",
   missionText:
     "Atender y satisfacer las necesidades de nuestros clientes, brindando productos y servicios de alta calidad, pertenecientes a la industria pastelera, con un personal altamente motivado y capacitado, contribuyendo al desarrollo del país y de nuestros colaboradores.",
