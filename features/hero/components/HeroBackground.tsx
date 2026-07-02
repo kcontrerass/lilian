@@ -1,15 +1,44 @@
 import Image from "next/image";
-import { HERO_IMAGES } from "../constants";
+import HeroVideo from "./HeroVideo";
+import { HeroSlideData } from "../types";
 
-export default function HeroBackground() {
-  return (
-    <div className="absolute inset-0 w-full h-full bg-[#e7ebf0]">
-      <Image
-        src={HERO_IMAGES.background}
-        alt="Bakery background"
-        fill
-        className="object-cover opacity-30"
+type HeroBackgroundProps = {
+  background: HeroSlideData["background"];
+  isActive: boolean;
+  priority: boolean;
+};
+
+export default function HeroBackground({
+  background,
+  isActive,
+  priority,
+}: HeroBackgroundProps) {
+  if (background.type === "video") {
+    return (
+      <HeroVideo
+        src={background.src}
+        poster={background.poster}
+        isActive={isActive}
       />
-    </div>
+    );
+  }
+
+  return (
+    <>
+      <Image
+        src={background.src}
+        alt={background.alt}
+        fill
+        className="object-cover"
+        priority={priority}
+        sizes="100vw"
+      />
+      {background.overlay && (
+        <div
+          className="absolute inset-0 bg-gradient-to-b from-white/92 via-white/88 to-white/80"
+          aria-hidden="true"
+        />
+      )}
+    </>
   );
 }

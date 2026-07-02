@@ -32,7 +32,10 @@ Verification order: `npm run lint && npm run build`.
 
 ## Fonts
 
-Fonts load via `next/font/google` in `app/layout.tsx` and are exposed as CSS variables. The classes `font-chronica`, `font-owl-cute`, and `font-gotham` are configured in `@theme`.
+- `font-chronica` (Chronica Pro) loads via `next/font/local` in `app/layout.tsx`, sourced from all 18 weight/style files in `public/fonts/` (weights 100–900, normal + italic). Match Chronica Pro's official weight scale when referencing a specific weight: 100 Thin, 200 Ultra Light, 300 Light, 350 Book, 400 Regular, 500 Medium, 700 Bold, 800 Black, 900 Heavy.
+- `font-owl-cute` (Owl Cute Regular 400) loads via `next/font/local` from `public/fonts/Owl Cute Regular 400.ttf`.
+- `font-gotham` (Montserrat) loads via `next/font/google`, since no local font files exist for it.
+- All three are exposed as CSS variables and configured as `font-chronica`, `font-owl-cute`, `font-gotham` in `@theme`.
 
 ## Components & routing
 
@@ -69,3 +72,12 @@ This project follows a **feature-based Clean Architecture** as the default organ
 
 - ESLint uses the flat config format (`eslint.config.mjs`) with `eslint-config-next/core-web-vitals` and `eslint-config-next/typescript`.
 - `npm run lint` runs `eslint` directly. There is no separate `typecheck` script; rely on `next build` for TypeScript validation.
+
+## Documentation rule (Context7)
+
+Always use **Context7** to query official, up-to-date documentation before writing or modifying code. Do not rely on training memory or assumptions about library APIs.
+
+- Resolve the correct Context7 library ID first (e.g., `/vercel/next.js` for Next.js, `/tailwindlabs/tailwindcss` for Tailwind CSS).
+- Query Context7 for the specific topic (hooks, components, config, styling, accessibility, etc.).
+- Prefer official docs and code snippets from Context7 over general knowledge.
+- Apply this rule to every framework, library, or platform used in the project (Next.js, React, Tailwind CSS, TypeScript, etc.).

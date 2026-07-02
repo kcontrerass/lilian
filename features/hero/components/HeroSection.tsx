@@ -1,28 +1,48 @@
-import Link from "next/link";
-import HeroBackground from "./HeroBackground";
-import HeroHeadline from "./HeroHeadline";
-import HeroSliderProgress from "./HeroSliderProgress";
-import { CTA } from "@/lib/constants";
-import { HERO_TEXTS } from "../constants";
+"use client";
+
+import HeroSlide from "./HeroSlide";
+import HeroProgress from "./HeroProgress";
+import HeroArrows from "./HeroArrows";
+import { useCarousel } from "../hooks/useCarousel";
+import { useSwipe } from "../hooks/useSwipe";
+import { HERO_CAROUSEL_CONFIG, HERO_SLIDES } from "../constants";
 
 export default function HeroSection() {
+  const { activeIndex, progress, goToSlide, goToNext, goToPrevious, pause, resume } =
+    useCarousel(HERO_SLIDES.length, HERO_CAROUSEL_CONFIG);
+
+  const swipeHandlers = useSwipe(goToNext, goToPrevious);
+
   return (
-    <section className="relative w-full h-[840px] flex flex-col items-center justify-center overflow-hidden">
-      <HeroBackground />
+    <section
+      className="relative w-full h-[620px] sm:h-[680px] md:h-[780px] lg:h-[840px] overflow-hidden"
+      role="region"
+      aria-roledescription="carrusel"
+      aria-label="Hero principal"
+      onMouseEnter={pause}
+      onMouseLeave={resume}
+      onFocus={pause}
+      onBlur={resume}
+      {...swipeHandlers}
+    >
+      {HERO_SLIDES.map((slide, index) => (
+        <HeroSlide
+          key={slide.id}
+          slide={slide}
+          index={index}
+          isActive={index === activeIndex}
+          isFirst={index === 0}
+        />
+      ))}
 
-      <div className="relative z-10 flex flex-col items-center justify-center mt-32 text-center">
-        <HeroHeadline />
+      <HeroArrows onPrevious={goToPrevious} onNext={goToNext} />
 
-        <Link
-          href={CTA.href}
-          className="mt-8 bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white px-8 py-4 rounded-full font-chronica text-[20px] uppercase flex items-center gap-3 hover:scale-105 transition-transform"
-        >
-          <span className="w-4 h-4 block bg-white rounded-sm" />
-          {HERO_TEXTS.cta}
-        </Link>
-      </div>
-
-      <HeroSliderProgress />
+      <HeroProgress
+        total={HERO_SLIDES.length}
+        activeIndex={activeIndex}
+        progress={progress}
+        onSelect={goToSlide}
+      />
     </section>
   );
 }

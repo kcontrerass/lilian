@@ -10,7 +10,7 @@ export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="absolute top-0 left-0 right-0 z-50 h-[190px] bg-gradient-to-b from-[#aebac9] to-transparent flex items-start pt-[60px]">
+    <header className="absolute top-0 left-0 right-0 z-50 h-[190px] bg-gradient-to-b from-white/60 to-transparent flex items-start pt-[60px]">
       <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-8 flex items-center justify-between relative">
         
         {/* Lilian Logo */}
@@ -25,7 +25,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8 text-[17px] font-medium text-lilian-purple font-chronica">
+        <nav className="hidden lg:flex items-center gap-8 text-[17px] font-bold text-lilian-purple font-chronica">
           <Link href={NAV_LINKS.home.href} className="hover:text-lilian-orange transition-colors">
             {NAV_LINKS.home.label}
           </Link>
@@ -84,8 +84,8 @@ export default function Header() {
 
       {/* Mobile Navigation Drawer */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-[100px] left-0 right-0 bg-[#aebac9] shadow-lg border-t border-white/20 z-50">
-          <nav className="flex flex-col px-6 py-8 gap-4 text-[17px] font-chronica font-medium text-lilian-purple">
+        <div className="lg:hidden absolute top-[100px] left-0 right-0 bg-white/90 backdrop-blur-md shadow-lg border-t border-white/20 z-50">
+          <nav className="flex flex-col px-6 py-8 gap-4 text-[17px] font-chronica font-bold text-lilian-purple">
             <Link
               href={NAV_LINKS.home.href}
               onClick={() => setMobileMenuOpen(false)}

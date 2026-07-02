@@ -1,13 +1,30 @@
-import { HERO_TEXTS } from "../constants";
+import { HeadlineSegment } from "../types";
 
-export default function HeroHeadline() {
+type HeroHeadlineProps = {
+  lines: HeadlineSegment[][];
+};
+
+export default function HeroHeadline({ lines }: HeroHeadlineProps) {
   return (
-    <h1 className="flex items-center flex-wrap justify-center gap-4 text-[40px] md:text-[73px] uppercase text-lilian-purple tracking-normal font-chronica">
-      <span className="font-medium">{HERO_TEXTS.headlinePrefix}</span>
-      <span className="font-owl-cute text-[60px] md:text-[93px] text-lilian-orange lowercase normal-case mt-[-10px]">
-        {HERO_TEXTS.highlightedWord}
-      </span>
-      <span className="font-medium">{HERO_TEXTS.headlineSuffix}</span>
+    <h1 className="text-[36px] md:text-[64px] lg:text-[73px] text-lilian-purple tracking-normal font-chronica font-bold text-center leading-[1.15]">
+      {lines.map((segments, lineIndex) => (
+        <span key={lineIndex} className="block">
+          {segments.map((segment, index) =>
+            segment.highlight ? (
+              <span
+                key={index}
+                className="font-owl-cute font-normal text-[50px] md:text-[80px] lg:text-[93px] text-lilian-orange align-middle"
+              >
+                {segment.text}
+              </span>
+            ) : (
+              <span key={index} className="align-middle">
+                {segment.text}
+              </span>
+            )
+          )}
+        </span>
+      ))}
     </h1>
   );
 }
