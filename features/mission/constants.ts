@@ -7,8 +7,9 @@ export const MISSION_IMAGES = {
 } as const;
 
 export const MISSION_TEXTS = {
-  title: "Cada receta tiene",
+  titleBefore: "Cada ",
   highlightedWord: "receta",
+  titleAfter: " tiene",
   subtitle: "una historia",
   missionLabel: "Nuestra Misión:",
   missionText:
