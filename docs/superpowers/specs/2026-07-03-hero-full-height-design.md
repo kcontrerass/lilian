@@ -88,6 +88,8 @@ Cambios respecto al tipo actual:
 
 Se elimina la referencia a `bg_video.mp4` / `bg_video_poster.webp` desde `constants.ts` (los archivos y el componente `HeroVideo` quedan en el repo sin uso).
 
+`app/globals.css` no define ningún token de marca gris/lavanda (solo purple/orange/teal/pink/beige). La variante `overlay: "gray"` de `HeroBackground` usa un gris neutro genérico de Tailwind (ej. `bg-slate-100/90` o similar), calibrado visualmente contra la imagen de referencia durante la implementación — no se agrega un token nuevo a `@theme`.
+
 ---
 
 ## 5. Arquitectura del contenedor y escalado fluido
