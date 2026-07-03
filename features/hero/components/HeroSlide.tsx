@@ -32,19 +32,32 @@ function HeroSlide({ slide, index, isActive, isFirst }: HeroSlideProps) {
         />
       </div>
 
-      {slide.foregroundImage && (
-        <div className="absolute inset-x-0 z-[1] pointer-events-none flex justify-center top-[325px] sm:top-[357px] md:top-[409px] lg:top-[444px]">
-          <div className="relative h-[527px] sm:h-[578px] md:h-[663px] lg:h-[714px] aspect-[1920/820]">
-            <Image
-              src={slide.foregroundImage.src}
-              alt={slide.foregroundImage.alt}
-              fill
-              priority={isFirst}
-              className="object-contain object-top"
-              sizes="(max-width: 768px) 130vw, 110vw"
-            />
-          </div>
+      {slide.foregroundImage && slide.foregroundImage.fit === "cover" ? (
+        <div className="absolute inset-x-0 bottom-0 z-[1] pointer-events-none w-full aspect-[1920/820]">
+          <Image
+            src={slide.foregroundImage.src}
+            alt={slide.foregroundImage.alt}
+            fill
+            priority={isFirst}
+            className="object-contain object-bottom"
+            sizes="100vw"
+          />
         </div>
+      ) : (
+        slide.foregroundImage && (
+          <div className="absolute inset-x-0 z-[1] pointer-events-none flex justify-center top-[325px] sm:top-[357px] md:top-[409px] lg:top-[444px]">
+            <div className="relative h-[527px] sm:h-[578px] md:h-[663px] lg:h-[714px] aspect-[1920/820]">
+              <Image
+                src={slide.foregroundImage.src}
+                alt={slide.foregroundImage.alt}
+                fill
+                priority={isFirst}
+                className="object-contain object-top"
+                sizes="(max-width: 768px) 130vw, 110vw"
+              />
+            </div>
+          </div>
+        )
       )}
 
       <div className="relative z-10 flex flex-col items-center px-4 sm:px-8 text-center pt-[195px] md:pt-[200px] lg:pt-[210px]">

@@ -1,7 +1,12 @@
-import { HeadlineSegment } from "../types";
+import { HeadlineSegment, HeadlineSegmentColor } from "../types";
 
 type HeroHeadlineProps = {
   lines: HeadlineSegment[][];
+};
+
+const SEGMENT_COLOR_CLASS: Record<HeadlineSegmentColor, string> = {
+  orange: "text-lilian-orange",
+  teal: "text-lilian-teal",
 };
 
 export default function HeroHeadline({ lines }: HeroHeadlineProps) {
@@ -13,12 +18,17 @@ export default function HeroHeadline({ lines }: HeroHeadlineProps) {
             segment.highlight ? (
               <span
                 key={index}
-                className="font-owl-cute font-normal text-[50px] md:text-[80px] lg:text-[93px] text-lilian-orange align-middle"
+                className={`font-owl-cute font-normal text-[50px] md:text-[80px] lg:text-[93px] align-middle ${
+                  SEGMENT_COLOR_CLASS[segment.color ?? "orange"]
+                }`}
               >
                 {segment.text}
               </span>
             ) : (
-              <span key={index} className="align-middle">
+              <span
+                key={index}
+                className={`align-middle ${segment.color ? SEGMENT_COLOR_CLASS[segment.color] : ""}`}
+              >
                 {segment.text}
               </span>
             )

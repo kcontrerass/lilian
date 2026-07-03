@@ -5,17 +5,21 @@ import { MISSION_IMAGES } from "../constants";
 
 export default function MissionSection() {
   return (
-    <section className="relative w-full py-24 flex flex-col items-center overflow-hidden">
-      <div className="absolute top-0 right-[-100px] w-[50%] h-full z-0 opacity-40 pointer-events-none">
+    <section
+      id="historia"
+      className="relative w-full py-16 lg:py-24 flex flex-col items-center overflow-hidden"
+    >
+      <div className="absolute top-0 right-0 w-[220px] sm:w-[280px] lg:w-[340px] h-auto aspect-[259/494] z-0 pointer-events-none">
         <Image
           src={MISSION_IMAGES.backgroundShape}
           alt=""
           fill
-          className="object-cover object-left"
+          className="object-contain object-top-right"
+          sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 340px"
         />
       </div>
 
-      <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-8 grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center relative z-10">
+      <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center relative z-10">
         <MissionImage />
         <MissionText />
       </div>

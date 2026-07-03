@@ -38,16 +38,22 @@ export const HERO_SLIDES: HeroSlideData[] = [
   {
     id: "slide-2",
     background: {
-      type: "image",
+      type: "color",
+      color: "#f6f1ea",
+    },
+    foregroundImage: {
       src: "/assets/carrousel/item_carrousel.webp",
       alt: "Nueva temporada de productos Lilian",
+      fit: "cover",
     },
     headline: [
       [
-        { text: "Disfruta", highlight: true },
-        { text: " de nuestra ", highlight: false },
-        { text: "nueva", highlight: true },
-        { text: " temporada", highlight: false },
+        { text: "Disfruta", highlight: false, color: "orange" },
+        { text: " de nuestra", highlight: false },
+      ],
+      [
+        { text: "nueva ", highlight: false },
+        { text: "temporada", highlight: true, color: "teal" },
       ],
     ],
     cta: {

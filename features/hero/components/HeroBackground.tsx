@@ -23,6 +23,16 @@ export default function HeroBackground({
     );
   }
 
+  if (background.type === "color") {
+    return (
+      <div
+        className="absolute inset-0"
+        style={{ backgroundColor: background.color }}
+        aria-hidden="true"
+      />
+    );
+  }
+
   return (
     <>
       <Image

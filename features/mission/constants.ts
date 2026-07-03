@@ -1,9 +1,8 @@
 export const MISSION_IMAGES = {
-  main: "/assets/a92c92b1efcd065cb45b45ee8829992627c1d38d.png",
-  dots: "/assets/35d89ec71c4436f403a57a0e9f4398e046db8aba.svg",
-  whiteLogo: "/assets/e01406bd27c2a730171ccbfdf33cc1ef24c179da.svg",
-  sticker: "/assets/de26de4eadb76eac4b1836ae5c8f3afc248ab9a6.svg",
-  backgroundShape: "/assets/95483b2bb3649200ddd8d916da6ca91a9821833c.svg",
+  main: "/assets/historia/main.png",
+  whiteLogo: "/assets/historia/white-logo.svg",
+  sticker: "/assets/historia/sticker.svg",
+  backgroundShape: "/assets/historia/figure_1.svg",
 } as const;
 
 export const MISSION_TEXTS = {
