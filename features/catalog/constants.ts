@@ -51,10 +51,15 @@ export const PRODUCTS: Product[] = [
   },
 ];
 
+export const CATALOG_IMAGES = {
+  leafLeft: "/assets/buscador/leaft_left.svg",
+  leafRight: "/assets/buscador/leaft_right.svg",
+} as const;
+
 export const CATALOG_TEXTS = {
-  titleLine1: "Escoge aquí",
-  titleLine2Prefix: "tu próxima ",
-  highlightedWord: "delicia",
+  titleLine1: "Somos la primer",
+  highlightedWord: "Panadería",
+  titleLine2Suffix: " a nivel regional",
   searchPlaceholder: "Paninis, Pasteles, desayunos...",
   searchButton: "Buscar",
   buyHere: "Comprar aquí",

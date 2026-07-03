@@ -22,6 +22,7 @@ export default function Header() {
             fill
             className="object-contain"
             priority
+            sizes="(max-width: 640px) 128px, (max-width: 768px) 160px, 192px"
           />
         </Link>
 

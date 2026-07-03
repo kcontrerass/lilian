@@ -19,8 +19,8 @@ export type HeroSlideData = {
   foregroundImage?: {
     src: string;
     alt: string;
-    /** "contain" (default) shows the full image inside a fixed-height box; "cover" anchors it to the bottom edge, cropping excess height. */
-    fit?: "contain" | "cover";
+    /** "contain" (default) shows the full image inside a fixed-height box; "cover" anchors it full-width to the bottom edge; "compact" shows it uncropped in a smaller box anchored to the bottom-right corner, so it always touches the right edge. */
+    fit?: "contain" | "cover" | "compact";
   };
   headline: HeadlineSegment[][];
   /** "center" (default) or "left" text/CTA alignment. */

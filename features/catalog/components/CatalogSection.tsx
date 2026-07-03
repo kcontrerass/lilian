@@ -5,7 +5,7 @@ import { PRODUCTS } from "../constants";
 import CatalogTitle from "./CatalogTitle";
 import ProductSearch from "./ProductSearch";
 import ProductGrid from "./ProductGrid";
-import LoadMoreButton from "./LoadMoreButton";
+import CatalogCta from "./CatalogCta";
 
 export default function CatalogSection() {
   const { searchTerm, setSearchTerm, filteredProducts } = useProductSearch({
@@ -20,7 +20,7 @@ export default function CatalogSection() {
       <CatalogTitle />
       <ProductSearch value={searchTerm} onChange={setSearchTerm} />
       <ProductGrid products={filteredProducts} />
-      <LoadMoreButton />
+      <CatalogCta />
 
       <div className="absolute bottom-[-50px] left-[-100px] w-full max-w-[800px] h-[300px] opacity-30 z-0 pointer-events-none">
         <svg

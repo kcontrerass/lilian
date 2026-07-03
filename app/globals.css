@@ -6,9 +6,9 @@
 }
 
 @theme inline {
-  --font-chronica: var(--font-chronica), sans-serif;
-  --font-owl-cute: var(--font-owl-cute), cursive;
-  --font-gotham: var(--font-gotham), sans-serif;
+  --font-chronica: var(--font-chronica-family), sans-serif;
+  --font-owl-cute: var(--font-owl-cute-family), cursive;
+  --font-gotham: var(--font-gotham-family), sans-serif;
 }
 
 @theme {
@@ -35,5 +35,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-gotham), Arial, sans-serif;
+  font-family: var(--font-gotham-family), Arial, sans-serif;
 }

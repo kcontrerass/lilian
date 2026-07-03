@@ -9,7 +9,7 @@ export default function MissionSection() {
       id="historia"
       className="relative w-full py-16 lg:py-24 flex flex-col items-center overflow-hidden"
     >
-      <div className="absolute top-0 right-0 w-[220px] sm:w-[280px] lg:w-[340px] h-auto aspect-[259/494] z-0 pointer-events-none">
+      <div className="absolute top-0 -right-6 sm:-right-12 lg:-right-[80px] w-[220px] sm:w-[280px] lg:w-[340px] h-auto aspect-[259/494] z-0 pointer-events-none">
         <Image
           src={MISSION_IMAGES.backgroundShape}
           alt=""

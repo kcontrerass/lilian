@@ -21,6 +21,7 @@ export const HERO_SLIDES: HeroSlideData[] = [
     foregroundImage: {
       src: "/assets/carrousel/pastel.webp",
       alt: "Pastel de Lilian",
+      fit: "compact",
     },
     headline: [
       [
