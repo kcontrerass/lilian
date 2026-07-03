@@ -12,10 +12,10 @@ export default function Header() {
 
   return (
     <header className="absolute top-0 left-0 right-0 z-50 h-[190px] bg-gradient-to-b from-white/60 to-transparent flex items-start pt-[60px]">
-      <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-8 flex items-center justify-between relative">
+      <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-8 flex items-center justify-between lg:grid lg:grid-cols-[1fr_auto_1fr] relative">
         
         {/* Lilian Logo */}
-        <Link href={NAV_LINKS.home.href} className="relative w-32 sm:w-40 md:w-48 h-20 hover:scale-105 transition-transform duration-200 mt-2">
+        <Link href={NAV_LINKS.home.href} className="relative w-32 sm:w-40 md:w-48 h-20 hover:scale-105 transition-transform duration-200 mt-2 lg:justify-self-start">
           <Image
             src="/assets/bdd1bcfba9ab9c71befc317985ccfb5cd63b9ecd.svg"
             alt={BRAND.logoAlt}
@@ -26,7 +26,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-8 text-[17px] font-bold text-lilian-purple font-chronica">
+        <nav className="hidden lg:flex items-center gap-8 whitespace-nowrap text-[17px] font-bold text-lilian-purple font-chronica">
           <Link href={NAV_LINKS.home.href} className="hover:text-lilian-orange transition-colors">
             {NAV_LINKS.home.label}
           </Link>
@@ -44,7 +44,7 @@ export default function Header() {
           </Link>
         </nav>
 
-        <div className="hidden lg:flex items-center gap-6">
+        <div className="hidden lg:flex items-center gap-6 lg:justify-self-end">
           {/* Search Icon Placeholder */}
           <button className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/40 transition-colors">
             <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24" className="text-lilian-purple">

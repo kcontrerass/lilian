@@ -21,7 +21,7 @@ export default function CtaButton({
       href={href}
       onClick={onClick}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={`inline-flex items-center justify-center gap-2 bg-lilian-orange-dark text-white font-chronica font-medium text-[16px] px-8 py-3 rounded-full shadow-md ${className}`}
+      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap bg-lilian-orange-dark text-white font-chronica font-medium text-[16px] px-8 py-3 rounded-full shadow-md ${className}`}
     >
       <Image src="/icon-pedidos.svg" alt="" width={17} height={16} aria-hidden="true" />
       {label}
