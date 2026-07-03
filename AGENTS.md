@@ -27,7 +27,9 @@ Verification order: `npm run lint && npm run build`.
 - Tailwind is imported in `app/globals.css` with `@import "tailwindcss";`.
 - Custom design tokens are declared in `app/globals.css` inside an `@theme` block:
   - Fonts: `font-chronica`, `font-owl-cute`, `font-gotham`
-  - Colors: `lilian-purple`, `lilian-orange`, `lilian-teal`, `lilian-pink`, `lilian-beige` and their `-dark`/`-light` variants
+  - Brand colors: `lilian-purple`, `lilian-orange`, `lilian-teal`, `lilian-pink`, `lilian-beige` and their `-dark`/`-light` variants
+  - Semantic tokens: `brand-primary`, `brand-secondary`, `brand-accent`, `brand-gold`, `brand-coral`, `brand-cream`, `brand-muted` and their `-dark`/`-light` variants
+  - Color values match the official brand palette: primary `#ff8f2d`, secondary `#3d246a`, accent `#30beb3`, gold `#e9c468`, coral `#e96f50`, cream `#f9f2dc`, muted `#ceebec`
 - PostCSS config uses `@tailwindcss/postcss` (Tailwind v4 plugin).
 
 ## Fonts

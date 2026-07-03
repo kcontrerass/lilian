@@ -6,31 +6,54 @@
 }
 
 @theme {
-  --font-chronica: var(--chronica-pro), sans-serif;
-  --font-owl-cute: var(--owl-cute), cursive;
-  --font-gotham: var(--gotham), sans-serif;
+  --font-family-chronica: var(--font-chronica), sans-serif;
+  --font-family-owl-cute: var(--font-owl-cute), cursive;
+  --font-family-gotham: var(--font-gotham), sans-serif;
 
-  --color-lilian-purple: #392766;
-  --color-lilian-purple-dark: #1b0f3a;
-  --color-lilian-purple-light: #724ecc;
-  
-  --color-lilian-orange: #e9924b;
-  --color-lilian-orange-dark: #df8d40;
-  --color-lilian-orange-light: #e69344;
-  
-  --color-lilian-teal: #5fbbb3;
-  --color-lilian-teal-dark: #3a8c85;
-  --color-lilian-teal-light: #d3eaeb;
-  
-  --color-lilian-pink: #c87b85;
-  --color-lilian-pink-dark: #8e3f4a;
+  /* Brand palette — source: brand color guide */
+  --color-lilian-purple: #3d246a;
+  --color-lilian-purple-dark: #2a1a4a;
+  --color-lilian-purple-light: #5c3d8a;
 
-  --color-lilian-beige: #e2b18a;
-  --color-lilian-beige-dark: #be8659;
+  --color-lilian-orange: #ff8f2d;
+  --color-lilian-orange-dark: #ef6f28;
+  --color-lilian-orange-light: #ffa65c;
+
+  --color-lilian-teal: #30beb3;
+  --color-lilian-teal-dark: #269e95;
+  --color-lilian-teal-light: #ceebec;
+
+  --color-lilian-pink: #e96f50;
+  --color-lilian-pink-dark: #c95a3d;
+
+  --color-lilian-beige: #e9c468;
+  --color-lilian-beige-dark: #c9a34d;
+
+  /* Semantic tokens */
+  --color-brand-primary: #ff8f2d;
+  --color-brand-primary-dark: #ef6f28;
+  --color-brand-primary-light: #ffa65c;
+
+  --color-brand-secondary: #3d246a;
+  --color-brand-secondary-dark: #2a1a4a;
+  --color-brand-secondary-light: #5c3d8a;
+
+  --color-brand-accent: #30beb3;
+  --color-brand-accent-dark: #269e95;
+  --color-brand-accent-light: #ceebec;
+
+  --color-brand-gold: #e9c468;
+  --color-brand-gold-dark: #c9a34d;
+
+  --color-brand-coral: #e96f50;
+  --color-brand-coral-dark: #c95a3d;
+
+  --color-brand-cream: #f9f2dc;
+  --color-brand-muted: #ceebec;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-gotham), Arial, sans-serif;
+  font-family: var(--font-family-gotham), Arial, sans-serif;
 }
