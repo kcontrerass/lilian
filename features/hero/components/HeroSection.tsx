@@ -31,7 +31,6 @@ export default function HeroSection() {
           slide={slide}
           index={index}
           isActive={index === activeIndex}
-          isFirst={index === 0}
         />
       ))}
 

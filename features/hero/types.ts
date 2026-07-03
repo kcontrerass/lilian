@@ -23,6 +23,8 @@ export type HeroSlideData = {
     fit?: "contain" | "cover";
   };
   headline: HeadlineSegment[][];
+  /** "center" (default) or "left" text/CTA alignment. */
+  align?: "center" | "left";
   cta: {
     label: string;
     href: string;

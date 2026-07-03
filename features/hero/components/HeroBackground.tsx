@@ -15,11 +15,17 @@ export default function HeroBackground({
 }: HeroBackgroundProps) {
   if (background.type === "video") {
     return (
-      <HeroVideo
-        src={background.src}
-        poster={background.poster}
-        isActive={isActive}
-      />
+      <>
+        <HeroVideo
+          src={background.src}
+          poster={background.poster}
+          isActive={isActive}
+        />
+        <div
+          className="absolute inset-0 bg-linear-to-br from-white/95 via-white/75 to-white/10 backdrop-blur-xl mask-linear-135 mask-linear-from-20% mask-linear-to-95%"
+          aria-hidden="true"
+        />
+      </>
     );
   }
 

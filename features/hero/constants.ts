@@ -70,12 +70,11 @@ export const HERO_SLIDES: HeroSlideData[] = [
       alt: "Video de productos Lilian",
     },
     headline: [
-      [
-        { text: "Siempre con ingredientes de ", highlight: false },
-        { text: "alta calidad", highlight: true },
-        { text: "...", highlight: false },
-      ],
+      [{ text: "Siempre con", highlight: false }],
+      [{ text: "ingredientes", highlight: true, color: "teal" }],
+      [{ text: "de alta calidad...", highlight: false }],
     ],
+    align: "left",
     cta: {
       label: "Ordena en Pedidos ya",
       href: "https://www.pedidosya.com",

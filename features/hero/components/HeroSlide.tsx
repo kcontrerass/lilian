@@ -10,10 +10,9 @@ type HeroSlideProps = {
   slide: HeroSlideData;
   index: number;
   isActive: boolean;
-  isFirst: boolean;
 };
 
-function HeroSlide({ slide, index, isActive, isFirst }: HeroSlideProps) {
+function HeroSlide({ slide, index, isActive }: HeroSlideProps) {
   return (
     <div
       id={getHeroPanelId(index)}
@@ -28,7 +27,7 @@ function HeroSlide({ slide, index, isActive, isFirst }: HeroSlideProps) {
         <HeroBackground
           background={slide.background}
           isActive={isActive}
-          priority={isFirst}
+          priority
         />
       </div>
 
@@ -38,8 +37,8 @@ function HeroSlide({ slide, index, isActive, isFirst }: HeroSlideProps) {
             src={slide.foregroundImage.src}
             alt={slide.foregroundImage.alt}
             fill
-            priority={isFirst}
-            className="object-contain object-bottom"
+            priority
+            className="object-cover object-bottom"
             sizes="100vw"
           />
         </div>
@@ -51,7 +50,7 @@ function HeroSlide({ slide, index, isActive, isFirst }: HeroSlideProps) {
                 src={slide.foregroundImage.src}
                 alt={slide.foregroundImage.alt}
                 fill
-                priority={isFirst}
+                priority
                 className="object-contain object-top"
                 sizes="(max-width: 768px) 130vw, 110vw"
               />
@@ -60,8 +59,14 @@ function HeroSlide({ slide, index, isActive, isFirst }: HeroSlideProps) {
         )
       )}
 
-      <div className="relative z-10 flex flex-col items-center px-4 sm:px-8 text-center pt-[195px] md:pt-[200px] lg:pt-[210px]">
-        <HeroHeadline lines={slide.headline} />
+      <div
+        className={`relative z-10 flex flex-col px-4 sm:px-8 ${
+          slide.align === "left"
+            ? "h-full justify-center items-start text-left md:pl-24 lg:pl-32"
+            : "pt-[195px] md:pt-[200px] lg:pt-[210px] items-center text-center"
+        }`}
+      >
+        <HeroHeadline lines={slide.headline} align={slide.align} />
 
         <CtaButton
           href={slide.cta.href}
