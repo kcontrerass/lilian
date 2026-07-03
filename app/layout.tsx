@@ -4,7 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 
 const chronicaPro = localFont({
-  variable: "--chronica-pro",
+  variable: "--font-chronica",
   display: "swap",
   src: [
     {
@@ -101,7 +101,7 @@ const chronicaPro = localFont({
 });
 
 const owlCute = localFont({
-  variable: "--owl-cute",
+  variable: "--font-owl-cute",
   display: "swap",
   src: [
     {
@@ -113,7 +113,7 @@ const owlCute = localFont({
 });
 
 const gothamFallback = Montserrat({
-  variable: "--gotham",
+  variable: "--font-gotham",
   subsets: ["latin"],
   weight: ["300", "400", "500", "700", "800"],
 });

@@ -5,11 +5,13 @@
   --foreground: #171717;
 }
 
-@theme {
-  --font-family-chronica: var(--font-chronica), sans-serif;
-  --font-family-owl-cute: var(--font-owl-cute), cursive;
-  --font-family-gotham: var(--font-gotham), sans-serif;
+@theme inline {
+  --font-chronica: var(--font-chronica), sans-serif;
+  --font-owl-cute: var(--font-owl-cute), cursive;
+  --font-gotham: var(--font-gotham), sans-serif;
+}
 
+@theme {
   /* Brand palette — source: brand color guide */
   --color-lilian-purple: #3d246a;
   --color-lilian-purple-dark: #2a1a4a;
@@ -28,32 +30,10 @@
 
   --color-lilian-beige: #e9c468;
   --color-lilian-beige-dark: #c9a34d;
-
-  /* Semantic tokens */
-  --color-brand-primary: #ff8f2d;
-  --color-brand-primary-dark: #ef6f28;
-  --color-brand-primary-light: #ffa65c;
-
-  --color-brand-secondary: #3d246a;
-  --color-brand-secondary-dark: #2a1a4a;
-  --color-brand-secondary-light: #5c3d8a;
-
-  --color-brand-accent: #30beb3;
-  --color-brand-accent-dark: #269e95;
-  --color-brand-accent-light: #ceebec;
-
-  --color-brand-gold: #e9c468;
-  --color-brand-gold-dark: #c9a34d;
-
-  --color-brand-coral: #e96f50;
-  --color-brand-coral-dark: #c95a3d;
-
-  --color-brand-cream: #f9f2dc;
-  --color-brand-muted: #ceebec;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-family-gotham), Arial, sans-serif;
+  font-family: var(--font-gotham), Arial, sans-serif;
 }
