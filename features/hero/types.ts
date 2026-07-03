@@ -9,7 +9,7 @@ export type HeadlineSegment = {
 };
 
 export type HeroBackground =
-  | { type: "image"; src: string; alt: string; overlay?: boolean }
+  | { type: "image"; src: string; alt: string; overlay?: "teal" | "gray" }
   | { type: "video"; src: string; alt: string; poster?: string }
   | { type: "color"; color: string };
 

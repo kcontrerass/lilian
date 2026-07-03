@@ -8,6 +8,11 @@ type HeroBackgroundProps = {
   priority: boolean;
 };
 
+const OVERLAY_CLASS: Record<"teal" | "gray", string> = {
+  teal: "bg-lilian-teal-light/95",
+  gray: "bg-slate-100/90",
+};
+
 export default function HeroBackground({
   background,
   isActive,
@@ -51,7 +56,7 @@ export default function HeroBackground({
       />
       {background.overlay && (
         <div
-          className="absolute inset-0 bg-lilian-teal-light/95"
+          className={`absolute inset-0 ${OVERLAY_CLASS[background.overlay]}`}
           aria-hidden="true"
         />
       )}

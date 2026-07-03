@@ -16,7 +16,7 @@ export const HERO_SLIDES: HeroSlideData[] = [
       type: "image",
       src: "/assets/carrousel/bg-item-1.webp",
       alt: "Fondo de panadería Lilian",
-      overlay: true,
+      overlay: "teal",
     },
     foregroundImage: {
       src: "/assets/carrousel/pastel.webp",
