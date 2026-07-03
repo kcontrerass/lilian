@@ -4,6 +4,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
+import CtaButton from "@/components/CtaButton";
 import { BRAND, CTA, NAV_LINKS } from "@/lib/constants";
 
 export default function Header() {
@@ -52,13 +53,7 @@ export default function Header() {
           </button>
 
           {/* Desktop Call to Action Button */}
-          <Link
-            href={CTA.href}
-            className="bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-medium text-[16px] px-8 py-3 rounded-full flex items-center gap-2 hover:scale-105 transition-transform shadow-md"
-          >
-            <span className="w-4 h-4 block bg-white rounded-sm" />
-            {CTA.label}
-          </Link>
+          <CtaButton href={CTA.href} label={CTA.label} />
         </div>
 
         {/* Mobile Menu Button */}
@@ -121,13 +116,12 @@ export default function Header() {
             >
               {NAV_LINKS.testimonials.label}
             </Link>
-            <Link
+            <CtaButton
               href={CTA.href}
+              label={CTA.label}
               onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white px-6 py-3 mt-4 rounded-full"
-            >
-              {CTA.label}
-            </Link>
+              className="mt-4"
+            />
           </nav>
         </div>
       )}

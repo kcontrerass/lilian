@@ -35,7 +35,7 @@ export default function HeroBackground({
       />
       {background.overlay && (
         <div
-          className="absolute inset-0 bg-gradient-to-b from-white/90 via-white/65 to-white/50"
+          className="absolute inset-0 bg-lilian-teal-light/95"
           aria-hidden="true"
         />
       )}
