@@ -1,7 +1,7 @@
 import { memo } from "react";
-import Image from "next/image";
 import CtaButton from "@/components/CtaButton";
 import HeroBackground from "./HeroBackground";
+import HeroForegroundImage from "./HeroForegroundImage";
 import HeroHeadline from "./HeroHeadline";
 import { HeroSlideData } from "../types";
 import { getHeroPanelId, getHeroTabId } from "../constants";
@@ -31,43 +31,8 @@ function HeroSlide({ slide, index, isActive }: HeroSlideProps) {
         />
       </div>
 
-      {slide.foregroundImage && slide.foregroundImage.fit === "compact" ? (
-        <div className="absolute right-0 bottom-[-26px] sm:bottom-[-75px] md:bottom-[-54px] lg:bottom-[-42px] z-[1] pointer-events-none h-[280px] sm:h-[320px] md:h-[370px] lg:h-[420px] aspect-[1920/820]">
-          <Image
-            src={slide.foregroundImage.src}
-            alt={slide.foregroundImage.alt}
-            fill
-            priority
-            className="object-contain object-bottom"
-            sizes="(max-width: 640px) 655px, (max-width: 768px) 750px, (max-width: 1024px) 866px, 983px"
-          />
-        </div>
-      ) : slide.foregroundImage && slide.foregroundImage.fit === "cover" ? (
-        <div className="absolute inset-x-0 bottom-0 z-[1] pointer-events-none w-full aspect-[1920/820]">
-          <Image
-            src={slide.foregroundImage.src}
-            alt={slide.foregroundImage.alt}
-            fill
-            priority
-            className="object-cover object-bottom"
-            sizes="100vw"
-          />
-        </div>
-      ) : (
-        slide.foregroundImage && (
-          <div className="absolute inset-x-0 z-[1] pointer-events-none flex justify-center top-[325px] sm:top-[357px] md:top-[409px] lg:top-[444px]">
-            <div className="relative h-[527px] sm:h-[578px] md:h-[663px] lg:h-[714px] aspect-[1920/820]">
-              <Image
-                src={slide.foregroundImage.src}
-                alt={slide.foregroundImage.alt}
-                fill
-                priority
-                className="object-contain object-top"
-                sizes="(max-width: 768px) 130vw, 110vw"
-              />
-            </div>
-          </div>
-        )
+      {slide.foregroundImage && (
+        <HeroForegroundImage foregroundImage={slide.foregroundImage} />
       )}
 
       <div
