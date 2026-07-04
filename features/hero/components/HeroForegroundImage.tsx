@@ -11,24 +11,24 @@ export default function HeroForegroundImage({
   if (foregroundImage.fit === "dual") {
     return (
       <>
-        <div className="absolute -left-[45.2cqh] bottom-0 sm:-left-[51.5cqh] md:-left-[52.6cqh] lg:-left-[56.5cqh] z-[1] pointer-events-none h-[90.3cqh] sm:h-[102.9cqh] md:h-[105.1cqh] lg:h-[113.1cqh] aspect-square">
+        <div className="absolute -left-[32.3cqh] bottom-[-3.8cqh] sm:-left-[64.7cqh] sm:bottom-[-7.6cqh] md:-left-[66cqh] md:bottom-[-7.7cqh] lg:-left-[70.8cqh] lg:bottom-[-8.3cqh] z-[1] pointer-events-none h-[64.5cqh] sm:h-[129.4cqh] md:h-[132.1cqh] lg:h-[141.7cqh] aspect-square">
           <Image
             src={foregroundImage.left.src}
             alt={foregroundImage.left.alt}
             fill
             priority
             className="object-contain object-bottom"
-            sizes="(max-width: 640px) 560px, (max-width: 1024px) 820px, 950px"
+            sizes="(max-width: 640px) 400px, (max-width: 1024px) 1030px, 1190px"
           />
         </div>
-        <div className="absolute -right-[45.2cqh] top-0 sm:-right-[51.5cqh] md:-right-[52.6cqh] lg:-right-[56.5cqh] z-[1] pointer-events-none h-[90.3cqh] sm:h-[102.9cqh] md:h-[105.1cqh] lg:h-[113.1cqh] aspect-square">
+        <div className="absolute -right-[32.3cqh] top-0 sm:-right-[64.7cqh] md:-right-[66cqh] lg:-right-[70.8cqh] z-[1] pointer-events-none h-[64.5cqh] sm:h-[129.4cqh] md:h-[132.1cqh] lg:h-[141.7cqh] aspect-square">
           <Image
             src={foregroundImage.right.src}
             alt={foregroundImage.right.alt}
             fill
             priority
             className="object-contain object-top"
-            sizes="(max-width: 640px) 560px, (max-width: 1024px) 820px, 950px"
+            sizes="(max-width: 640px) 400px, (max-width: 1024px) 1030px, 1190px"
           />
         </div>
       </>
