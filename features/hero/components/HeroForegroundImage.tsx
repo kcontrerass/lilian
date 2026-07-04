@@ -11,7 +11,7 @@ export default function HeroForegroundImage({
   if (foregroundImage.fit === "dual") {
     return (
       <>
-        <div className="absolute -left-[70px] top-[105px] sm:-left-[110px] sm:top-[140px] md:-left-[140px] md:top-[165px] lg:-left-[180px] lg:top-[200px] z-[1] pointer-events-none h-[320px] sm:h-[420px] md:h-[500px] lg:h-[600px] aspect-square">
+        <div className="absolute -left-[11.3cqh] top-[16.9cqh] sm:-left-[16.2cqh] sm:top-[20.6cqh] md:-left-[17.9cqh] md:top-[21.2cqh] lg:-left-[21.4cqh] lg:top-[23.8cqh] z-[1] pointer-events-none h-[51.6cqh] sm:h-[61.8cqh] md:h-[64.1cqh] lg:h-[71.4cqh] aspect-square">
           <Image
             src={foregroundImage.left.src}
             alt={foregroundImage.left.alt}
@@ -21,7 +21,7 @@ export default function HeroForegroundImage({
             sizes="(max-width: 640px) 320px, (max-width: 1024px) 500px, 600px"
           />
         </div>
-        <div className="absolute -right-[70px] top-0 sm:-right-[110px] md:-right-[140px] lg:-right-[180px] z-[1] pointer-events-none h-[320px] sm:h-[420px] md:h-[500px] lg:h-[600px] aspect-square">
+        <div className="absolute -right-[11.3cqh] top-0 sm:-right-[16.2cqh] md:-right-[17.9cqh] lg:-right-[21.4cqh] z-[1] pointer-events-none h-[51.6cqh] sm:h-[61.8cqh] md:h-[64.1cqh] lg:h-[71.4cqh] aspect-square">
           <Image
             src={foregroundImage.right.src}
             alt={foregroundImage.right.alt}
@@ -37,7 +37,7 @@ export default function HeroForegroundImage({
 
   if (foregroundImage.fit === "compact") {
     return (
-      <div className="absolute right-0 bottom-[-26px] sm:bottom-[-75px] md:bottom-[-54px] lg:bottom-[-42px] z-[1] pointer-events-none h-[280px] sm:h-[320px] md:h-[370px] lg:h-[420px] aspect-[1920/820]">
+      <div className="absolute right-0 bottom-[-4.2cqh] sm:bottom-[-11cqh] md:bottom-[-6.9cqh] lg:bottom-[-5cqh] z-[1] pointer-events-none h-[45.2cqh] sm:h-[47.1cqh] md:h-[47.4cqh] lg:h-[50cqh] aspect-[1920/820]">
         <Image
           src={foregroundImage.src}
           alt={foregroundImage.alt}
@@ -66,8 +66,8 @@ export default function HeroForegroundImage({
   }
 
   return (
-    <div className="absolute inset-x-0 z-[1] pointer-events-none flex justify-center top-[325px] sm:top-[357px] md:top-[409px] lg:top-[444px]">
-      <div className="relative h-[527px] sm:h-[578px] md:h-[663px] lg:h-[714px] aspect-[1920/820]">
+    <div className="absolute inset-x-0 z-[1] pointer-events-none flex justify-center top-[52.4cqh] sm:top-[52.5cqh] md:top-[52.4cqh] lg:top-[52.9cqh]">
+      <div className="relative h-[85cqh] aspect-[1920/820]">
         <Image
           src={foregroundImage.src}
           alt={foregroundImage.alt}

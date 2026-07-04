@@ -13,7 +13,7 @@ const SEGMENT_COLOR_CLASS: Record<HeadlineSegmentColor, string> = {
 export default function HeroHeadline({ lines, align = "center" }: HeroHeadlineProps) {
   return (
     <h1
-      className={`text-[36px] md:text-[64px] lg:text-[73px] text-lilian-purple tracking-normal font-chronica font-bold ${
+      className={`text-[5.8cqh] md:text-[8.2cqh] lg:text-[8.7cqh] text-lilian-purple tracking-normal font-chronica font-bold ${
         align === "left" ? "leading-[0.95] text-left" : "leading-[1.15] text-center"
       }`}
     >
@@ -23,7 +23,7 @@ export default function HeroHeadline({ lines, align = "center" }: HeroHeadlinePr
             segment.highlight ? (
               <span
                 key={index}
-                className={`font-owl-cute font-normal text-[50px] md:text-[80px] lg:text-[93px] align-middle ${
+                className={`font-owl-cute font-normal text-[8.1cqh] md:text-[10.3cqh] lg:text-[11.1cqh] align-middle ${
                   SEGMENT_COLOR_CLASS[segment.color ?? "orange"]
                 }`}
               >

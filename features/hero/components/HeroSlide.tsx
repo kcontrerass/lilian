@@ -40,7 +40,7 @@ function HeroSlide({ slide, index, isActive }: HeroSlideProps) {
         className={`relative z-10 flex flex-col px-4 sm:px-8 ${
           slide.align === "left"
             ? "h-full justify-center items-start text-left md:pl-24 lg:pl-32"
-            : "pt-[195px] md:pt-[200px] lg:pt-[210px] items-center text-center"
+            : "pt-[31.5cqh] md:pt-[25.6cqh] lg:pt-[25cqh] items-center text-center"
         }`}
       >
         {slide.eyebrow && <HeroEyebrow text={slide.eyebrow} />}
@@ -50,7 +50,7 @@ function HeroSlide({ slide, index, isActive }: HeroSlideProps) {
           href={slide.cta.href}
           label={slide.cta.label}
           external
-          className="mt-8"
+          className="mt-[5.2cqh] sm:mt-[4.7cqh] md:mt-[4.1cqh] lg:mt-[3.8cqh]"
         />
       </div>
     </div>
