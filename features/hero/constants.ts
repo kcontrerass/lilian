@@ -65,17 +65,25 @@ export const HERO_SLIDES: HeroSlideData[] = [
   {
     id: "slide-3",
     background: {
-      type: "video",
-      src: "/assets/carrousel/bg_video.mp4",
-      poster: "/assets/carrousel/bg_video_poster.webp",
-      alt: "Video de productos Lilian",
+      type: "image",
+      src: "/assets/carrousel/bg-item-2.webp",
+      alt: "Fondo de panadería Lilian",
+      overlay: "gray",
     },
+    foregroundImage: {
+      fit: "dual",
+      left: { src: "/assets/carrousel/plate1.webp", alt: "Postre Lilian" },
+      right: { src: "/assets/carrousel/plate2.webp", alt: "Postre Lilian" },
+    },
+    eyebrow: "EST. 1979",
     headline: [
-      [{ text: "Siempre con", highlight: false }],
-      [{ text: "ingredientes", highlight: true, color: "teal" }],
-      [{ text: "de alta calidad...", highlight: false }],
+      [{ text: "Productos elaborados", highlight: false }],
+      [
+        { text: "con la más alta ", highlight: false },
+        { text: "calidad", highlight: true, color: "teal" },
+      ],
     ],
-    align: "left",
+    align: "center",
     cta: {
       label: "Ordena en Pedidos ya",
       href: "https://www.pedidosya.com",

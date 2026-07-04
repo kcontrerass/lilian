@@ -16,12 +16,21 @@ export type HeroBackground =
 export type HeroSlideData = {
   id: string;
   background: HeroBackground;
-  foregroundImage?: {
-    src: string;
-    alt: string;
-    /** "contain" (default) shows the full image inside a fixed-height box; "cover" anchors it full-width to the bottom edge; "compact" shows it uncropped in a smaller box anchored to the bottom-right corner, so it always touches the right edge. */
-    fit?: "contain" | "cover" | "compact";
-  };
+  foregroundImage?:
+    | {
+        src: string;
+        alt: string;
+        /** "contain" (default) shows the full image inside a fixed-height box; "cover" anchors it full-width to the bottom edge; "compact" shows it uncropped in a smaller box anchored to the bottom-right corner, so it always touches the right edge. */
+        fit?: "contain" | "cover" | "compact";
+      }
+    | {
+        /** "dual" shows two images anchored to the top-left and top-right corners, each bleeding off its edge. */
+        fit: "dual";
+        left: { src: string; alt: string };
+        right: { src: string; alt: string };
+      };
+  /** Small uppercase label with side rules, rendered above the headline (e.g. "EST. 1979"). Omitted when not set. */
+  eyebrow?: string;
   headline: HeadlineSegment[][];
   /** "center" (default) or "left" text/CTA alignment. */
   align?: "center" | "left";

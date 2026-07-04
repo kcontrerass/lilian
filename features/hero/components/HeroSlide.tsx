@@ -1,6 +1,7 @@
 import { memo } from "react";
 import CtaButton from "@/components/CtaButton";
 import HeroBackground from "./HeroBackground";
+import HeroEyebrow from "./HeroEyebrow";
 import HeroForegroundImage from "./HeroForegroundImage";
 import HeroHeadline from "./HeroHeadline";
 import { HeroSlideData } from "../types";
@@ -42,6 +43,7 @@ function HeroSlide({ slide, index, isActive }: HeroSlideProps) {
             : "pt-[195px] md:pt-[200px] lg:pt-[210px] items-center text-center"
         }`}
       >
+        {slide.eyebrow && <HeroEyebrow text={slide.eyebrow} />}
         <HeroHeadline lines={slide.headline} align={slide.align} />
 
         <CtaButton
