@@ -40,11 +40,17 @@ function HeroSlide({ slide, index, isActive }: HeroSlideProps) {
         className={`relative z-10 flex flex-col px-4 sm:px-8 ${
           slide.align === "left"
             ? "h-full justify-center items-start text-left md:pl-24 lg:pl-32"
-            : "pt-[31.5cqh] md:pt-[25.6cqh] lg:pt-[25cqh] items-center text-center"
+            : "pt-[31.5cqh] sm:pt-[29cqh] md:pt-[25.6cqh] lg:pt-[25cqh] items-center text-center"
         }`}
       >
         {slide.eyebrow && <HeroEyebrow text={slide.eyebrow} />}
         <HeroHeadline lines={slide.headline} align={slide.align} />
+
+        {slide.description && (
+          <p className="mt-[2.4cqh] sm:mt-[2.2cqh] md:mt-[1.9cqh] lg:mt-[1.7cqh] max-w-[52ch] font-chronica text-[2.4cqh] md:text-[2.6cqh] lg:text-[2.8cqh] text-lilian-purple/80">
+            {slide.description}
+          </p>
+        )}
 
         <CtaButton
           href={slide.cta.href}

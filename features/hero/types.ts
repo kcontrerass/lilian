@@ -32,6 +32,8 @@ export type HeroSlideData = {
   /** Small uppercase label with side rules, rendered above the headline (e.g. "EST. 1979"). Omitted when not set. */
   eyebrow?: string;
   headline: HeadlineSegment[][];
+  /** Optional paragraph rendered between the headline and the CTA button. */
+  description?: string;
   /** "center" (default) or "left" text/CTA alignment. */
   align?: "center" | "left";
   cta: {

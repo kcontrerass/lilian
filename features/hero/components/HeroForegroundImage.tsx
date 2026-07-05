@@ -37,14 +37,14 @@ export default function HeroForegroundImage({
 
   if (foregroundImage.fit === "compact") {
     return (
-      <div className="absolute right-0 bottom-[-4.2cqh] sm:bottom-[-11cqh] md:bottom-[-6.9cqh] lg:bottom-[-5cqh] z-[1] pointer-events-none h-[45.2cqh] sm:h-[47.1cqh] md:h-[47.4cqh] lg:h-[50cqh] aspect-[1920/820]">
+      <div className="absolute inset-x-0 sm:inset-x-auto sm:right-0 bottom-0 sm:bottom-[-11cqh] md:bottom-[-6.9cqh] lg:bottom-[-5cqh] xl:bottom-[-5.75cqh] z-[1] pointer-events-none w-full sm:w-auto sm:h-[47.1cqh] md:h-[47.4cqh] lg:h-[50cqh] xl:h-[57.5cqh] aspect-[1920/820]">
         <Image
           src={foregroundImage.src}
           alt={foregroundImage.alt}
           fill
           priority
           className="object-contain object-bottom"
-          sizes="(max-width: 640px) 655px, (max-width: 768px) 750px, (max-width: 1024px) 866px, 983px"
+          sizes="(max-width: 640px) 100vw, (max-width: 768px) 750px, (max-width: 1024px) 866px, 983px"
         />
       </div>
     );
@@ -52,7 +52,7 @@ export default function HeroForegroundImage({
 
   if (foregroundImage.fit === "cover") {
     return (
-      <div className="absolute inset-x-0 bottom-0 z-[1] pointer-events-none w-full aspect-[1920/820]">
+      <div className="absolute inset-x-0 bottom-0 z-[1] pointer-events-none w-full xl:w-[85%] xl:mx-auto aspect-[1920/820]">
         <Image
           src={foregroundImage.src}
           alt={foregroundImage.alt}

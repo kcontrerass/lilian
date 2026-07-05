@@ -25,11 +25,10 @@ export const HERO_SLIDES: HeroSlideData[] = [
     },
     headline: [
       [
-        { text: "Hecho con ", highlight: false },
-        { text: "amor", highlight: true },
-        { text: " y", highlight: false },
+        { text: "La ", highlight: false },
+        { text: "tradición", highlight: true },
       ],
-      [{ text: "horneado para ti.", highlight: false }],
+      [{ text: "que nos une", highlight: false }],
     ],
     cta: {
       label: "Ordena en Pedidos ya",
@@ -49,14 +48,12 @@ export const HERO_SLIDES: HeroSlideData[] = [
     },
     headline: [
       [
-        { text: "Disfruta", highlight: false, color: "orange" },
-        { text: " de nuestra", highlight: false },
+        { text: "Nuestro primer ", highlight: false },
+        { text: "amor", highlight: true, color: "teal" },
       ],
-      [
-        { text: "nueva ", highlight: false },
-        { text: "temporada", highlight: true, color: "teal" },
-      ],
+      [{ text: "es el pan.", highlight: false }],
     ],
+    description: "Somos especialistas en pan, pasteles y postres",
     cta: {
       label: "Ordena en Pedidos ya",
       href: "https://www.pedidosya.com",

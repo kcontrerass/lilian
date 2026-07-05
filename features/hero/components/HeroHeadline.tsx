@@ -14,7 +14,7 @@ export default function HeroHeadline({ lines, align = "center" }: HeroHeadlinePr
   return (
     <h1
       className={`text-[5.8cqh] md:text-[8.2cqh] lg:text-[8.7cqh] text-lilian-purple tracking-normal font-chronica font-bold ${
-        align === "left" ? "leading-[0.95] text-left" : "leading-[1.15] text-center"
+        align === "left" ? "leading-[0.95] text-left" : "leading-[0.8] text-center"
       }`}
     >
       {lines.map((segments, lineIndex) => (

@@ -58,12 +58,14 @@ export default function HeroProgress({
               tabIndex={isActive ? 0 : -1}
               onClick={() => onSelect(index)}
               onKeyDown={(event) => handleKeyDown(event, index)}
-              className="flex-1 h-[13px] bg-white/50 backdrop-blur-md rounded-full overflow-hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-lilian-orange"
+              className="flex-1 py-4 -my-4 focus:outline-none focus-visible:ring-2 focus-visible:ring-lilian-orange rounded-full"
             >
-              <div
-                className="h-full bg-lilian-orange rounded-full"
-                style={{ width }}
-              />
+              <span className="block h-[13px] bg-white/50 backdrop-blur-md rounded-full overflow-hidden">
+                <span
+                  className="block h-full bg-lilian-orange rounded-full"
+                  style={{ width }}
+                />
+              </span>
             </button>
           );
         })}
