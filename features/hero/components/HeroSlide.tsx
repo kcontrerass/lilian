@@ -4,6 +4,7 @@ import HeroBackground from "./HeroBackground";
 import HeroEyebrow from "./HeroEyebrow";
 import HeroForegroundImage from "./HeroForegroundImage";
 import HeroHeadline from "./HeroHeadline";
+import HeroHotspot from "./HeroHotspot";
 import { HeroSlideData } from "../types";
 import { getHeroPanelId, getHeroTabId } from "../constants";
 
@@ -35,6 +36,10 @@ function HeroSlide({ slide, index, isActive }: HeroSlideProps) {
       {slide.foregroundImage && (
         <HeroForegroundImage foregroundImage={slide.foregroundImage} />
       )}
+
+      {slide.hotspots?.map((hotspot) => (
+        <HeroHotspot key={hotspot.id} hotspot={hotspot} />
+      ))}
 
       <div
         className={`relative z-10 flex flex-col px-4 sm:px-8 ${

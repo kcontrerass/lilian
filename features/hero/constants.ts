@@ -34,6 +34,16 @@ export const HERO_SLIDES: HeroSlideData[] = [
       label: "Ordena en Pedidos ya",
       href: "https://www.pedidosya.com",
     },
+    hotspots: [
+      {
+        id: "slide-1-pastel-frutos-rojos",
+        top: "top-[84%] sm:top-[72%] md:top-[67%] lg:top-[62%] xl:top-[58%]",
+        left: "left-[47%] sm:left-[26%] md:left-[39%] lg:left-[47%] xl:left-[58%]",
+        direction: "top",
+        icon: "cake",
+        label: "Pastel frutos rojos",
+      },
+    ],
   },
   {
     id: "slide-2",

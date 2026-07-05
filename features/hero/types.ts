@@ -34,6 +34,8 @@ export type HeroSlideData = {
   headline: HeadlineSegment[][];
   /** Optional paragraph rendered between the headline and the CTA button. */
   description?: string;
+  /** Interactive markers overlaid on the slide, shown on hover (desktop) or tap (touch). */
+  hotspots?: HotspotData[];
   /** "center" (default) or "left" text/CTA alignment. */
   align?: "center" | "left";
   cta: {
@@ -46,4 +48,25 @@ export type CarouselConfig = {
   autoplay: boolean;
   interval: number;
   loop: boolean;
+};
+
+export type HotspotDirection = "top" | "bottom" | "left" | "right";
+export type HotspotIconName = "cake";
+
+export type HotspotData = {
+  id: string;
+  /**
+   * Full responsive Tailwind classes for the `top` position, e.g.
+   * `"top-[84%] sm:top-[72%] md:top-[67%] lg:top-[62%] xl:top-[58%]"`.
+   * The foreground image reflows drastically across breakpoints (full-width/bottom-anchored
+   * on mobile vs. right-anchored/height-scaled on sm+), so a single percentage pair can't
+   * track it — each breakpoint needs its own value, same as `HeroForegroundImage`.
+   */
+  top: string;
+  /** Full responsive Tailwind classes for the `left` position, same shape as `top`. */
+  left: string;
+  /** Side the message bubble opens toward, relative to the marker. Defaults to "top". */
+  direction?: HotspotDirection;
+  icon: HotspotIconName;
+  label: string;
 };
