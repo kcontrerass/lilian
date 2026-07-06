@@ -8,7 +8,7 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="relative w-full flex flex-col bg-[#F8F9FA] rounded-[24px] shadow-[0_8px_20px_rgb(0,0,0,0.06)] p-2 pb-4 overflow-hidden group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+    <div className="relative w-full flex flex-col bg-[#F8F9FA] rounded-[24px] shadow-[0_22px_45px_rgba(0,0,0,0.15)] p-2 pb-4 overflow-hidden group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
       <div className={`w-full aspect-[1.15] relative rounded-[16px] overflow-hidden ${product.color}`}>
         {/* Dots pattern */}
         <div
@@ -20,7 +20,7 @@ export default function ProductCard({ product }: ProductCardProps) {
           }}
         />
         {/* Darker bottom strip */}
-        <div className="absolute bottom-0 left-0 w-full h-[25%] w-[75%] left-[20%] lg:w-[65%] bg-black/15 z-0" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[75%] lg:w-[65%] h-[25%] bg-black/15 z-0" />
 
         {/* Image */}
         <div className="absolute inset-[-20px] sm:inset-[-40px] z-10">

@@ -22,16 +22,7 @@ export default function CatalogSection() {
       <ProductGrid products={filteredProducts} />
       <LoadMoreButton />
 
-      <div className="absolute bottom-[-50px] left-[-100px] w-full max-w-[800px] h-[300px] opacity-30 z-0 pointer-events-none">
-        <svg
-          viewBox="0 0 100 100"
-          preserveAspectRatio="none"
-          className="w-full h-full text-lilian-purple"
-          fill="currentColor"
-        >
-          <path d="M0,50 Q25,25 50,50 T100,50 L100,100 L0,100 Z" />
-        </svg>
-      </div>
+
     </section>
   );
 }

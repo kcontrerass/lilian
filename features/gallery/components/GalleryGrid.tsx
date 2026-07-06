@@ -16,7 +16,7 @@ const GRID_LAYOUTS = [
 
 export default function GalleryGrid() {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2 w-full max-w-full auto-rows-fr lg:h-[700px]">
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2 w-full max-w-full auto-rows-fr lg:h-[700px] relative z-10">
       {GALLERY_IMAGES.map((image, index) => (
         <div
           key={image.src}

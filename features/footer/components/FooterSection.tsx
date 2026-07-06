@@ -6,7 +6,9 @@ export default function FooterSection() {
 
   return (
     <footer className="relative w-full bg-transparent px-3 pb-3 pt-0 sm:px-4 sm:pb-4">
-      <section className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-lilian-orange-dark text-white">
+      <section className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-[#DF8D40] text-white">
+
+
         {/* Dot matrix pattern on the left */}
         <div
           aria-hidden
@@ -19,26 +21,26 @@ export default function FooterSection() {
         />
 
         {/* Hand holding container product image (desktop) */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[36%] lg:block">
+        <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[40%] lg:block">
           <Image
             src={FOOTER_IMAGES.main}
             alt="Producto Lilian"
             fill
-            className="object-contain object-bottom"
-            sizes="36vw"
+            className="object-contain object-left-bottom scale-[1.35] lg:scale-[1.5] origin-bottom-left translate-y-[12%] lg:translate-y-[16%] -translate-x-[8%] lg:-translate-x-[0%] transition-transform duration-300"
+            sizes="40vw"
           />
         </div>
 
         {/* Card contents */}
         <div className="relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-10 px-5 pt-10 pb-2 sm:px-8 sm:pt-12 lg:grid-cols-[0.9fr_0.75fr_1.15fr] lg:gap-10 lg:px-12 lg:pt-14">
           {/* Hand holding container product image (mobile/tablet) */}
-          <div className="relative mx-auto aspect-[4/3] w-full max-w-[300px] sm:max-w-[360px] lg:hidden">
+          <div className="relative mx-auto aspect-[4/3] w-full max-w-[380px] sm:max-w-[720px] lg:hidden overflow-hidden">
             <Image
               src={FOOTER_IMAGES.main}
               alt="Producto Lilian"
               fill
-              className="object-contain object-bottom"
-              sizes="(max-width: 640px) 90vw, 360px"
+              className="object-contain object-bottom scale-110 origin-bottom translate-y-[10%]"
+              sizes="(max-width: 640px) 90vw, 420px"
             />
           </div>
 
@@ -52,7 +54,7 @@ export default function FooterSection() {
               <p>{FOOTER_TEXTS.scheduleSabado}</p>
               <p>{FOOTER_TEXTS.scheduleDomingo}</p>
             </div>
-            
+
             <a
               href={`tel:${phoneHref}`}
               className="inline-flex items-center justify-center lg:justify-start gap-2 text-base font-bold text-white underline underline-offset-4 hover:text-white/85 sm:text-lg mt-3"
@@ -84,11 +86,7 @@ export default function FooterSection() {
               una historia
             </h2>
             <p className="font-gotham max-w-[46ch] text-sm leading-relaxed text-white/85 sm:text-base">
-              {FOOTER_TEXTS.taglineSupportBefore}
-              <strong className="font-bold text-white">
-                {FOOTER_TEXTS.taglineSupportBold}
-              </strong>
-              {FOOTER_TEXTS.taglineSupportAfter}
+              {FOOTER_TEXTS.taglineSupport}
             </p>
           </div>
         </div>

@@ -11,10 +11,8 @@ export const FOOTER_TEXTS = {
   titleBefore: "Cada ",
   highlightedWord: "receta",
   titleAfter: " tiene una historia",
-  taglineSupportBefore:
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, nisl vel ultricies facilisis, nunc sapien tristique nunc, vitae ",
-  taglineSupportBold: "facilisis nunc nunc vel nunc.",
-  taglineSupportAfter: " Curabitur quis risus eget urna fermentum aliquam.",
+  taglineSupport:
+    "Queremos que en cada bocado que disfrutes te lleves una experiencia única del sabor, que por una vida ha venido a mis manos y poder compartir estas vivencias a través de recetas únicas.",
   poweredBy: "Powered by Aumenta",
   copyrightLabel: "Copyright",
   copyrightYear: "2026",

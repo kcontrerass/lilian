@@ -6,18 +6,21 @@ export default function GallerySection() {
   return (
     <section
       id="galeria"
-      className="relative py-16 lg:py-24 px-0 w-full bg-white flex flex-col items-center overflow-hidden"
+      className="relative py-5 lg:py-5 px-0 w-full bg-white flex flex-col items-center"
     >
-      {/* Background light-purple blob (top-left) */}
-      <div
-        className="absolute -top-16 -left-16 lg:-top-24 lg:-left-24 w-60 h-60 lg:w-96 lg:h-96 bg-lilian-purple/5 pointer-events-none z-0"
-        style={{
-          borderRadius: "42% 58% 70% 30% / 45% 45% 55% 55%",
-        }}
-      />
-
       {/* Grid container wrapper to bound absolute-positioned stickers */}
       <div className="relative w-full z-10">
+        {/* Background light-purple blob (top-left) - positioned behind (z-0) */}
+        <div className="absolute -top-16 -left-16 sm:-top-24 sm:-left-24 lg:-top-32 lg:-left-32 w-48 h-40 sm:w-80 sm:h-72 lg:w-[480px] lg:h-[420px] pointer-events-none z-0 opacity-85">
+          <svg
+            viewBox="0 0 525.048 448.293"
+            className="w-full h-full text-lilian-purple/10 fill-current"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M195.226 6.61977C278.068 26.6757 334.082 31.3947 385.673 14.5831C455.248 -8.1273 553.715 63.5432 517.158 150.846C489.446 217.502 478.538 209.244 492.689 286.223C500.649 328.695 454.364 400.365 385.084 439.887C353.539 457.583 286.027 454.634 248.292 357.894C210.556 261.153 178.127 258.499 116.807 244.342C75.5335 234.904 -24.1121 199.511 5.36888 97.4613C30.4277 10.7489 112.385 -13.4362 195.226 6.61977Z" />
+          </svg>
+        </div>
+
         <GalleryGrid />
 
         {/* --- STICKERS & DECORATIVE BADGES --- */}
@@ -41,12 +44,14 @@ export default function GallerySection() {
           size={110}
           outerColor="#e9c468"
           innerColor="#ef6f28"
+          variant="outline"
           className="absolute -bottom-8 -left-6 lg:-bottom-12 lg:-left-8 z-20 drop-shadow-md hidden sm:block"
         />
         <ScallopedBadge
           size={80}
           outerColor="#e9c468"
           innerColor="#ef6f28"
+          variant="outline"
           className="absolute -bottom-6 -left-4 z-20 drop-shadow-md sm:hidden"
         />
 
