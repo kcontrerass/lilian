@@ -16,13 +16,13 @@ export const PRODUCTS: Product[] = [
   {
     id: 3,
     name: "Dona de Oreo",
-    image: "/assets/1ff05a6b7598114c6fb1b1ea359890d5a56accb8.png",
+    image: "/assets/c6943b6ff875f7e6f7c288f30a9528184ef7ceb9.png",
     color: "bg-[#2c1d54]",
   },
   {
     id: 4,
     name: "Tostadas de Curtido",
-    image: "/assets/174d0aeb253eb37158edd975fd1841e3a016b509.png",
+    image: "/assets/972f874b1a6a467dae58733f1c931f7819b15759.png",
     color: "bg-[#e2b18a]",
   },
   {

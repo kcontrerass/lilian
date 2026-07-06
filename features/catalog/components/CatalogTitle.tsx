@@ -10,7 +10,7 @@ export default function CatalogTitle() {
           alt=""
           width={336}
           height={109}
-          className="hidden sm:block w-[100px] md:w-[160px] lg:w-[220px] h-auto object-contain shrink-0"
+          className="hidden sm:block w-[100px] md:w-[160px] lg:w-[220px] h-auto object-contain shrink-0 absolute left-0"
           sizes="(max-width: 768px) 100px, (max-width: 1024px) 160px, 220px"
         />
 
@@ -28,7 +28,7 @@ export default function CatalogTitle() {
           alt=""
           width={345}
           height={109}
-          className="hidden sm:block w-[100px] md:w-[160px] lg:w-[220px] h-auto object-contain shrink-0"
+          className="hidden sm:block w-[100px] md:w-[160px] lg:w-[220px] h-auto object-contain shrink-0 absolute right-0"
           sizes="(max-width: 768px) 100px, (max-width: 1024px) 160px, 220px"
         />
       </div>

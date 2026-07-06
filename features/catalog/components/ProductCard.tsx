@@ -9,10 +9,10 @@ interface ProductCardProps {
 export default function ProductCard({ product }: ProductCardProps) {
   return (
     <div className="relative w-full flex flex-col bg-[#F8F9FA] rounded-[24px] shadow-[0_22px_45px_rgba(0,0,0,0.15)] p-2 pb-4 overflow-hidden group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
-      <div className={`w-full aspect-[1.15] relative rounded-[16px] overflow-hidden ${product.color}`}>
+      <div className={`w-full aspect-[1.15] relative rounded-[16px] ${product.color}`}>
         {/* Dots pattern */}
         <div
-          className="absolute inset-0 opacity-20"
+          className="absolute inset-0 opacity-20 rounded-[16px]"
           style={{
             backgroundImage: "radial-gradient(#ffffff 1.5px, transparent 1.5px)",
             backgroundSize: "20px 20px",
@@ -23,12 +23,12 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[75%] lg:w-[65%] h-[25%] bg-black/15 z-0" />
 
         {/* Image */}
-        <div className="absolute inset-[-20px] sm:inset-[-40px] z-10">
+        <div className="absolute inset-0 z-10">
           <Image
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain drop-shadow-xl scale-[1.35] sm:scale-[1.5] origin-center"
+            className="object-contain drop-shadow-xl scale-[1.55] sm:scale-[1.75] origin-center"
             sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
           />
         </div>

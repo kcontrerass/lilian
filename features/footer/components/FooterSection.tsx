@@ -9,16 +9,15 @@ export default function FooterSection() {
       <section className="relative overflow-hidden rounded-[2rem] sm:rounded-[3rem] bg-[#DF8D40] text-white">
 
 
-        {/* Dot matrix pattern on the left */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-10 top-14 bottom-14 hidden w-24 lg:block"
-          style={{
-            backgroundImage: "radial-gradient(#ffffff 1.5px, transparent 1.5px)",
-            backgroundSize: "22px 22px",
-            opacity: 0.35,
-          }}
-        />
+        {/* Background pattern on the left */}
+        <div className="pointer-events-none absolute left-0 top-[98px] w-[163px] h-[217px] hidden lg:block">
+          <Image
+            src="/assets/fondo.svg"
+            alt=""
+            fill
+            className="object-contain object-left"
+          />
+        </div>
 
         {/* Hand holding container product image (desktop) */}
         <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-[40%] lg:block">
