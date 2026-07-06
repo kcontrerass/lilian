@@ -80,55 +80,95 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile Navigation Drawer */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-[100px] left-0 right-0 bg-[#aebac9] shadow-lg border-t border-white/20 z-50">
-          <nav className="flex flex-col px-6 py-8 gap-4 text-[17px] font-chronica font-medium text-lilian-purple">
+      {/* Mobile Navigation Drawer Overlay */}
+      <div
+        className={`fixed inset-0 z-[100] bg-lilian-purple/95 backdrop-blur-lg lg:hidden flex flex-col justify-between px-6 py-8 transition-all duration-300 ease-in-out ${
+          mobileMenuOpen
+            ? "translate-x-0 opacity-100 pointer-events-auto"
+            : "translate-x-full opacity-0 pointer-events-none"
+        }`}
+      >
+        <div>
+          {/* Header row in mobile overlay */}
+          <div className="flex items-center justify-between mb-10 mt-2">
+            <div className="relative w-32 h-16">
+              <Image
+                src="/assets/bdd1bcfba9ab9c71befc317985ccfb5cd63b9ecd.svg"
+                alt="Lilian Logo"
+                fill
+                className="object-contain brightness-0 invert"
+                priority
+              />
+            </div>
+            {/* Close button */}
+            <button
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 text-white/80 hover:text-white transition-colors focus:outline-none"
+              aria-label="Close menu"
+            >
+              <svg
+                className="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Links */}
+          <nav className="flex flex-col gap-5 text-[22px] font-chronica font-bold text-white/90">
             <Link
               href="/"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
+              className="hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-2 border-b border-white/10"
             >
               Inicio
             </Link>
             <Link
               href="#historia"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
+              className="hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-2 border-b border-white/10"
             >
               Nuestra Historia
             </Link>
             <Link
               href="#catalogo"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
+              className="hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-2 border-b border-white/10"
             >
               Catálogo
             </Link>
             <Link
               href="#galeria"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
+              className="hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-2 border-b border-white/10"
             >
               Galería
             </Link>
             <Link
               href="#testimonios"
               onClick={() => setMobileMenuOpen(false)}
-              className="hover:text-lilian-orange transition-colors py-2 border-b border-lilian-purple/10"
+              className="hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-2 border-b border-white/10"
             >
               Testimonios
             </Link>
-            <Link
-              href="#"
-              onClick={() => setMobileMenuOpen(false)}
-              className="inline-flex justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white px-6 py-3 mt-4 rounded-full"
-            >
-              Ordena en Pedidos ya
-            </Link>
           </nav>
         </div>
-      )}
+
+        {/* Footer of the Drawer */}
+        <div className="flex flex-col gap-4 mb-4">
+          <Link
+            href="#"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-medium text-[16px] py-4 rounded-full flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg text-center"
+          >
+            <span className="w-4 h-4 block bg-white rounded-sm animate-pulse" />
+            Ordena en Pedidos ya
+          </Link>
+        </div>
+      </div>
     </header>
   );
 }

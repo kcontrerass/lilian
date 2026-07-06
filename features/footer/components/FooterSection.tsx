@@ -31,20 +31,9 @@ export default function FooterSection() {
         </div>
 
         {/* Card contents */}
-        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-10 px-5 pt-10 pb-2 sm:px-8 sm:pt-12 lg:grid-cols-[0.9fr_0.75fr_1.15fr] lg:gap-10 lg:px-12 lg:pt-14">
-          {/* Hand holding container product image (mobile/tablet) */}
-          <div className="relative mx-auto aspect-[4/3] w-full max-w-[380px] sm:max-w-[720px] lg:hidden overflow-hidden">
-            <Image
-              src={FOOTER_IMAGES.main}
-              alt="Producto Lilian"
-              fill
-              className="object-contain object-bottom scale-110 origin-bottom translate-y-[10%]"
-              sizes="(max-width: 640px) 90vw, 420px"
-            />
-          </div>
-
+        <div className="relative z-10 mx-auto grid w-full max-w-[1440px] grid-cols-1 gap-10 px-5 pt-10 pb-2 sm:px-8 sm:pt-12 md:grid-cols-2 lg:grid-cols-[0.9fr_0.75fr_1.15fr] lg:gap-10 lg:px-12 lg:pt-14">
           {/* Center Column: Schedules */}
-          <div className="space-y-3 text-center lg:col-start-2 lg:text-left flex flex-col justify-center">
+          <div className="space-y-3 text-center md:text-left lg:col-start-2 lg:text-left flex flex-col justify-center">
             <p className="font-chronica text-[14px] font-bold uppercase tracking-[0.16em] text-white">
               {FOOTER_TEXTS.scheduleTitle}
             </p>
@@ -56,7 +45,7 @@ export default function FooterSection() {
 
             <a
               href={`tel:${phoneHref}`}
-              className="inline-flex items-center justify-center lg:justify-start gap-2 text-base font-bold text-white underline underline-offset-4 hover:text-white/85 sm:text-lg mt-3"
+              className="inline-flex items-center justify-center md:justify-start lg:justify-start gap-2 text-base font-bold text-white underline underline-offset-4 hover:text-white/85 sm:text-lg mt-3"
             >
               <svg
                 viewBox="0 0 24 24"
@@ -74,7 +63,7 @@ export default function FooterSection() {
           </div>
 
           {/* Right Column: Title and Tagline */}
-          <div className="space-y-4 text-center lg:col-start-3 lg:text-left flex flex-col justify-center">
+          <div className="space-y-4 text-center md:text-left lg:col-start-3 lg:text-left flex flex-col justify-center">
             <h2 className="font-chronica text-[2.2rem] font-bold leading-[1.1] sm:text-[2.8rem] lg:text-[3.5rem] text-white">
               Cada{" "}
               <span className="font-owl-cute text-lilian-purple text-[2.6rem] sm:text-[3.4rem] lg:text-[4.2rem] font-normal inline-block rotate-[-2deg] mx-1">
@@ -91,7 +80,7 @@ export default function FooterSection() {
         </div>
 
         {/* Footer Bottom Label */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[1440px] items-center justify-center gap-x-4 px-5 pb-6 pt-6 text-center text-xs text-white/50 font-gotham border-t border-white/5 mt-6">
+        <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-col sm:flex-row items-center justify-center  gap-y-2 gap-x-4 px-5 pb-6 pt-6 text-center text-xs text-white/50 font-gotham border-t border-white/5 mt-6 lg:px-12">
           <span>{FOOTER_TEXTS.poweredBy}</span>
           <span>
             {FOOTER_TEXTS.copyrightLabel} <strong>{FOOTER_TEXTS.copyrightYear}</strong>
