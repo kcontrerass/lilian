@@ -16,11 +16,11 @@ const GRID_LAYOUTS = [
 
 export default function GalleryGrid() {
   return (
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 w-full max-w-[1200px] mx-auto auto-rows-fr lg:h-[700px]">
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-1 lg:gap-2 w-full max-w-full auto-rows-fr lg:h-[700px]">
       {GALLERY_IMAGES.map((image, index) => (
         <div
           key={image.src}
-          className={`relative overflow-hidden rounded-xl sm:rounded-2xl ${GRID_LAYOUTS[index]}`}
+          className={`relative overflow-hidden rounded-none ${GRID_LAYOUTS[index]}`}
         >
           <Image
             src={image.src}
