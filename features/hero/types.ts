@@ -38,6 +38,8 @@ export type HeroSlideData = {
   hotspots?: HotspotData[];
   /** "center" (default) or "left" text/CTA alignment. */
   align?: "center" | "left";
+  /** Vertical placement of the text block within the slide: "top" (default, offset via padding) or "center" (vertically centered as a group). Only applies when `align` is "center". */
+  verticalAlign?: "top" | "center";
   cta: {
     label: string;
     href: string;

@@ -45,7 +45,9 @@ function HeroSlide({ slide, index, isActive }: HeroSlideProps) {
         className={`relative z-10 flex flex-col px-4 sm:px-8 ${
           slide.align === "left"
             ? "h-full justify-center items-start text-left md:pl-24 lg:pl-32"
-            : "pt-[31.5cqh] sm:pt-[29cqh] md:pt-[25.6cqh] lg:pt-[25cqh] items-center text-center"
+            : slide.verticalAlign === "center"
+              ? "h-full justify-center items-center text-center"
+              : "pt-[31.5cqh] sm:pt-[29cqh] md:pt-[25.6cqh] lg:pt-[25cqh] items-center text-center"
         }`}
       >
         {slide.eyebrow && <HeroEyebrow text={slide.eyebrow} />}

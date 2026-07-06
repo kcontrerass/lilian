@@ -91,6 +91,7 @@ export const HERO_SLIDES: HeroSlideData[] = [
       ],
     ],
     align: "center",
+    verticalAlign: "center",
     cta: {
       label: "Ordena en Pedidos ya",
       href: "https://www.pedidosya.com",
