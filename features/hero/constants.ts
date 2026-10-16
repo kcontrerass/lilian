@@ -32,7 +32,7 @@ export const HERO_SLIDES: HeroSlideData[] = [
     ],
     cta: {
       label: "Ordena en Pedidos ya",
-      href: "https://www.pedidosya.com",
+      href: "https://www.pedidosyasv.com.sv/restaurantes/san-salvador/pan-lilian-ciudad-delgado-menu",
     },
     hotspots: [
       {
@@ -66,7 +66,7 @@ export const HERO_SLIDES: HeroSlideData[] = [
     description: "Somos especialistas en pan, pasteles y postres",
     cta: {
       label: "Ordena en Pedidos ya",
-      href: "https://www.pedidosya.com",
+      href: "https://www.pedidosyasv.com.sv/restaurantes/san-salvador/pan-lilian-ciudad-delgado-menu",
     },
   },
   {
@@ -94,7 +94,7 @@ export const HERO_SLIDES: HeroSlideData[] = [
     verticalAlign: "center",
     cta: {
       label: "Ordena en Pedidos ya",
-      href: "https://www.pedidosya.com",
+      href: "https://www.pedidosyasv.com.sv/restaurantes/san-salvador/pan-lilian-ciudad-delgado-menu",
     },
   },
 ];

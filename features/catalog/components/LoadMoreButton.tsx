@@ -1,9 +1,16 @@
+import Link from "next/link";
+import { CTA } from "@/lib/constants";
 import { CATALOG_TEXTS } from "../constants";
 
 export default function LoadMoreButton() {
   return (
     <div className="mt-16 text-center w-full relative z-10">
-      <button className="bg-lilian-purple text-white px-8 py-3.5 rounded-[100px] font-gotham font-medium text-[15px] hover:bg-lilian-purple-light transition-colors inline-flex items-center justify-center gap-2 shadow-md">
+      <Link
+        href={CTA.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="bg-lilian-purple text-white px-8 py-3.5 rounded-[100px] font-gotham font-medium text-[15px] hover:bg-lilian-purple-light transition-colors inline-flex items-center justify-center gap-2 shadow-md"
+      >
         <svg
           width="16"
           height="16"
@@ -19,7 +26,7 @@ export default function LoadMoreButton() {
           <line x1="12" y1="15" x2="12" y2="3"></line>
         </svg>
         {CATALOG_TEXTS.loadMore}
-      </button>
+      </Link>
     </div>
   );
 }

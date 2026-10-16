@@ -1,4 +1,6 @@
 import Image from "next/image";
+import Link from "next/link";
+import { CTA } from "@/lib/constants";
 import { Product } from "../types";
 import { CATALOG_TEXTS } from "../constants";
 
@@ -8,7 +10,12 @@ interface ProductCardProps {
 
 export default function ProductCard({ product }: ProductCardProps) {
   return (
-    <div className="relative w-full flex flex-col bg-[#F8F9FA] rounded-[24px] shadow-[0_22px_45px_rgba(0,0,0,0.15)] p-2 pb-4 overflow-hidden group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+    <Link
+      href={CTA.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="relative w-full flex flex-col bg-[#F8F9FA] rounded-[24px] shadow-[0_22px_45px_rgba(0,0,0,0.15)] p-2 pb-4 overflow-hidden group cursor-pointer hover:-translate-y-1 transition-transform duration-300"
+    >
       <div className={`w-full aspect-[1.15] relative rounded-[16px] ${product.color}`}>
         {/* Dots pattern */}
         <div
@@ -45,6 +52,6 @@ export default function ProductCard({ product }: ProductCardProps) {
           </span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

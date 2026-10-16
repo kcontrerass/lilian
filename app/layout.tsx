@@ -121,6 +121,31 @@ const gothamFallback = Montserrat({
 export const metadata: Metadata = {
   title: "Panadería y Pastelería Lilian",
   description: "Hecho con amor y horneado para ti.",
+  metadataBase: new URL("https://www.panlilian.com"),
+  openGraph: {
+    title: "Panadería y Pastelería Lilian",
+    description: "Hecho con amor y horneado para ti.",
+    url: "https://www.panlilian.com",
+    siteName: "Panadería y Pastelería Lilian",
+    images: [
+      {
+        url: "/assets/footer/footer.webp",
+        width: 1200,
+        height: 630,
+        alt: "Panadería y Pastelería Lilian",
+      },
+    ],
+    locale: "es_SV",
+    type: "website",
+  },
+  icons: {
+    icon: [
+      {
+        url: "/assets/bdd1bcfba9ab9c71befc317985ccfb5cd63b9ecd.svg",
+        type: "image/svg+xml",
+      },
+    ],
+  },
 };
 
 export default function RootLayout({

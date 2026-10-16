@@ -1,5 +1,5 @@
 export const MISSION_IMAGES = {
-  main: "/assets/historia/main.png",
+  main: "/assets/historia/main.webp",
   whiteLogo: "/assets/historia/white-logo.svg",
   sticker: "/assets/historia/sticker.svg",
   backgroundShape: "/assets/historia/figure_1.svg",

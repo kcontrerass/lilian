@@ -1,4 +1,5 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
+import { useSearchParams, useRouter } from "next/navigation";
 import { Product } from "../types";
 
 interface UseProductSearchOptions {
@@ -15,7 +16,20 @@ interface UseProductSearchResult {
 export function useProductSearch({
   products,
 }: UseProductSearchOptions): UseProductSearchResult {
-  const [searchTerm, setSearchTerm] = useState("");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+
+  const searchTerm = searchParams.get("search") || "";
+
+  const setSearchTerm = (value: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if (value) {
+      params.set("search", value);
+    } else {
+      params.delete("search");
+    }
+    router.replace(`?${params.toString()}`, { scroll: false });
+  };
 
   const filteredProducts = useMemo(() => {
     const term = searchTerm.toLowerCase();

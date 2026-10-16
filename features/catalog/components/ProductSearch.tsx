@@ -26,6 +26,7 @@ export default function ProductSearch({ value, onChange }: ProductSearchProps) {
         </div>
 
         <input
+          id="catalog-search"
           type="text"
           placeholder={CATALOG_TEXTS.searchPlaceholder}
           className="w-full bg-transparent outline-none font-gotham text-[16px] text-lilian-purple placeholder-lilian-purple/50"

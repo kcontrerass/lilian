@@ -23,7 +23,7 @@ export default function CtaButton({
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
       className={`inline-flex items-center justify-center gap-2 whitespace-nowrap bg-lilian-orange-dark text-white font-chronica font-medium text-[16px] px-8 py-3 rounded-full shadow-md ${className}`}
     >
-      <Image src="/icon-pedidos.svg" alt="" width={17} height={16} aria-hidden="true" />
+      <Image src="/assets/pedidosya.png" alt="" width={18} height={18} aria-hidden="true" className="object-contain" />
       {label}
     </Link>
   );
