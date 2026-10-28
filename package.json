@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "export:zip": "next build && (cd out && zip -r ../out.zip .)"
   },
   "dependencies": {
     "next": "16.2.10",

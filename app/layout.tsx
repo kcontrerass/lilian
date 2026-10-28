@@ -3,6 +3,8 @@ import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 
+
+
 const chronicaPro = localFont({
   variable: "--font-chronica-family",
   display: "swap",

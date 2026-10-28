@@ -1,9 +1,11 @@
 export const NAV_LINKS = {
   home: { href: "/", label: "Inicio" },
-  history: { href: "#historia", label: "Nuestra Historia" },
-  catalog: { href: "#catalogo", label: "Catálogo" },
-  gallery: { href: "#galeria", label: "Galería" },
-  testimonials: { href: "#testimonios", label: "Testimonios" },
+  about: { href: "/#quienes-somos", label: "Quiénes Somos" },
+  catalog: { href: "/#catalogo", label: "Catálogo" },
+  gallery: { href: "/#galeria", label: "Galería" },
+  shop: { href: "/tienda", label: "Tienda" },
+  branches: { href: "/sucursales", label: "Sucursales" },
+  careers: { href: "/trabaja-con-nosotros", label: "Trabaja con Nosotros" },
 } as const;
 
 export const CTA = {
