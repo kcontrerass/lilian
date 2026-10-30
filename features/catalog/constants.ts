@@ -63,6 +63,6 @@ export const CATALOG_TEXTS = {
   searchPlaceholder: "Paninis, Pasteles, desayunos...",
   searchButton: "Buscar",
   buyHere: "Comprar aquí",
-  loadMore: "Cargar más",
+  loadMore: "Ver toda la tienda",
   noResults: "No se encontraron productos que coincidan con tu búsqueda.",
 } as const;

@@ -4,15 +4,26 @@ import React, { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CTA, NAV_LINKS } from "@/lib/constants";
+import { NAV_LINKS } from "@/lib/constants";
 import { SEARCH_TEXTS } from "@/features/search/constants";
 import SearchOverlay from "@/features/search/components/SearchOverlay";
+import { useAuth } from "@/features/account/context/AuthContext";
+import { ACCOUNT_ROUTES, ACCOUNT_TEXTS } from "@/features/account/constants";
+import CartButton from "@/features/shop/components/CartButton";
+import { SHOP_ROUTES } from "@/features/shop/constants";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const { isAuthenticated, loading: authLoading } = useAuth();
+  const accountHref = isAuthenticated
+    ? ACCOUNT_ROUTES.root
+    : ACCOUNT_ROUTES.login;
+  const accountLabel = isAuthenticated
+    ? ACCOUNT_TEXTS.headerAccount
+    : ACCOUNT_TEXTS.headerLogin;
 
   const searchButtonClass = `w-9 h-9 xl:w-11 xl:h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
     isHome
@@ -30,9 +41,10 @@ export default function Header() {
         }`}
       >
         <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-8 flex items-center justify-between relative">
-
-          {/* Lilian Logo */}
-          <Link href="/" className={`relative hover:scale-105 transition-transform duration-200 shrink-0 ${isHome ? "w-32 sm:w-40 md:w-44 h-20 mt-2" : "w-28 sm:w-36 h-14"}`}>
+          <Link
+            href="/"
+            className={`relative hover:scale-105 transition-transform duration-200 shrink-0 ${isHome ? "w-32 sm:w-40 md:w-44 h-20 mt-2" : "w-28 sm:w-36 h-14"}`}
+          >
             <Image
               src="/assets/bdd1bcfba9ab9c71befc317985ccfb5cd63b9ecd.svg"
               alt="Lilian Logo"
@@ -42,7 +54,6 @@ export default function Header() {
             />
           </Link>
 
-          {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 text-[13px] xl:text-[15px] font-medium text-lilian-purple font-chronica whitespace-nowrap">
             {Object.values(NAV_LINKS).map((link) => {
               const isActive = pathname === link.href;
@@ -69,23 +80,44 @@ export default function Header() {
               className={searchButtonClass}
               aria-label={SEARCH_TEXTS.openLabel}
             >
-              <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" className="text-lilian-purple">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                width="18"
+                height="18"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                className="text-lilian-purple"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
             </button>
 
             <Link
-              href={CTA.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-semibold text-[13px] xl:text-[15px] px-5 xl:px-7 py-2.5 rounded-full flex items-center gap-2 hover:scale-105 transition-transform shadow-md"
+              href={accountHref}
+              className={`font-chronica font-semibold text-[13px] xl:text-[15px] transition-colors ${
+                authLoading
+                  ? "text-lilian-purple/50 pointer-events-none"
+                  : pathname.startsWith("/tienda/cuenta")
+                    ? "text-lilian-orange"
+                    : "text-lilian-purple hover:text-lilian-orange"
+              }`}
+              aria-busy={authLoading}
             >
-              <Image src="/assets/pedidosya.png" alt="" width={16} height={16} aria-hidden="true" className="object-contain" />
-              <span>Pedidos ya</span>
+              {accountLabel}
             </Link>
+
+            <CartButton
+              variant="header"
+              tone={isHome ? "ghost" : "solid"}
+              showLabel
+            />
           </div>
 
-          {/* Mobile search and menu button container */}
           <div className="flex items-center gap-2 lg:hidden">
             <button
               type="button"
@@ -97,10 +129,28 @@ export default function Header() {
               }`}
               aria-label={SEARCH_TEXTS.openLabel}
             >
-              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" className="text-lilian-purple">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                className="text-lilian-purple"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                />
               </svg>
             </button>
+
+            <CartButton
+              variant="header"
+              tone={isHome ? "ghost" : "solid"}
+              showLabel={false}
+            />
 
             <button
               type="button"
@@ -115,16 +165,25 @@ export default function Header() {
                 viewBox="0 0 24 24"
               >
                 {mobileMenuOpen ? (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 ) : (
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
                 )}
               </svg>
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation Drawer Overlay */}
         <div
           className={`fixed inset-0 z-[100] bg-lilian-purple/95 backdrop-blur-lg lg:hidden flex flex-col justify-between px-6 py-8 transition-all duration-300 ease-in-out ${
             mobileMenuOpen
@@ -155,7 +214,12 @@ export default function Header() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
                 </svg>
               </button>
             </div>
@@ -169,26 +233,43 @@ export default function Header() {
                     href={link.href}
                     onClick={() => setMobileMenuOpen(false)}
                     className={`hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-1.5 border-b border-white/10 ${
-                      isActive ? "text-lilian-orange font-bold pl-2 border-lilian-orange" : ""
+                      isActive
+                        ? "text-lilian-orange font-bold pl-2 border-lilian-orange"
+                        : ""
                     }`}
                   >
                     {link.label}
                   </Link>
                 );
               })}
+              <Link
+                href={accountHref}
+                onClick={() => setMobileMenuOpen(false)}
+                className={`hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-1.5 border-b border-white/10 ${
+                  pathname.startsWith("/tienda/cuenta")
+                    ? "text-lilian-orange font-bold pl-2 border-lilian-orange"
+                    : ""
+                }`}
+              >
+                {accountLabel}
+              </Link>
+              <Link
+                href={SHOP_ROUTES.cart}
+                onClick={() => setMobileMenuOpen(false)}
+                className="hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-1.5 border-b border-white/10"
+              >
+                Carrito
+              </Link>
             </nav>
           </div>
 
           <div className="flex flex-col gap-4 mb-4">
             <Link
-              href={CTA.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              href={SHOP_ROUTES.shop}
               onClick={() => setMobileMenuOpen(false)}
-              className="w-full justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-medium text-[16px] py-4 rounded-full flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg text-center"
+              className="w-full justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-medium text-[16px] py-4 rounded-full flex items-center justify-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg text-center"
             >
-              <Image src="/assets/pedidosya.png" alt="" width={18} height={18} aria-hidden="true" className="object-contain" />
-              Ordena en Pedidos ya
+              Ir a la tienda
             </Link>
           </div>
         </div>

@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "export:zip": "next build && (cd out && zip -r ../out.zip .)"
+    "export:zip": "next build --webpack && (cd out && zip -r ../out.zip .)"
   },
   "dependencies": {
     "next": "16.2.10",

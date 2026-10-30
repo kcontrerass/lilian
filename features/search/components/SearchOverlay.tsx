@@ -18,6 +18,7 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
     groupedResults,
     hasQuery,
     hasResults,
+    productsLoading,
   } = useGlobalSearch();
 
   useEffect(() => {
@@ -123,7 +124,9 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
         <div className="max-h-[min(60vh,28rem)] overflow-y-auto px-1 py-2">
           {!hasQuery ? (
             <p className="px-4 py-6 text-center text-sm font-gotham text-lilian-purple/50">
-              {SEARCH_TEXTS.hint}
+              {productsLoading
+                ? SEARCH_TEXTS.productsLoading
+                : SEARCH_TEXTS.hint}
             </p>
           ) : (
             <SearchResultsPanel

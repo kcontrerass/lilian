@@ -1,48 +1,120 @@
-import { WHATSAPP_URL } from "@/lib/constants";
-
 export const SHOP_ASSETS = {
-  heroCakes: "/assets/carrousel/item_carrousel.webp",
   leafLeft: "/assets/buscador/leaft_left.svg",
   leafRight: "/assets/buscador/leaft_right.svg",
-  freshCake: "/assets/carrousel/pastel.webp",
-  pedidosYaLogo: "/assets/pedidosya.png",
 } as const;
+
+export const SHOP_ROUTES = {
+  shop: "/tienda",
+  category: (slug: string) => `/tienda/categoria/${slug}`,
+  product: (slug: string) => `/tienda/producto/${slug}`,
+  cart: "/tienda/carrito",
+  checkout: "/tienda/checkout",
+  orderReceived: "/tienda/pedido-recibido",
+  account: "/tienda/cuenta",
+  login: "/tienda/cuenta/iniciar-sesion",
+  register: "/tienda/cuenta/registro",
+  orders: "/tienda/cuenta/pedidos",
+} as const;
+
+export const LAST_ORDER_STORAGE_KEY = "lilian_woo_last_order";
 
 export const SHOP_TEXTS = {
   sectionId: "tienda",
-  eyebrowBadge: "Panadería & Pastelería Lilian • Est. 1979",
-  statusBadge: "En Construcción • Próximamente",
-  titleLine1: "Estamos preparando nuestra",
-  titleHighlight: "Tienda Online",
-  titleLine2: "para ti",
+  badge: "Tienda en línea",
+  titleBefore: "Elige tu ",
+  titleHighlight: "antojo",
+  titleAfter: " favorito",
   subtitle:
-    "El aroma inconfundible de nuestras recetas artesanales y la frescura de nuestros pasteles muy pronto estarán a un solo clic de tu mesa. Estamos cuidando cada detalle para ofrecerte una experiencia dulce, ágil y segura.",
-  orderCardTitle: "¿Deseas hacer un pedido hoy mismo?",
-  orderCardSubtitle:
-    "¡No te quedes con el antojo! Te atendemos de inmediato con la calidez de siempre por WhatsApp o con entrega rápida a domicilio por PedidosYa.",
-  whatsappButton: "Hacer Pedido en WhatsApp",
-  pedidosYaButton: "Pedir en PedidosYa",
-  backHome: "← Volver al Inicio",
-  perks: [
-    {
-      title: "Tradición desde 1979",
-      description:
-        "Recetas auténticas salvadoreñas elaboradas con dedicación artesanal y el sabor de toda una vida.",
-      icon: "cake",
-    },
-    {
-      title: "Horneado Fresco al Día",
-      description:
-        "Ingredientes de la más alta calidad y horneado diario para que recibas siempre lo mejor en tu mesa.",
-      icon: "sparkles",
-    },
-    {
-      title: "Atención Cercana y Cálida",
-      description:
-        "Nuestro equipo está listo para ayudarte a endulzar cada cumpleaños, reunión o celebración especial.",
-      icon: "heart",
-    },
-  ],
+    "Pan dulce, salado, pasteles y bebidas listos para pedir. Agrega al carrito y completa tu pedido con pago contra entrega.",
+  homeShopCta: "Ver toda la tienda",
+  allCategories: "Todos",
+  loading: "Cargando productos…",
+  empty: "No hay productos en esta categoría por ahora.",
+  errorLoad: "No pudimos cargar el catálogo. Revisa la conexión con la tienda.",
+  addToCart: "Agregar",
+  adding: "Agregando…",
+  outOfStock: "Agotado",
+  selectOptions: "Elegir opciones",
+  chooseOption: "Elige una opción",
+  selectVariationHint: "Selecciona las opciones del producto para continuar.",
+  viewProduct: "Ver detalle",
+  onSaleBadge: "Oferta",
+  productSku: "SKU",
+  productDescription: "Descripción",
+  backToShop: "← Volver a la tienda",
+  breadcrumbShop: "Tienda",
+  breadcrumbCart: "Carrito",
+  breadcrumbCheckout: "Checkout",
+  breadcrumbOrder: "Pedido recibido",
+  cartTitle: "Tu carrito",
+  cartEmpty: "Tu carrito está vacío. Elige algo rico del catálogo.",
+  cartContinue: "Seguir comprando",
+  cartCheckout: "Ir al checkout",
+  cartPageTitle: "Carrito",
+  cartPageSubtitle: "Revisa tu pedido antes de pagar.",
+  checkoutTitle: "Checkout",
+  checkoutSubtitle: "Completa tus datos para recibir el pedido.",
+  checkoutSubmit: "Confirmar pedido",
+  checkoutSubmitting: "Procesando…",
+  checkoutBack: "Volver al carrito",
+  checkoutEmpty: "No hay productos en el carrito para pagar.",
+  paymentMethod: "Pago contra entrega (efectivo)",
+  shippingTitle: "Envío",
+  orderSummary: "Resumen del pedido",
+  successTitle: "¡Pedido recibido!",
+  successSubtitle: "Te contactaremos para confirmar la entrega.",
+  successOrder: "Número de pedido",
+  successStatus: "Estado",
+  successAgain: "Seguir comprando",
+  successMissing: "No encontramos un pedido reciente. Si acabas de comprar, vuelve desde el checkout.",
+  quantityLabel: "Cantidad",
+  removeItem: "Quitar",
+  subtotal: "Subtotal",
+  shipping: "Envío",
+  total: "Total",
+  cartOpenLabel: "Abrir carrito",
+  cartCloseLabel: "Cerrar carrito",
+  miniCartView: "Ver carrito",
+  relatedInCategory: "Más en esta categoría",
 } as const;
 
-export const SHOP_WHATSAPP_LINK = `${WHATSAPP_URL}?text=Hola%20Panader%C3%ADa%20y%20Pasteler%C3%ADa%20Lilian,%20deseo%20hacer%20un%20pedido`;
+/** El Salvador departments (ISO 3166-2) required by the Woo Store API. */
+export const SV_DEPARTMENTS: { code: string; label: string }[] = [
+  { code: "SV-AH", label: "Ahuachapán" },
+  { code: "SV-CA", label: "Cabañas" },
+  { code: "SV-CH", label: "Chalatenango" },
+  { code: "SV-CU", label: "Cuscatlán" },
+  { code: "SV-LI", label: "La Libertad" },
+  { code: "SV-PA", label: "La Paz" },
+  { code: "SV-UN", label: "La Unión" },
+  { code: "SV-MO", label: "Morazán" },
+  { code: "SV-SM", label: "San Miguel" },
+  { code: "SV-SS", label: "San Salvador" },
+  { code: "SV-SV", label: "San Vicente" },
+  { code: "SV-SA", label: "Santa Ana" },
+  { code: "SV-SO", label: "Sonsonate" },
+  { code: "SV-US", label: "Usulután" },
+];
+
+export const DEFAULT_CHECKOUT = {
+  first_name: "",
+  last_name: "",
+  email: "",
+  phone: "",
+  address_1: "",
+  address_2: "",
+  city: "",
+  state: "SV-SS",
+  postcode: "",
+  country: "SV",
+} as const;
+
+export const CATEGORY_COLORS = [
+  "bg-lilian-teal",
+  "bg-lilian-pink",
+  "bg-lilian-purple",
+  "bg-lilian-orange",
+  "bg-lilian-beige",
+] as const;
+
+export const PAYMENT_METHOD_COD = "cod";

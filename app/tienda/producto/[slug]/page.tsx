@@ -1,0 +1,32 @@
+import type { Metadata } from "next";
+import ProductDetail from "@/features/shop/components/ProductDetail";
+import { getProductStaticParams } from "@/features/shop/lib/staticParams";
+
+export async function generateStaticParams() {
+  return getProductStaticParams();
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const title = slug
+    .split("-")
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(" ");
+  return {
+    title: `${title} - Tienda Lilian`,
+    description: `Compra ${title} en Panadería y Pastelería Lilian.`,
+  };
+}
+
+export default async function ProductoPage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  return <ProductDetail key={slug} slug={slug} />;
+}

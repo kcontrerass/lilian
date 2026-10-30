@@ -1,23 +1,15 @@
 import { NAV_LINKS } from "@/lib/constants";
-import { PRODUCTS } from "@/features/catalog/constants";
 import { INITIAL_BRANCHES } from "@/features/branches/constants";
 import { INITIAL_JOB_POSITIONS } from "@/features/careers/constants";
 import { SearchResult } from "../types";
 
+/** Static site pages, branches and jobs. Woo products load at runtime. */
 export function buildSearchIndex(): SearchResult[] {
   const pages: SearchResult[] = Object.values(NAV_LINKS).map((link) => ({
     id: `page-${link.href}`,
     type: "page",
     title: link.label,
     href: link.href,
-  }));
-
-  const products: SearchResult[] = PRODUCTS.map((product) => ({
-    id: `product-${product.id}`,
-    type: "product",
-    title: product.name,
-    subtitle: "Catálogo",
-    href: "/#catalogo",
   }));
 
   const branches: SearchResult[] = INITIAL_BRANCHES.map((branch) => ({
@@ -36,7 +28,7 @@ export function buildSearchIndex(): SearchResult[] {
     href: "/trabaja-con-nosotros",
   }));
 
-  return [...pages, ...products, ...branches, ...jobs];
+  return [...pages, ...branches, ...jobs];
 }
 
 export const SEARCH_INDEX = buildSearchIndex();

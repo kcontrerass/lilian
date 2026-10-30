@@ -1,9 +1,10 @@
 import { SearchResultType } from "./types";
 
 export const SEARCH_TEXTS = {
-  placeholder: "Buscar productos, sucursales, vacantes…",
+  placeholder: "Buscar en tienda, sucursales, vacantes…",
   empty: "No encontramos resultados para tu búsqueda.",
-  hint: "Escribe para buscar en todo el sitio.",
+  hint: "Prueba con un producto de la tienda, sucursal o vacante.",
+  productsLoading: "Cargando productos de la tienda…",
   clearLabel: "Limpiar búsqueda",
   openLabel: "Buscar",
   closeLabel: "Cerrar búsqueda",
@@ -17,8 +18,8 @@ export const SEARCH_TEXTS = {
 } as const;
 
 export const SEARCH_RESULT_ORDER: SearchResultType[] = [
-  "page",
   "product",
+  "page",
   "branch",
   "job",
 ];

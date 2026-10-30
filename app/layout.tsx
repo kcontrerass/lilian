@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
+import AuthProviders from "@/features/account/components/AuthProviders";
+import ShopProviders from "@/features/shop/components/ShopProviders";
 import "./globals.css";
 
 
@@ -160,7 +162,11 @@ export default function RootLayout({
       lang="es"
       className={`${chronicaPro.variable} ${owlCute.variable} ${gothamFallback.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col font-gotham">{children}</body>
+      <body className="min-h-full flex flex-col font-gotham">
+        <AuthProviders>
+          <ShopProviders>{children}</ShopProviders>
+        </AuthProviders>
+      </body>
     </html>
   );
 }
