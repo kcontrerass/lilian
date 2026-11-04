@@ -1,30 +1,38 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Branch } from "../types";
-import { BRANCHES_TEXTS } from "../constants";
+import { BRANCHES_TEXTS, BRANCH_IMAGE } from "../constants";
 
 interface BranchCardProps {
   branch: Branch;
 }
 
 export default function BranchCard({ branch }: BranchCardProps) {
+  const [imageSrc, setImageSrc] = useState(branch.image?.trim() || BRANCH_IMAGE);
+
+  useEffect(() => {
+    setImageSrc(branch.image?.trim() || BRANCH_IMAGE);
+  }, [branch.image]);
+
   return (
     <div className="group bg-white rounded-3xl overflow-hidden border border-lilian-purple/10 hover:border-lilian-orange/30 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full">
       {/* Branch Image */}
       <div className="relative w-full h-52 sm:h-64 bg-brand-cream overflow-hidden">
         <Image
-          src={branch.image}
+          src={imageSrc}
           alt={branch.name}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
           sizes="(max-width: 768px) 100vw, 50vw"
+          onError={() => {
+            if (imageSrc !== BRANCH_IMAGE) {
+              setImageSrc(BRANCH_IMAGE);
+            }
+          }}
         />
-        <div className="absolute top-4 left-4 bg-white/95 backdrop-blur-sm px-3.5 py-1 rounded-full shadow-sm">
-          <span className="font-chronica font-bold text-xs uppercase text-lilian-purple">
-            {branch.department}
-          </span>
-        </div>
       </div>
 
       {/* Branch Info */}
@@ -34,7 +42,7 @@ export default function BranchCard({ branch }: BranchCardProps) {
             {branch.name}
           </h4>
 
-          {/* Address */}
+          {branch.address ? (
           <div className="flex items-start gap-2.5 text-xs sm:text-sm text-lilian-purple/80 font-gotham">
             <svg
               className="w-4 h-4 text-lilian-orange shrink-0 mt-0.5"
@@ -57,13 +65,15 @@ export default function BranchCard({ branch }: BranchCardProps) {
             </svg>
             <span>{branch.address}</span>
           </div>
+          ) : null}
 
-          {/* Description */}
+          {branch.description ? (
           <p className="font-gotham text-xs sm:text-sm text-lilian-purple/70 leading-relaxed">
             {branch.description}
           </p>
+          ) : null}
 
-          {/* Schedule */}
+          {branch.schedule ? (
           <div className="flex items-start gap-2.5 text-xs text-lilian-purple/75 font-gotham pt-2 border-t border-lilian-purple/5">
             <svg
               className="w-4 h-4 text-lilian-teal shrink-0 mt-0.5"
@@ -83,11 +93,24 @@ export default function BranchCard({ branch }: BranchCardProps) {
               <span>{branch.schedule}</span>
             </div>
           </div>
+          ) : null}
         </div>
 
         {/* Action Buttons: Phone & Google Maps */}
         <div className="pt-4 border-t border-lilian-purple/10 flex flex-col gap-2.5">
-          {branch.phones.length > 1 ? (
+          {branch.phones.length === 0 ? (
+            <Link
+              href={branch.mapsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-lilian-orange to-lilian-orange-dark text-white font-chronica font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow hover:scale-[1.01] transition-all whitespace-nowrap"
+            >
+              <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+              <span>{BRANCHES_TEXTS.mapsButtonLabel}</span>
+            </Link>
+          ) : branch.phones.length > 1 ? (
             <>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 {branch.phones.map((phone) => (

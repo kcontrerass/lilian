@@ -3,9 +3,9 @@ export interface Branch {
   name: string;
   department: string;
   address: string;
-  description: string;
+  description?: string;
   phones: string[];
   mapsUrl: string;
   image: string;
-  schedule: string;
+  schedule?: string;
 }

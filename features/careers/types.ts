@@ -18,3 +18,13 @@ export interface JobApplicationFormData {
   cvFile: File | null;
   comments: string;
 }
+
+export interface CareerApplicationSubmission {
+  fullName: string;
+  age: string;
+  position: string;
+  email: string;
+  phone: string;
+  comments: string;
+  pdfUrl: string;
+}

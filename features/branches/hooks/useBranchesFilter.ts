@@ -1,25 +1,66 @@
 "use client";
 
-import { useState, useMemo } from "react";
-import { INITIAL_BRANCHES, DEPARTMENTS } from "../constants";
+import { useEffect, useMemo, useState } from "react";
+import { BRANCHES_TEXTS } from "../constants";
+import { fetchBranches } from "../lib/fetchBranches";
+import { matchesBranchQuery } from "../lib/matchesBranchQuery";
 import { Branch } from "../types";
 
 export function useBranchesFilter() {
-  const [selectedDepartment, setSelectedDepartment] = useState<string>("Todos");
+  const [branches, setBranches] = useState<Branch[]>([]);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
+
+  useEffect(() => {
+    let cancelled = false;
+
+    async function load() {
+      setIsLoading(true);
+      setLoadError(null);
+
+      try {
+        const data = await fetchBranches();
+        if (!cancelled) {
+          setBranches(data);
+        }
+      } catch (error) {
+        if (!cancelled) {
+          setBranches([]);
+          setLoadError(
+            error instanceof Error ? error.message : BRANCHES_TEXTS.loadErrorMessage
+          );
+        }
+      } finally {
+        if (!cancelled) {
+          setIsLoading(false);
+        }
+      }
+    }
+
+    void load();
+
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const filteredBranches = useMemo<Branch[]>(() => {
-    if (selectedDepartment === "Todos") {
-      return INITIAL_BRANCHES;
+    const term = searchQuery.trim().toLowerCase();
+    if (!term) {
+      return branches;
     }
-    return INITIAL_BRANCHES.filter(
-      (b) => b.department.toLowerCase() === selectedDepartment.toLowerCase()
-    );
-  }, [selectedDepartment]);
+    return branches.filter((branch) => matchesBranchQuery(branch, term));
+  }, [branches, searchQuery]);
+
+  const hasSearchQuery = searchQuery.trim().length > 0;
 
   return {
-    selectedDepartment,
-    setSelectedDepartment,
-    departments: DEPARTMENTS,
+    searchQuery,
+    setSearchQuery,
     filteredBranches,
+    hasSearchQuery,
+    isLoading,
+    loadError,
   };
 }

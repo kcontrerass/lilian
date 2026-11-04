@@ -2,15 +2,18 @@
 
 import React from "react";
 import { useBranchesFilter } from "../hooks/useBranchesFilter";
+import BranchSearch from "./BranchSearch";
 import BranchCard from "./BranchCard";
 import { BRANCHES_TEXTS } from "../constants";
 
 export default function BranchesSection() {
   const {
-    selectedDepartment,
-    setSelectedDepartment,
-    departments,
     filteredBranches,
+    searchQuery,
+    setSearchQuery,
+    hasSearchQuery,
+    isLoading,
+    loadError,
   } = useBranchesFilter();
 
   return (
@@ -38,28 +41,31 @@ export default function BranchesSection() {
           </p>
         </div>
 
-        {/* Department Filter Pills */}
-        <div className="flex items-center justify-center gap-2 sm:gap-3 flex-wrap mb-10 sm:mb-12">
-          {departments.map((dept) => {
-            const isActive = dept === selectedDepartment;
-            return (
-              <button
-                key={dept}
-                onClick={() => setSelectedDepartment(dept)}
-                className={`py-2 px-4 sm:px-6 rounded-full text-xs sm:text-sm font-chronica font-semibold transition-all duration-200 cursor-pointer ${
-                  isActive
-                    ? "bg-lilian-purple text-white shadow-md scale-105"
-                    : "bg-lilian-purple/5 text-lilian-purple/75 hover:bg-lilian-purple/10 hover:text-lilian-purple"
-                }`}
-              >
-                {dept}
-              </button>
-            );
-          })}
-        </div>
+        {loadError ? (
+          <div
+            className="text-center py-12 bg-red-50 border border-red-100 rounded-3xl max-w-lg mx-auto mb-10"
+            role="alert"
+          >
+            <p className="font-gotham text-red-700 text-sm">{loadError}</p>
+          </div>
+        ) : null}
+
+        {isLoading ? (
+          <div className="text-center py-16">
+            <p className="font-gotham text-lilian-purple/70 text-sm">
+              {BRANCHES_TEXTS.loadingMessage}
+            </p>
+          </div>
+        ) : null}
+
+        {!isLoading && !loadError ? (
+          <div className="mb-8 sm:mb-10">
+            <BranchSearch value={searchQuery} onChange={setSearchQuery} />
+          </div>
+        ) : null}
 
         {/* Branches Grid */}
-        {filteredBranches.length > 0 ? (
+        {!isLoading && !loadError && filteredBranches.length > 0 ? (
           <div
             className={`grid gap-8 mx-auto ${
               filteredBranches.length === 1
@@ -71,13 +77,15 @@ export default function BranchesSection() {
               <BranchCard key={branch.id} branch={branch} />
             ))}
           </div>
-        ) : (
+        ) : !isLoading && !loadError ? (
           <div className="text-center py-12 bg-lilian-purple/5 rounded-3xl max-w-lg mx-auto">
             <p className="font-gotham text-lilian-purple/70 text-sm">
-              {BRANCHES_TEXTS.emptyMessage}
+              {hasSearchQuery
+                ? BRANCHES_TEXTS.searchEmptyMessage
+                : BRANCHES_TEXTS.emptyMessage}
             </p>
           </div>
-        )}
+        ) : null}
       </div>
     </section>
   );

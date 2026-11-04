@@ -1,20 +1,24 @@
 "use client";
 
 import React, { useRef } from "react";
-import { CAREERS_TEXTS, INITIAL_JOB_POSITIONS, HR_EMAIL } from "../constants";
+import { CAREERS_TEXTS, HR_EMAIL } from "../constants";
+import { JobPosition } from "../types";
 import { useCareersForm } from "../hooks/useCareersForm";
 
 interface CareersFormProps {
   formHook: ReturnType<typeof useCareersForm>;
+  positions: JobPosition[];
 }
 
-export default function CareersForm({ formHook }: CareersFormProps) {
+export default function CareersForm({ formHook, positions }: CareersFormProps) {
   const {
     formData,
     fileError,
+    submitError,
     submitting,
+    uploading,
     submitted,
-    mailtoUrl,
+    pdfUrl,
     handleInputChange,
     handleFileChange,
     handleRemoveFile,
@@ -50,26 +54,21 @@ export default function CareersForm({ formHook }: CareersFormProps) {
           <p><span className="text-lilian-purple/70">Puesto:</span> {formData.position}</p>
           <p><span className="text-lilian-purple/70">Teléfono:</span> {formData.phone}</p>
           <p><span className="text-lilian-purple/70">Correo:</span> {formData.email}</p>
-          {formData.cvFile && (
-            <p><span className="text-lilian-purple/70">CV Seleccionado:</span> {formData.cvFile.name}</p>
-          )}
+          {pdfUrl ? (
+            <p>
+              <span className="text-lilian-purple/70">CV:</span>{" "}
+              <a href={pdfUrl} target="_blank" rel="noreferrer" className="underline break-all">
+                {pdfUrl}
+              </a>
+            </p>
+          ) : null}
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-3 justify-center">
-          <a
-            href={mailtoUrl}
-            className="bg-gradient-to-r from-lilian-orange to-lilian-orange-dark hover:brightness-105 text-white font-chronica font-bold py-3.5 px-6 rounded-full flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all hover:scale-[1.02] active:scale-[0.98] text-sm group"
-          >
-            <svg className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <span>{CAREERS_TEXTS.sendMailActionLabel}</span>
-          </a>
-
+        <div className="flex justify-center">
           <button
             onClick={handleReset}
-            className="py-3 px-5 rounded-full border border-lilian-purple/20 text-lilian-purple hover:bg-lilian-purple/5 font-chronica font-semibold text-xs sm:text-sm transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            className="py-3.5 px-6 rounded-full bg-gradient-to-r from-lilian-orange to-lilian-orange-dark text-white font-chronica font-bold text-sm shadow-md hover:shadow-lg hover:brightness-105 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
             {CAREERS_TEXTS.sendAnotherLabel}
           </button>
@@ -147,13 +146,14 @@ export default function CareersForm({ formHook }: CareersFormProps) {
             <option value="" disabled>
               {CAREERS_TEXTS.positionPlaceholder}
             </option>
-            {INITIAL_JOB_POSITIONS.map((p) => (
+            {positions.map((p) => (
               <option key={p.id} value={p.title}>
-                {p.title} ({p.department})
+                {p.title}
+                {p.department ? ` (${p.department})` : ""}
               </option>
             ))}
-            <option value="Otra plaza / Postulación Espontánea">
-              Otra plaza / Postulación Espontánea
+            <option value={CAREERS_TEXTS.spontaneousApplicationLabel}>
+              {CAREERS_TEXTS.spontaneousApplicationLabel}
             </option>
           </select>
         </div>
@@ -200,7 +200,7 @@ export default function CareersForm({ formHook }: CareersFormProps) {
           <input
             ref={fileInputRef}
             type="file"
-            accept=".pdf,.doc,.docx"
+            accept=".pdf,application/pdf"
             onChange={handleFileChange}
             className="hidden"
           />
@@ -222,8 +222,14 @@ export default function CareersForm({ formHook }: CareersFormProps) {
               </div>
               <button
                 type="button"
-                onClick={handleRemoveFile}
-                className="text-xs font-chronica font-semibold text-lilian-pink hover:underline shrink-0 ml-3 cursor-pointer"
+                onClick={() => {
+                  handleRemoveFile();
+                  if (fileInputRef.current) {
+                    fileInputRef.current.value = "";
+                  }
+                }}
+                disabled={submitting || uploading}
+                className="text-xs font-chronica font-semibold text-lilian-pink hover:underline shrink-0 ml-3 cursor-pointer disabled:opacity-60"
               >
                 Quitar archivo
               </button>
@@ -271,18 +277,24 @@ export default function CareersForm({ formHook }: CareersFormProps) {
         </div>
 
         {/* Submit Button */}
+        {submitError ? (
+          <p className="text-xs text-lilian-pink font-gotham" role="alert">
+            {submitError}
+          </p>
+        ) : null}
+
         <button
           type="submit"
-          disabled={submitting}
+          disabled={submitting || uploading}
           className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-lilian-orange to-lilian-orange-dark hover:brightness-105 text-white font-chronica font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:shadow-lilian-orange/30 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-60 group"
         >
-          {submitting ? (
+          {submitting || uploading ? (
             <span className="flex items-center gap-2">
               <svg className="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
                 <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
               </svg>
-              {CAREERS_TEXTS.submittingLabel}
+              {uploading ? CAREERS_TEXTS.uploadingLabel : CAREERS_TEXTS.submittingLabel}
             </span>
           ) : (
             <>

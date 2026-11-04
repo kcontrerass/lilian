@@ -1,26 +1,23 @@
 "use client";
 
 import React, { useMemo, useState } from "react";
-import { INITIAL_JOB_POSITIONS, CAREERS_TEXTS } from "../constants";
+import { CAREERS_TEXTS } from "../constants";
 import { useCareersForm } from "../hooks/useCareersForm";
+import { useJobPositions } from "../hooks/useJobPositions";
 import JobCard from "./JobCard";
 import JobSearch from "./JobSearch";
 import CareersForm from "./CareersForm";
 
 export default function CareersSection() {
   const formHook = useCareersForm();
+  const { jobs, departments, isLoading, loadError } = useJobPositions();
   const [selectedDept, setSelectedDept] = useState<string>("Todas");
   const [searchQuery, setSearchQuery] = useState("");
-
-  const departments = useMemo(() => {
-    const list = Array.from(new Set(INITIAL_JOB_POSITIONS.map((j) => j.department)));
-    return ["Todas", ...list];
-  }, []);
 
   const filteredJobs = useMemo(() => {
     const query = searchQuery.trim().toLowerCase();
 
-    return INITIAL_JOB_POSITIONS.filter((job) => {
+    return jobs.filter((job) => {
       const matchesDept =
         selectedDept === "Todas" || job.department === selectedDept;
 
@@ -40,7 +37,7 @@ export default function CareersSection() {
 
       return haystack.includes(query);
     });
-  }, [selectedDept, searchQuery]);
+  }, [jobs, selectedDept, searchQuery]);
 
   return (
     <section
@@ -100,28 +97,48 @@ export default function CareersSection() {
             </div>
           </div>
 
+          {loadError ? (
+            <div
+              className="text-center py-10 px-6 rounded-3xl bg-red-50 border border-red-100 max-w-lg mx-auto mb-8"
+              role="alert"
+            >
+              <p className="font-gotham text-sm text-red-700">{loadError}</p>
+            </div>
+          ) : null}
+
+          {isLoading ? (
+            <div className="text-center py-14">
+              <p className="font-gotham text-sm text-lilian-purple/70">
+                {CAREERS_TEXTS.loadingJobsMessage}
+              </p>
+            </div>
+          ) : null}
+
           {/* Department Filter Pills */}
-          <div className="flex items-center gap-2 flex-wrap mb-8">
-            {departments.map((dept) => {
-              const isActive = dept === selectedDept;
-              return (
-                <button
-                  key={dept}
-                  onClick={() => setSelectedDept(dept)}
-                  className={`py-2 px-4 rounded-full text-xs font-chronica font-semibold transition-all duration-200 cursor-pointer ${
-                    isActive
-                      ? "bg-lilian-purple text-white shadow-md scale-105"
-                      : "bg-white/80 hover:bg-lilian-purple/10 text-lilian-purple/75 border border-lilian-purple/10 hover:text-lilian-purple"
-                  }`}
-                >
-                  {dept}
-                </button>
-              );
-            })}
-          </div>
+          {!isLoading && !loadError && departments.length > 1 ? (
+            <div className="flex items-center gap-2 flex-wrap mb-8">
+              {departments.map((dept) => {
+                const isActive = dept === selectedDept;
+                return (
+                  <button
+                    key={dept}
+                    type="button"
+                    onClick={() => setSelectedDept(dept)}
+                    className={`py-2 px-4 rounded-full text-xs font-chronica font-semibold transition-all duration-200 cursor-pointer ${
+                      isActive
+                        ? "bg-lilian-purple text-white shadow-md scale-105"
+                        : "bg-white/80 hover:bg-lilian-purple/10 text-lilian-purple/75 border border-lilian-purple/10 hover:text-lilian-purple"
+                    }`}
+                  >
+                    {dept}
+                  </button>
+                );
+              })}
+            </div>
+          ) : null}
 
           {/* Cards Grid / Empty State */}
-          {filteredJobs.length > 0 ? (
+          {!isLoading && !loadError && filteredJobs.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
               {filteredJobs.map((job) => (
                 <JobCard
@@ -131,27 +148,31 @@ export default function CareersSection() {
                 />
               ))}
             </div>
-          ) : (
+          ) : !isLoading && !loadError ? (
             <div className="text-center py-14 px-6 rounded-3xl bg-lilian-purple/5 border border-lilian-purple/10 max-w-lg mx-auto">
               <p className="font-gotham text-sm text-lilian-purple/75 mb-4">
-                {CAREERS_TEXTS.searchEmptyMessage}
+                {searchQuery.trim() || selectedDept !== "Todas"
+                  ? CAREERS_TEXTS.searchEmptyMessage
+                  : CAREERS_TEXTS.emptyJobsMessage}
               </p>
-              <button
-                type="button"
-                onClick={() => {
-                  setSearchQuery("");
-                  setSelectedDept("Todas");
-                }}
-                className="text-xs font-chronica font-bold text-lilian-orange hover:underline cursor-pointer"
-              >
-                Ver todas las plazas
-              </button>
+              {searchQuery.trim() || selectedDept !== "Todas" ? (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setSearchQuery("");
+                    setSelectedDept("Todas");
+                  }}
+                  className="text-xs font-chronica font-bold text-lilian-orange hover:underline cursor-pointer"
+                >
+                  Ver todas las plazas
+                </button>
+              ) : null}
             </div>
-          )}
+          ) : null}
         </div>
 
         {/* Application Form */}
-        <CareersForm formHook={formHook} />
+        <CareersForm formHook={formHook} positions={jobs} />
       </div>
     </section>
   );
