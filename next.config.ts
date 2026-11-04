@@ -2,6 +2,8 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   output: "export",
+  // Una carpeta por ruta (index.html). Evita 403 en LiteSpeed al recargar con /
+  trailingSlash: true,
   images: {
     unoptimized: true,
     remotePatterns: [

@@ -1,14 +1,28 @@
+# Next.js static export + trailingSlash (LiteSpeed / cPanel / public_html)
+# IMPORTANTE: borra el contenido viejo de public_html antes de subir out/ (evita carpetas vacías → 403).
+
+Options -MultiViews -Indexes
+
+# Frontend: index.html. WordPress en /admin-backend/: index.php
+DirectoryIndex index.html index.php
+
+ErrorDocument 404 /404.html
+
+<IfModule mod_rewrite.c>
 RewriteEngine On
 RewriteBase /
 
-# 1. Custom 404 Error Page
-ErrorDocument 404 /404.html
+# WordPress — no aplicar reglas del sitio estático
+RewriteRule ^admin-backend(/.*)?$ - [L]
 
-# 2. Redirect /page.html to clean URL /page
-RewriteCond %{THE_REQUEST} \s/+(.+?)\.html[\s?] [NC]
-RewriteRule ^ /%1 [R=301,L]
+# Restos *.html de un deploy anterior → URL con /
+RewriteCond %{THE_REQUEST} \s/+([^?\s]*?)\.html[\s?] [NC]
+RewriteRule ^ /%1/ [R=301,L]
 
-# 3. Serve .html if the file exists
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}\.html -f
-RewriteRule ^(.*)$ $1.html [L]
+# /ruta → /ruta/ cuando existe ruta/index.html (solo frontend estático)
+RewriteCond %{REQUEST_URI} !^/admin-backend/
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.+?)$ $1/ [R=301,L]
+</IfModule>
