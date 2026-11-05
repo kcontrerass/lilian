@@ -83,7 +83,7 @@ export default function ShopSection() {
           <div className="absolute top-0 right-0 w-64 h-64 bg-lilian-orange/20 rounded-full blur-3xl pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-lilian-teal/20 rounded-full blur-3xl pointer-events-none" />
 
-          <div className="relative z-10 max-w-xl mx-auto text-center">
+          <div className="relative z-10 max-w-2xl mx-auto text-center">
             <span className="inline-block px-3.5 py-1 rounded-full bg-white/10 text-brand-gold font-chronica font-bold text-xs uppercase tracking-widest mb-3">
               Pedidos Inmediatos
             </span>
@@ -94,14 +94,14 @@ export default function ShopSection() {
               {SHOP_TEXTS.orderCardSubtitle}
             </p>
 
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
               <Link
                 href={SHOP_WHATSAPP_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-gradient-to-r from-lilian-teal to-lilian-teal-dark hover:brightness-110 text-white font-chronica font-bold text-sm shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2.5"
+                className="w-full sm:w-auto py-3 px-6 rounded-full bg-gradient-to-r from-lilian-teal to-lilian-teal-dark hover:brightness-110 text-white font-chronica font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2.5"
               >
-                <svg className="w-4 h-4 fill-current shrink-0" viewBox="0 0 24 24">
+                <svg className="w-8 h-8 fill-current shrink-0" viewBox="0 0 24 24" aria-hidden="true">
                   <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.007c.106.005.249-.04.39.299.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86.174.086.275.072.376-.043.101-.116.433-.506.549-.68.116-.173.231-.145.39-.086s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.099.824z" />
                 </svg>
                 <span>{SHOP_TEXTS.whatsappButton}</span>
@@ -111,15 +111,16 @@ export default function ShopSection() {
                 href={CTA.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full sm:w-auto py-3.5 px-8 rounded-full bg-white text-lilian-purple hover:bg-[#fff9f2] font-chronica font-bold text-sm shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2.5"
+                className="w-full sm:w-auto py-3 px-6 rounded-full bg-white text-lilian-purple hover:bg-[#fff9f2] font-chronica font-bold text-sm sm:text-base shadow-lg hover:shadow-xl transition-all hover:scale-[1.02] flex items-center justify-center gap-2.5"
               >
-                <Image
-                  src={SHOP_ASSETS.pedidosYaLogo}
-                  alt=""
-                  width={18}
-                  height={18}
-                  className="object-contain shrink-0"
-                />
+                <svg className="w-6 h-6 shrink-0" viewBox="0 0 17 16" aria-hidden="true">
+                  <path
+                    fill="currentColor"
+                    fillRule="evenodd"
+                    clipRule="evenodd"
+                    d="M0.155793 0.00242139C4.01169 -0.00403548 7.86754 0.00242139 11.7234 0.0217881C14.3515 0.401632 16.0587 1.85415 16.845 4.3793C17.3478 6.88199 16.6273 8.95423 14.6834 10.596C14.0532 11.0449 13.3651 11.3806 12.6192 11.6031C12.2326 11.6844 11.8431 11.7489 11.4507 11.7968C9.47738 11.8161 7.50404 11.8226 5.53062 11.8161C5.26897 12.823 5.00284 13.83 4.73219 14.8373C4.4953 15.4216 4.07334 15.8024 3.46637 15.98C2.37953 16.0121 1.29545 16.0056 0.214215 15.9606C0.126785 15.8297 0.100818 15.6876 0.136319 15.5345C0.83701 12.8516 1.53806 10.1661 2.23951 7.47798C2.27196 7.44572 2.30444 7.41341 2.33688 7.38115C5.32291 7.36825 8.3089 7.35531 11.2949 7.34242C12.3581 7.05521 12.754 6.37737 12.4828 5.30891C12.2657 4.87331 11.9217 4.59575 11.4507 4.47614C8.64646 4.46324 5.8422 4.4503 3.03795 4.4374C2.20555 4.418 1.45257 4.1727 0.778961 3.70147C0.366331 3.30038 0.113168 2.81622 0.019475 2.24896C-0.00649166 1.55176 -0.00649166 0.854558 0.019475 0.157355C0.0730519 0.110678 0.118493 0.0590342 0.155793 0.00242139Z"
+                  />
+                </svg>
                 <span>{SHOP_TEXTS.pedidosYaButton}</span>
               </Link>
             </div>
