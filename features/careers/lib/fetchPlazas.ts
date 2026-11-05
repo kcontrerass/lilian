@@ -1,9 +1,9 @@
-import { wpRestUrl } from "@/lib/wp";
+import { wpClientRestUrl } from "@/lib/wp";
 import type { JobPosition } from "../types";
 import { extractPlazasPayload, mapPlazaFromApi } from "./mapPlazaFromApi";
 
 export async function fetchPlazas(): Promise<JobPosition[]> {
-  const response = await fetch(wpRestUrl("/lilian/v1/plazas"), {
+  const response = await fetch(wpClientRestUrl("/lilian/v1/plazas"), {
     method: "GET",
     headers: { Accept: "application/json" },
   });

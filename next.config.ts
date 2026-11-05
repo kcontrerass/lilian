@@ -1,21 +1,30 @@
 import type { NextConfig } from "next";
 
-/** Si el sitio se sirve bajo /public/ en la URL, define NEXT_PUBLIC_BASE_PATH=/public en .env.local antes del build. */
+/** cPanel: `npm run build:static`. Vercel: `npm run build` (proxy API, sin export). */
 const rawBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.replace(/\/$/, "") ?? "";
-const basePath = rawBasePath.startsWith("/") ? rawBasePath : rawBasePath ? `/${rawBasePath}` : "";
+const basePath = rawBasePath.startsWith("/")
+  ? rawBasePath
+  : rawBasePath
+    ? `/${rawBasePath}`
+    : "";
+
+const isStaticExport = process.env.NEXT_STATIC_EXPORT === "1";
 
 const nextConfig: NextConfig = {
-  output: "export",
+  ...(isStaticExport ? { output: "export" as const } : {}),
   ...(basePath ? { basePath } : {}),
-  // Carpetas /ruta/index.html — recarga fiable en Apache/cPanel con barra final
   trailingSlash: true,
+  env: {
+    NEXT_PUBLIC_WP_PROXY: isStaticExport ? "0" : "1",
+  },
   images: {
-    unoptimized: true,
+    unoptimized: isStaticExport,
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'images.unsplash.com',
-      },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "panlilian.com" },
+      { protocol: "https", hostname: "www.panlilian.com" },
+      { protocol: "https", hostname: "lilianpanaderia.local" },
+      { protocol: "http", hostname: "lilianpanaderia.local" },
     ],
   },
 };

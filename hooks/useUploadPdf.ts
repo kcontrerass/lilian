@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useState } from "react";
-import { wpRestUrl } from "@/lib/wp";
+import { wpClientRestUrl } from "@/lib/wp";
 
 export type UploadPdfExtra = {
   title?: string;
@@ -35,7 +35,7 @@ export function useUploadPdf() {
         formData.append("context", extra.context);
       }
 
-      const response = await fetch(wpRestUrl("/lilian/v1/upload/pdf"), {
+      const response = await fetch(wpClientRestUrl("/lilian/v1/upload/pdf"), {
         method: "POST",
         body: formData,
       });
