@@ -39,6 +39,8 @@ export default function CareersSection() {
     });
   }, [jobs, selectedDept, searchQuery]);
 
+  const showApplicationForm = !isLoading && !loadError && jobs.length > 0;
+
   return (
     <section
       id={CAREERS_TEXTS.sectionId}
@@ -172,7 +174,9 @@ export default function CareersSection() {
         </div>
 
         {/* Application Form */}
-        <CareersForm formHook={formHook} positions={jobs} />
+        {showApplicationForm ? (
+          <CareersForm formHook={formHook} positions={jobs} />
+        ) : null}
       </div>
     </section>
   );

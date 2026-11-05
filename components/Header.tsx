@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -13,6 +13,15 @@ export default function Header() {
   const [searchOpen, setSearchOpen] = useState(false);
   const pathname = usePathname();
   const isHome = pathname === "/";
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [mobileMenuOpen]);
 
   const searchButtonClass = `w-9 h-9 xl:w-11 xl:h-11 rounded-full flex items-center justify-center transition-colors cursor-pointer ${
     isHome
@@ -123,76 +132,84 @@ export default function Header() {
             </button>
           </div>
         </div>
-
-        {/* Mobile Navigation Drawer Overlay */}
-        <div
-          className={`fixed inset-0 z-[100] bg-lilian-purple/95 backdrop-blur-lg lg:hidden flex flex-col justify-between px-6 py-8 transition-all duration-300 ease-in-out ${
-            mobileMenuOpen
-              ? "translate-x-0 opacity-100 pointer-events-auto"
-              : "translate-x-full opacity-0 pointer-events-none"
-          }`}
-        >
-          <div>
-            <div className="flex items-center justify-between mb-10 mt-2">
-              <div className="relative w-32 h-16">
-                <Image
-                  src="/assets/bdd1bcfba9ab9c71befc317985ccfb5cd63b9ecd.svg"
-                  alt="Lilian Logo"
-                  fill
-                  className="object-contain brightness-0 invert"
-                  priority
-                />
-              </div>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(false)}
-                className="p-2 text-white/80 hover:text-white transition-colors focus:outline-none"
-                aria-label="Close menu"
-              >
-                <svg
-                  className="w-8 h-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
-
-            <nav className="flex flex-col gap-2 text-[18px] sm:text-[20px] font-chronica font-bold text-white/90 overflow-y-auto max-h-[48vh] pr-2">
-              {Object.values(NAV_LINKS).map((link) => {
-                const isActive = pathname === link.href;
-                return (
-                  <Link
-                    key={link.href}
-                    href={link.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className={`hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-1.5 border-b border-white/10 ${
-                      isActive ? "text-lilian-orange font-bold pl-2 border-lilian-orange" : ""
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                );
-              })}
-            </nav>
-          </div>
-
-          <div className="flex flex-col gap-4 mb-4">
-            <Link
-              href={CTA.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setMobileMenuOpen(false)}
-              className="w-full justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-medium text-[16px] py-4 rounded-full flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg text-center"
-            >
-              <Image src="/assets/pedidosya.png" alt="" width={18} height={18} aria-hidden="true" className="object-contain" />
-              Ordena en Pedidos ya
-            </Link>
-          </div>
-        </div>
       </header>
+
+      {/* Fuera del header: backdrop-blur en el header rompe `fixed inset-0` y el menú solo cubría la barra */}
+      <div
+        className={`fixed inset-0 z-[100] bg-lilian-purple/95 backdrop-blur-lg lg:hidden flex flex-col justify-between px-6 py-8 pt-[max(2rem,env(safe-area-inset-top))] pb-[max(1rem,env(safe-area-inset-bottom))] transition-all duration-300 ease-in-out ${
+          mobileMenuOpen
+            ? "translate-x-0 opacity-100 pointer-events-auto visible"
+            : "translate-x-full opacity-0 pointer-events-none invisible"
+        }`}
+        aria-hidden={!mobileMenuOpen}
+      >
+        <div>
+          <div className="flex items-center justify-between mb-10">
+            <Link
+              href="/"
+              onClick={() => setMobileMenuOpen(false)}
+              className="relative w-32 h-16 shrink-0"
+            >
+              <Image
+                src="/assets/bdd1bcfba9ab9c71befc317985ccfb5cd63b9ecd.svg"
+                alt="Lilian Logo"
+                fill
+                className="object-contain brightness-0 invert"
+                priority
+              />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(false)}
+              className="p-2 text-white/80 hover:text-white transition-colors focus:outline-none"
+              aria-label="Close menu"
+            >
+              <svg
+                className="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          <nav
+            className="flex flex-col gap-2 text-[18px] sm:text-[20px] font-chronica font-bold text-white/90 overflow-y-auto max-h-[min(52vh,100dvh-16rem)] pr-2"
+            aria-label="Menú principal"
+          >
+            {Object.values(NAV_LINKS).map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-1.5 border-b border-white/10 ${
+                    isActive ? "text-lilian-orange font-bold pl-2 border-lilian-orange" : ""
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <Link
+            href={CTA.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setMobileMenuOpen(false)}
+            className="w-full justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-medium text-[16px] py-4 rounded-full flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg text-center"
+          >
+            <Image src="/assets/pedidosya.png" alt="" width={18} height={18} aria-hidden="true" className="object-contain" />
+            Ordena en Pedidos ya
+          </Link>
+        </div>
+      </div>
 
       <SearchOverlay open={searchOpen} onClose={() => setSearchOpen(false)} />
     </>
