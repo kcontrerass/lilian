@@ -15,7 +15,7 @@ const nextConfig: NextConfig = {
   ...(basePath ? { basePath } : {}),
   trailingSlash: true,
   env: {
-    NEXT_PUBLIC_WP_PROXY: isStaticExport ? "0" : "1",
+    NEXT_PUBLIC_STATIC_EXPORT: isStaticExport ? "1" : "0",
   },
   images: {
     unoptimized: isStaticExport,

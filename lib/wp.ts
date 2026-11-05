@@ -5,8 +5,12 @@ function normalizeRoute(route: string): string {
   return route.startsWith("/") ? route : `/${route}`;
 }
 
+function isStaticExportSite(): boolean {
+  return process.env.NEXT_PUBLIC_STATIC_EXPORT === "1";
+}
+
 /**
- * URL directa al WordPress (build en servidor, proxy en `/api/wp`, o mismo origen en cPanel).
+ * URL directa al WordPress (servidor Next o sitio estático en el mismo dominio).
  */
 export function wpRestUrl(route: string): string {
   const path = normalizeRoute(route);
@@ -23,12 +27,14 @@ export function wpRestUrl(route: string): string {
 }
 
 /**
- * URL para `fetch` en el navegador. En Vercel usa proxy same-origin (evita CORS).
+ * URL para `fetch` en el navegador.
+ * Vercel / `next dev`: proxy same-origin `/api/wp` (sin CORS).
+ * Export estático (cPanel): URL directa a WordPress.
  */
 export function wpClientRestUrl(route: string): string {
   const path = normalizeRoute(route);
 
-  if (process.env.NEXT_PUBLIC_WP_PROXY === "1") {
+  if (typeof window !== "undefined" && !isStaticExportSite()) {
     const params = new URLSearchParams({ rest_route: path });
     return `/api/wp/?${params.toString()}`;
   }
