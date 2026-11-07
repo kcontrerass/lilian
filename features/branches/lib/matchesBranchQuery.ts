@@ -1,3 +1,4 @@
+import { includesFolded } from "@/lib/normalizeText";
 import type { Branch } from "../types";
 
 export function matchesBranchQuery(branch: Branch, term: string): boolean {
@@ -7,9 +8,7 @@ export function matchesBranchQuery(branch: Branch, term: string): boolean {
     branch.department,
     branch.description ?? "",
     ...branch.phones,
-  ]
-    .join(" ")
-    .toLowerCase();
+  ].join(" ");
 
-  return haystack.includes(term);
+  return includesFolded(haystack, term);
 }

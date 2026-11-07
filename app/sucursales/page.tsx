@@ -17,7 +17,7 @@ export default function SucursalesPage() {
       <Suspense>
         <Header />
       </Suspense>
-      <main className="flex-grow">
+      <main id="contenido" className="flex-grow pb-24 sm:pb-28">
         <BranchesSection />
       </main>
       <FooterSection />

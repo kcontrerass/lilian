@@ -10,7 +10,7 @@ export const CAREERS_TEXTS = {
     "Únete a una familia que desde 1979 hornea con pasión y compromiso. Conoce nuestras plazas vacantes y postúlate hoy mismo.",
   jobsHeaderTitle: "Plazas Disponibles",
   jobsHeaderSubtitle: "Selecciona una plaza para aplicar directamente a la vacante:",
-  searchPlaceholder: "Buscar por puesto, área o ubicación…",
+  searchPlaceholder: "Buscar plaza…",
   searchEmptyMessage: "No encontramos plazas con ese criterio. Prueba con otra búsqueda.",
   loadingJobsMessage: "Cargando plazas…",
   loadErrorMessage:
@@ -44,6 +44,6 @@ export const CAREERS_TEXTS = {
   submittingLabel: "Enviando postulación...",
   submitFailedError: "No se pudo enviar la postulación. Intenta de nuevo.",
   successTitle: "¡Postulación enviada!",
-  successSubtitle: "Recibimos tus datos y el enlace de tu CV.",
+  successSubtitle: "Recibimos tus datos. Recursos Humanos revisará tu postulación.",
   sendAnotherLabel: "Postular a otra plaza",
 } as const;

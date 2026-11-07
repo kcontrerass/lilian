@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Product } from "../types";
+import { includesFolded } from "@/lib/normalizeText";
 
 interface UseProductSearchOptions {
   products: Product[];
@@ -32,10 +33,7 @@ export function useProductSearch({
   };
 
   const filteredProducts = useMemo(() => {
-    const term = searchTerm.toLowerCase();
-    return products.filter((product) =>
-      product.name.toLowerCase().includes(term)
-    );
+    return products.filter((product) => includesFolded(product.name, searchTerm));
   }, [products, searchTerm]);
 
   const hasResults = filteredProducts.length > 0;

@@ -17,7 +17,7 @@ export default function TiendaPage() {
       <Suspense>
         <Header />
       </Suspense>
-      <main className="flex-grow">
+      <main id="contenido" className="flex-grow pb-24">
         <ShopSection />
       </main>
       <FooterSection />

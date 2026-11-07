@@ -14,6 +14,13 @@ export default function Header() {
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  const isCurrentPath = (href: string) => {
+    if (href.includes("#")) return false;
+    const current = pathname.replace(/\/$/, "") || "/";
+    const target = href.replace(/\/$/, "") || "/";
+    return current === target;
+  };
+
   useEffect(() => {
     if (!mobileMenuOpen) return;
     const previousOverflow = document.body.style.overflow;
@@ -31,6 +38,12 @@ export default function Header() {
 
   return (
     <>
+      <a
+        href="#contenido"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-3 focus:top-3 focus:z-[300] focus:rounded-full focus:bg-lilian-purple focus:px-4 focus:py-2 focus:text-sm focus:font-chronica focus:text-white"
+      >
+        Saltar al contenido
+      </a>
       <header
         className={`left-0 right-0 z-50 transition-all duration-300 ${
           isHome
@@ -54,7 +67,7 @@ export default function Header() {
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-3.5 xl:gap-5 text-[13px] xl:text-[15px] font-medium text-lilian-purple font-chronica whitespace-nowrap">
             {Object.values(NAV_LINKS).map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = isCurrentPath(link.href);
               return (
                 <Link
                   key={link.href}
@@ -64,6 +77,7 @@ export default function Header() {
                       ? "text-lilian-orange font-bold border-b-2 border-lilian-orange"
                       : "hover:text-lilian-orange text-lilian-purple"
                   }`}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
@@ -87,10 +101,10 @@ export default function Header() {
               href={CTA.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-semibold text-[13px] xl:text-[15px] px-5 xl:px-7 py-2.5 rounded-full flex items-center gap-2 hover:scale-105 transition-transform shadow-md"
+              className="bg-[#9a3412] text-white font-chronica font-semibold text-[13px] xl:text-[15px] px-5 xl:px-7 py-2.5 rounded-full flex items-center gap-2 hover:scale-105 transition-transform shadow-md"
             >
-              <Image src="/assets/pedidosya.png" alt="" width={16} height={16} aria-hidden="true" className="object-contain" />
-              <span>Pedidos ya</span>
+              <Image src="/assets/pedidosya.png" alt="PedidosYa" width={16} height={16} className="object-contain" />
+              <span>PedidosYa</span>
             </Link>
           </div>
 
@@ -180,7 +194,7 @@ export default function Header() {
             aria-label="Menú principal"
           >
             {Object.values(NAV_LINKS).map((link) => {
-              const isActive = pathname === link.href;
+              const isActive = isCurrentPath(link.href);
               return (
                 <Link
                   key={link.href}
@@ -189,6 +203,7 @@ export default function Header() {
                   className={`hover:text-lilian-orange hover:translate-x-2 transition-all duration-200 py-1.5 border-b border-white/10 ${
                     isActive ? "text-lilian-orange font-bold pl-2 border-lilian-orange" : ""
                   }`}
+                  aria-current={isActive ? "page" : undefined}
                 >
                   {link.label}
                 </Link>
@@ -203,10 +218,10 @@ export default function Header() {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => setMobileMenuOpen(false)}
-            className="w-full justify-center bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-white font-chronica font-medium text-[16px] py-4 rounded-full flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg text-center"
+            className="w-full justify-center bg-[#9a3412] text-white font-chronica font-medium text-[16px] py-4 rounded-full flex items-center gap-2 hover:scale-[1.02] active:scale-[0.98] transition-transform shadow-lg text-center"
           >
-            <Image src="/assets/pedidosya.png" alt="" width={18} height={18} aria-hidden="true" className="object-contain" />
-            Ordena en Pedidos ya
+            <Image src="/assets/pedidosya.png" alt="PedidosYa" width={18} height={18} className="object-contain" />
+            Ordena en PedidosYa
           </Link>
         </div>
       </div>

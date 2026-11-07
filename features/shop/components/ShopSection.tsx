@@ -17,7 +17,7 @@ export default function ShopSection() {
       <div className="absolute top-12 left-0 hidden xl:block w-44 h-auto opacity-40 pointer-events-none">
         <Image
           src={SHOP_ASSETS.leafLeft}
-          alt=""
+          alt="Hoja decorativa"
           width={336}
           height={109}
           className="w-full h-auto object-contain"
@@ -26,7 +26,7 @@ export default function ShopSection() {
       <div className="absolute top-12 right-0 hidden xl:block w-44 h-auto opacity-40 pointer-events-none">
         <Image
           src={SHOP_ASSETS.leafRight}
-          alt=""
+          alt="Hoja decorativa"
           width={345}
           height={109}
           className="w-full h-auto object-contain"

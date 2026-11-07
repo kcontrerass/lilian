@@ -21,9 +21,9 @@ export default function CtaButton({
       href={href}
       onClick={onClick}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap bg-lilian-orange-dark text-white font-chronica font-medium text-[16px] px-8 py-3 rounded-full shadow-md ${className}`}
+      className={`inline-flex items-center justify-center gap-2 whitespace-nowrap bg-[#9a3412] text-white font-chronica font-medium text-[16px] px-8 py-3 rounded-full shadow-md ${className}`}
     >
-      <Image src="/assets/pedidosya.png" alt="" width={18} height={18} aria-hidden="true" className="object-contain" />
+      <Image src="/assets/pedidosya.png" alt="PedidosYa" width={18} height={18} className="object-contain" />
       {label}
     </Link>
   );

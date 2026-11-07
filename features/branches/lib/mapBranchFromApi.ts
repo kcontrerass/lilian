@@ -1,3 +1,4 @@
+import { splitPhoneNumbers } from "@/lib/phone";
 import { BRANCH_IMAGE } from "../constants";
 import { inferBranchDepartment, readDepartmentFromApi } from "./inferBranchDepartment";
 import type { Branch } from "../types";
@@ -20,18 +21,10 @@ function asString(value: unknown): string {
 }
 
 function parsePhones(value: unknown): string[] {
-  if (Array.isArray(value)) {
-    return value.map((entry) => asString(entry)).filter(Boolean);
-  }
-
-  const raw = asString(value);
-  if (!raw) return [];
-
-  return raw
-    .replace(/^Tel\.\s*/i, "")
-    .split(/\s*\/\s*/)
-    .map((part) => part.replace(/\s+/g, " ").trim())
-    .filter(Boolean);
+  const parts = Array.isArray(value) ? value.map(asString) : [asString(value)];
+  return [
+    ...new Set(parts.flatMap((part) => (part ? splitPhoneNumbers(part) : []))),
+  ];
 }
 
 function pickImageValue(item: ApiRecord): unknown {

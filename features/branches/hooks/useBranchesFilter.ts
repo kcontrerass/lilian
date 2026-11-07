@@ -46,7 +46,7 @@ export function useBranchesFilter() {
   }, []);
 
   const filteredBranches = useMemo<Branch[]>(() => {
-    const term = searchQuery.trim().toLowerCase();
+    const term = searchQuery.trim();
     if (!term) {
       return branches;
     }

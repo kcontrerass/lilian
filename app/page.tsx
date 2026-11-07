@@ -13,12 +13,14 @@ export default function Home() {
       <Suspense>
         <Header />
       </Suspense>
-      <HeroSection />
-      <MissionSection />
-      <Suspense>
-        <CatalogSection />
-      </Suspense>
-      <GallerySection />
+      <main id="contenido" className="pb-24 sm:pb-8">
+        <HeroSection />
+        <MissionSection />
+        <Suspense>
+          <CatalogSection />
+        </Suspense>
+        <GallerySection />
+      </main>
       <FooterSection />
       <FloatingChatButton />
     </div>

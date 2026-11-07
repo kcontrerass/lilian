@@ -18,8 +18,9 @@ export default function CareersForm({ formHook, positions }: CareersFormProps) {
     submitting,
     uploading,
     submitted,
-    pdfUrl,
+    fieldErrors,
     handleInputChange,
+    handleBlur,
     handleFileChange,
     handleRemoveFile,
     handleSubmit,
@@ -54,21 +55,13 @@ export default function CareersForm({ formHook, positions }: CareersFormProps) {
           <p><span className="text-lilian-purple/70">Puesto:</span> {formData.position}</p>
           <p><span className="text-lilian-purple/70">Teléfono:</span> {formData.phone}</p>
           <p><span className="text-lilian-purple/70">Correo:</span> {formData.email}</p>
-          {pdfUrl ? (
-            <p>
-              <span className="text-lilian-purple/70">CV:</span>{" "}
-              <a href={pdfUrl} target="_blank" rel="noreferrer" className="underline break-all">
-                {pdfUrl}
-              </a>
-            </p>
-          ) : null}
         </div>
 
         {/* Actions */}
         <div className="flex justify-center">
           <button
             onClick={handleReset}
-            className="py-3.5 px-6 rounded-full bg-gradient-to-r from-lilian-orange to-lilian-orange-dark text-white font-chronica font-bold text-sm shadow-md hover:shadow-lg hover:brightness-105 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            className="py-3.5 px-6 rounded-full bg-[#9a3412] text-white font-chronica font-bold text-sm shadow-md hover:shadow-lg hover:brightness-105 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
             {CAREERS_TEXTS.sendAnotherLabel}
           </button>
@@ -95,29 +88,38 @@ export default function CareersForm({ formHook, positions }: CareersFormProps) {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+      <form onSubmit={handleSubmit} className="flex flex-col gap-5 max-sm:scroll-mb-28">
         {/* Name and Age Row */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="sm:col-span-2">
-            <label className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
+            <label htmlFor="career-name" className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
               {CAREERS_TEXTS.fullNameLabel} <span className="text-lilian-pink">*</span>
             </label>
             <input
+              id="career-name"
               type="text"
               name="fullName"
               required
+              autoComplete="name"
               value={formData.fullName}
               onChange={handleInputChange}
+              onBlur={handleBlur}
+              aria-invalid={Boolean(fieldErrors.fullName)}
+              aria-describedby={fieldErrors.fullName ? "career-name-error" : undefined}
               placeholder={CAREERS_TEXTS.fullNamePlaceholder}
               className="w-full px-4 py-3 rounded-2xl bg-lilian-purple/5 border border-lilian-purple/10 hover:border-lilian-purple/20 focus:border-lilian-orange focus:bg-white focus:ring-4 focus:ring-lilian-orange/15 outline-none text-lilian-purple text-sm font-gotham transition-all duration-200"
             />
+            {fieldErrors.fullName ? (
+              <p id="career-name-error" className="mt-1 text-xs text-red-600">{fieldErrors.fullName}</p>
+            ) : null}
           </div>
 
           <div>
-            <label className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
+            <label htmlFor="career-age" className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
               {CAREERS_TEXTS.ageLabel} <span className="text-lilian-pink">*</span>
             </label>
             <input
+              id="career-age"
               type="number"
               name="age"
               required
@@ -125,22 +127,32 @@ export default function CareersForm({ formHook, positions }: CareersFormProps) {
               max="70"
               value={formData.age}
               onChange={handleInputChange}
+              onBlur={handleBlur}
+              aria-invalid={Boolean(fieldErrors.age)}
+              aria-describedby={fieldErrors.age ? "career-age-error" : undefined}
               placeholder={CAREERS_TEXTS.agePlaceholder}
               className="w-full px-4 py-3 rounded-2xl bg-lilian-purple/5 border border-lilian-purple/10 hover:border-lilian-purple/20 focus:border-lilian-orange focus:bg-white focus:ring-4 focus:ring-lilian-orange/15 outline-none text-lilian-purple text-sm font-gotham transition-all duration-200"
             />
+            {fieldErrors.age ? (
+              <p id="career-age-error" className="mt-1 text-xs text-red-600">{fieldErrors.age}</p>
+            ) : null}
           </div>
         </div>
 
         {/* Position Select */}
         <div>
-          <label className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
+          <label htmlFor="career-position" className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
             {CAREERS_TEXTS.positionLabel} <span className="text-lilian-pink">*</span>
           </label>
           <select
+            id="career-position"
             name="position"
             required
             value={formData.position}
             onChange={handleInputChange}
+            onBlur={handleBlur}
+            autoComplete="organization-title"
+            aria-invalid={Boolean(fieldErrors.position)}
             className="w-full px-4 py-3 rounded-2xl bg-lilian-purple/5 border border-lilian-purple/10 hover:border-lilian-purple/20 focus:border-lilian-orange focus:bg-white focus:ring-4 focus:ring-lilian-orange/15 outline-none text-lilian-purple text-sm font-gotham transition-all duration-200 cursor-pointer"
           >
             <option value="" disabled>
@@ -156,53 +168,74 @@ export default function CareersForm({ formHook, positions }: CareersFormProps) {
               {CAREERS_TEXTS.spontaneousApplicationLabel}
             </option>
           </select>
+          {fieldErrors.position ? (
+            <p className="mt-1 text-xs text-red-600">{fieldErrors.position}</p>
+          ) : null}
         </div>
 
         {/* Contact Row: Email and Phone */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
-            <label className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
+            <label htmlFor="career-email" className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
               {CAREERS_TEXTS.emailLabel} <span className="text-lilian-pink">*</span>
             </label>
             <input
+              id="career-email"
               type="email"
               name="email"
               required
+              autoComplete="email"
               value={formData.email}
               onChange={handleInputChange}
+              onBlur={handleBlur}
+              aria-invalid={Boolean(fieldErrors.email)}
+              aria-describedby={fieldErrors.email ? "career-email-error" : undefined}
               placeholder={CAREERS_TEXTS.emailPlaceholder}
               className="w-full px-4 py-3 rounded-2xl bg-lilian-purple/5 border border-lilian-purple/10 hover:border-lilian-purple/20 focus:border-lilian-orange focus:bg-white focus:ring-4 focus:ring-lilian-orange/15 outline-none text-lilian-purple text-sm font-gotham transition-all duration-200"
             />
+            {fieldErrors.email ? (
+              <p id="career-email-error" className="mt-1 text-xs text-red-600">{fieldErrors.email}</p>
+            ) : null}
           </div>
 
           <div>
-            <label className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
+            <label htmlFor="career-phone" className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
               {CAREERS_TEXTS.phoneLabel} <span className="text-lilian-pink">*</span>
             </label>
             <input
+              id="career-phone"
               type="tel"
               name="phone"
               required
+              autoComplete="tel"
+              inputMode="tel"
               value={formData.phone}
               onChange={handleInputChange}
+              onBlur={handleBlur}
+              aria-invalid={Boolean(fieldErrors.phone)}
+              aria-describedby={fieldErrors.phone ? "career-phone-error" : undefined}
               placeholder={CAREERS_TEXTS.phonePlaceholder}
               className="w-full px-4 py-3 rounded-2xl bg-lilian-purple/5 border border-lilian-purple/10 hover:border-lilian-purple/20 focus:border-lilian-orange focus:bg-white focus:ring-4 focus:ring-lilian-orange/15 outline-none text-lilian-purple text-sm font-gotham transition-all duration-200"
             />
+            {fieldErrors.phone ? (
+              <p id="career-phone-error" className="mt-1 text-xs text-red-600">{fieldErrors.phone}</p>
+            ) : null}
           </div>
         </div>
 
         {/* CV File Upload */}
         <div>
-          <label className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
+          <label htmlFor="career-cv" className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
             {CAREERS_TEXTS.cvLabel}
           </label>
 
           <input
+            id="career-cv"
             ref={fileInputRef}
             type="file"
             accept=".pdf,application/pdf"
             onChange={handleFileChange}
-            className="hidden"
+            className="sr-only"
           />
 
           {formData.cvFile ? (
@@ -263,10 +296,11 @@ export default function CareersForm({ formHook, positions }: CareersFormProps) {
 
         {/* Comments textarea */}
         <div>
-          <label className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
+          <label htmlFor="career-comments" className="block text-xs font-chronica font-bold text-lilian-purple mb-1.5">
             {CAREERS_TEXTS.commentsLabel}
           </label>
           <textarea
+            id="career-comments"
             name="comments"
             rows={3}
             value={formData.comments}
@@ -286,7 +320,7 @@ export default function CareersForm({ formHook, positions }: CareersFormProps) {
         <button
           type="submit"
           disabled={submitting || uploading}
-          className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-lilian-orange to-lilian-orange-dark hover:brightness-105 text-white font-chronica font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:shadow-lilian-orange/30 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-60 group"
+          className="w-full py-4 px-6 rounded-full bg-[#9a3412] hover:brightness-110 text-white font-chronica font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:shadow-lilian-orange/30 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-60 group"
         >
           {submitting || uploading ? (
             <span className="flex items-center gap-2">

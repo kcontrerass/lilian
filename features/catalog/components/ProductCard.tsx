@@ -26,10 +26,6 @@ export default function ProductCard({ product }: ProductCardProps) {
             backgroundPosition: "0 0",
           }}
         />
-        {/* Darker bottom strip */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[75%] lg:w-[65%] h-[25%] bg-black/15 z-0" />
-
-        {/* Image */}
         <div className="absolute inset-0 z-10">
           <Image
             src={product.image}

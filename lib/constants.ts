@@ -10,7 +10,7 @@ export const NAV_LINKS = {
 
 export const CTA = {
   href: "https://www.pedidosyasv.com.sv/restaurantes/san-salvador/pan-lilian-ciudad-delgado-menu",
-  label: "Ordena en Pedidos ya",
+  label: "Ordena en PedidosYa",
 } as const;
 
 export const BRAND = {

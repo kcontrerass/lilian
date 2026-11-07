@@ -15,7 +15,7 @@ export default function HeroSection() {
 
   return (
     <section
-      className="relative w-full h-dvh min-h-[620px] sm:min-h-[680px] md:min-h-[780px] lg:min-h-[840px] overflow-hidden @container-size"
+      className="relative w-full h-[78dvh] min-h-[520px] max-h-[760px] sm:h-dvh sm:max-h-none sm:min-h-[680px] md:min-h-[780px] lg:min-h-[840px] overflow-hidden @container-size"
       role="region"
       aria-roledescription="carrusel"
       aria-label="Hero principal"

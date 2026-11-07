@@ -34,7 +34,7 @@ export default function HeroProgress({
 
   return (
     <div
-      className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[90%] max-w-[1130px] z-20"
+      className="absolute bottom-6 left-4 right-20 z-30 rounded-full bg-lilian-purple/25 px-2 py-1.5 sm:bottom-10 sm:left-1/2 sm:right-auto sm:w-[90%] sm:max-w-[1130px] sm:-translate-x-1/2 sm:bg-transparent sm:px-0 sm:py-0"
       role="tablist"
       aria-label="Controles del carrusel"
     >

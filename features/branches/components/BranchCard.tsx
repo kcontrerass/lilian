@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Branch } from "../types";
 import { BRANCHES_TEXTS, BRANCH_IMAGE } from "../constants";
+import { formatPhoneDisplay, toTelHref } from "@/lib/phone";
 
 interface BranchCardProps {
   branch: Branch;
@@ -26,7 +27,7 @@ export default function BranchCard({ branch }: BranchCardProps) {
           alt={branch.name}
           fill
           className="object-cover group-hover:scale-105 transition-transform duration-500"
-          sizes="(max-width: 768px) 100vw, 50vw"
+          sizes="(max-width: 768px) 100vw, 480px"
           onError={() => {
             if (imageSrc !== BRANCH_IMAGE) {
               setImageSrc(BRANCH_IMAGE);
@@ -103,7 +104,7 @@ export default function BranchCard({ branch }: BranchCardProps) {
               href={branch.mapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-lilian-orange to-lilian-orange-dark text-white font-chronica font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow hover:scale-[1.01] transition-all whitespace-nowrap"
+              className="w-full py-3 px-4 rounded-full bg-[#9a3412] text-white font-chronica font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow hover:scale-[1.01] transition-all whitespace-nowrap"
             >
               <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -116,13 +117,13 @@ export default function BranchCard({ branch }: BranchCardProps) {
                 {branch.phones.map((phone) => (
                   <Link
                     key={phone}
-                    href={`tel:${phone.replace(/\s+/g, "")}`}
+                    href={toTelHref(phone)}
                     className="py-3 px-3.5 rounded-full border border-lilian-teal/30 hover:border-lilian-teal bg-lilian-teal-light/20 text-lilian-purple hover:text-lilian-teal-dark font-chronica font-bold text-sm flex items-center justify-center gap-2 transition-all hover:scale-[1.01] whitespace-nowrap"
                   >
                     <svg className="w-4 h-4 text-lilian-teal shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                     </svg>
-                    <span>{phone}</span>
+                    <span>{formatPhoneDisplay(phone)}</span>
                   </Link>
                 ))}
               </div>
@@ -131,7 +132,7 @@ export default function BranchCard({ branch }: BranchCardProps) {
                 href={branch.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full py-3 px-4 rounded-full bg-gradient-to-r from-lilian-orange to-lilian-orange-dark text-white font-chronica font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow hover:scale-[1.01] transition-all whitespace-nowrap"
+                className="w-full py-3 px-4 rounded-full bg-[#9a3412] text-white font-chronica font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow hover:scale-[1.01] transition-all whitespace-nowrap"
               >
                 <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -144,13 +145,13 @@ export default function BranchCard({ branch }: BranchCardProps) {
               {branch.phones.map((phone) => (
                 <Link
                   key={phone}
-                  href={`tel:${phone.replace(/\s+/g, "")}`}
+                  href={toTelHref(phone)}
                   className="py-3 px-3.5 rounded-full border border-lilian-teal/30 hover:border-lilian-teal bg-lilian-teal-light/20 text-lilian-purple hover:text-lilian-teal-dark font-chronica font-bold text-sm flex items-center justify-center gap-2 transition-all hover:scale-[1.01] whitespace-nowrap"
                 >
                   <svg className="w-4 h-4 text-lilian-teal shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                   </svg>
-                  <span>{phone}</span>
+                  <span>{formatPhoneDisplay(phone)}</span>
                 </Link>
               ))}
 
@@ -158,7 +159,7 @@ export default function BranchCard({ branch }: BranchCardProps) {
                 href={branch.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="py-3 px-4 rounded-full bg-gradient-to-r from-lilian-orange to-lilian-orange-dark text-white font-chronica font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow hover:scale-[1.01] transition-all whitespace-nowrap"
+                className="py-3 px-4 rounded-full bg-[#9a3412] text-white font-chronica font-bold text-sm flex items-center justify-center gap-2 shadow-sm hover:shadow hover:scale-[1.01] transition-all whitespace-nowrap"
               >
                 <svg className="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

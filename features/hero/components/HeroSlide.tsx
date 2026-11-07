@@ -51,7 +51,7 @@ function HeroSlide({ slide, index, isActive }: HeroSlideProps) {
         }`}
       >
         {slide.eyebrow && <HeroEyebrow text={slide.eyebrow} />}
-        <HeroHeadline lines={slide.headline} align={slide.align} />
+        <HeroHeadline lines={slide.headline} align={slide.align} asHeading={index === 0} />
 
         {slide.description && (
           <p className="mt-[2.4cqh] sm:mt-[2.2cqh] md:mt-[1.9cqh] lg:mt-[1.7cqh] max-w-[52ch] font-chronica text-[2.4cqh] md:text-[2.6cqh] lg:text-[2.8cqh] text-lilian-purple/80">

@@ -22,12 +22,13 @@ export default function JobSearch({ value, onChange }: JobSearchProps) {
 
         <input
           id="careers-search"
-          type="search"
+          type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={CAREERS_TEXTS.searchPlaceholder}
           className="w-full bg-transparent outline-none font-gotham text-sm text-lilian-purple placeholder:text-lilian-purple/45"
           autoComplete="off"
+          aria-label={CAREERS_TEXTS.searchPlaceholder}
         />
 
         {value ? (

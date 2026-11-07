@@ -57,12 +57,12 @@ export const CATALOG_IMAGES = {
 } as const;
 
 export const CATALOG_TEXTS = {
-  titleLine1: "Somos la primer",
+  titleLine1: "Somos la primera",
   highlightedWord: "Panadería",
   titleLine2Suffix: " a nivel regional",
   searchPlaceholder: "Paninis, Pasteles, desayunos...",
   searchButton: "Buscar",
   buyHere: "Comprar aquí",
-  loadMore: "Cargar más",
+  loadMore: "Ver menú completo en PedidosYa",
   noResults: "No se encontraron productos que coincidan con tu búsqueda.",
 } as const;

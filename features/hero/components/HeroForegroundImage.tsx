@@ -66,7 +66,7 @@ export default function HeroForegroundImage({
   }
 
   return (
-    <div className="absolute inset-x-0 z-[1] pointer-events-none flex justify-center top-[52.4cqh] sm:top-[52.5cqh] md:top-[52.4cqh] lg:top-[52.9cqh]">
+    <div className="absolute inset-x-0 z-[1] pointer-events-none flex justify-center top-[40cqh] sm:top-[52.5cqh] md:top-[52.4cqh] lg:top-[52.9cqh]">
       <div className="relative h-[85cqh] aspect-[1920/820]">
         <Image
           src={foregroundImage.src}

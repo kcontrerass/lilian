@@ -89,25 +89,13 @@ export default function SearchOverlay({ open, onClose }: SearchOverlayProps) {
           </svg>
           <input
             ref={inputRef}
-            type="search"
+            type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder={SEARCH_TEXTS.placeholder}
             className="w-full bg-transparent border-none outline-none text-base sm:text-lg font-gotham text-lilian-purple placeholder-lilian-purple/45"
             aria-label={SEARCH_TEXTS.dialogTitle}
           />
-          {query ? (
-            <button
-              type="button"
-              onClick={() => setQuery("")}
-              className="text-lilian-purple/50 hover:text-lilian-purple shrink-0"
-              aria-label={SEARCH_TEXTS.clearLabel}
-            >
-              <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          ) : null}
           <button
             type="button"
             onClick={onClose}

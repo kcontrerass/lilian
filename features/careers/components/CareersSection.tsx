@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useMemo, useState } from "react";
+import { useMemo, useState } from "react";
+import { includesFolded } from "@/lib/normalizeText";
 import { CAREERS_TEXTS } from "../constants";
 import { useCareersForm } from "../hooks/useCareersForm";
 import { useJobPositions } from "../hooks/useJobPositions";
@@ -15,7 +16,7 @@ export default function CareersSection() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const filteredJobs = useMemo(() => {
-    const query = searchQuery.trim().toLowerCase();
+    const query = searchQuery.trim();
 
     return jobs.filter((job) => {
       const matchesDept =
@@ -32,10 +33,8 @@ export default function CareersSection() {
         job.description,
         ...job.requirements,
       ]
-        .join(" ")
-        .toLowerCase();
-
-      return haystack.includes(query);
+        .join(" ");
+      return includesFolded(haystack, query);
     });
   }, [jobs, selectedDept, searchQuery]);
 
@@ -64,12 +63,12 @@ export default function CareersSection() {
             </span>
           </div>
 
-          <h2 className="font-chronica text-3xl sm:text-4xl lg:text-5xl font-bold text-lilian-purple mb-4 leading-tight">
+          <h1 className="font-chronica text-3xl sm:text-4xl lg:text-5xl font-bold text-lilian-purple mb-4 leading-tight">
             <span>{CAREERS_TEXTS.titleBefore}</span>
-            <span className="font-owl-cute text-lilian-teal text-4xl sm:text-5xl lg:text-6xl inline-block mx-1 drop-shadow-sm">
+            <span className="font-owl-cute text-[#0f6e66] text-4xl sm:text-5xl lg:text-6xl inline-block mx-1 drop-shadow-sm">
               {CAREERS_TEXTS.highlightedTitle}
             </span>
-          </h2>
+          </h1>
 
           <p className="font-gotham text-sm sm:text-base lg:text-lg text-lilian-purple/80 leading-relaxed">
             {CAREERS_TEXTS.subtitle}
@@ -90,7 +89,7 @@ export default function CareersSection() {
 
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full lg:w-auto">
               <JobSearch value={searchQuery} onChange={setSearchQuery} />
-              <div className="inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-full bg-lilian-purple/5 border border-lilian-purple/10 text-xs font-chronica font-semibold text-lilian-purple shrink-0">
+              <div className="inline-flex items-center justify-center text-xs font-chronica font-semibold text-lilian-purple/80 shrink-0">
                 <span>
                   {filteredJobs.length}{" "}
                   {filteredJobs.length === 1 ? "plaza disponible" : "plazas disponibles"}

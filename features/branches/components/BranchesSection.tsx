@@ -28,13 +28,13 @@ export default function BranchesSection() {
             {BRANCHES_TEXTS.badge}
           </span>
 
-          <h2 className="font-chronica text-3xl sm:text-4xl lg:text-5xl font-bold text-lilian-purple mb-4 leading-tight">
+          <h1 className="font-chronica text-3xl sm:text-4xl lg:text-5xl font-bold text-lilian-purple mb-4 leading-tight">
             <span>{BRANCHES_TEXTS.titleBefore}</span>
-            <span className="font-owl-cute text-lilian-teal text-4xl sm:text-5xl lg:text-6xl inline-block mx-1">
+            <span className="font-owl-cute text-[#0f6e66] text-4xl sm:text-5xl lg:text-6xl inline-block mx-1">
               {BRANCHES_TEXTS.highlightedTitle}
             </span>
             <span>{BRANCHES_TEXTS.titleAfter}</span>
-          </h2>
+          </h1>
 
           <p className="font-gotham text-sm sm:text-base lg:text-lg text-lilian-purple/80 leading-relaxed">
             {BRANCHES_TEXTS.subtitle}
@@ -67,7 +67,7 @@ export default function BranchesSection() {
         {/* Branches Grid */}
         {!isLoading && !loadError && filteredBranches.length > 0 ? (
           <div
-            className={`grid gap-8 mx-auto ${
+            className={`grid gap-8 mx-auto pb-20 sm:pb-0 ${
               filteredBranches.length === 1
                 ? "grid-cols-1 max-w-2xl"
                 : "grid-cols-1 lg:grid-cols-2 max-w-2xl lg:max-w-5xl"

@@ -22,12 +22,13 @@ export default function BranchSearch({ value, onChange }: BranchSearchProps) {
 
         <input
           id="branches-search"
-          type="search"
+          type="text"
           value={value}
           onChange={(e) => onChange(e.target.value)}
           placeholder={BRANCHES_TEXTS.searchPlaceholder}
           className="w-full bg-transparent outline-none font-gotham text-sm text-lilian-purple placeholder:text-lilian-purple/45"
           autoComplete="off"
+          aria-label="Buscar sucursal"
         />
 
         {value ? (

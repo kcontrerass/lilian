@@ -16,7 +16,7 @@ export default function MissionSection() {
       <div className="absolute top-0 -right-6 sm:-right-12 lg:-right-[80px] w-[220px] sm:w-[280px] lg:w-[340px] h-auto aspect-[259/494] z-0 pointer-events-none">
         <Image
           src={MISSION_IMAGES.backgroundShape}
-          alt=""
+          alt="Figura decorativa de Lilian"
           fill
           className="object-contain object-top-right"
           sizes="(max-width: 640px) 220px, (max-width: 1024px) 280px, 340px"

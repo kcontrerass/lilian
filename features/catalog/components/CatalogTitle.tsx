@@ -7,7 +7,7 @@ export default function CatalogTitle() {
       <div className="flex items-center justify-center gap-3 sm:gap-6 lg:gap-10 w-full">
         <Image
           src={CATALOG_IMAGES.leafLeft}
-          alt=""
+          alt="Hoja decorativa"
           width={336}
           height={109}
           className="hidden sm:block w-[100px] md:w-[160px] lg:w-[220px] h-auto object-contain shrink-0 absolute left-0"
@@ -25,7 +25,7 @@ export default function CatalogTitle() {
 
         <Image
           src={CATALOG_IMAGES.leafRight}
-          alt=""
+          alt="Hoja decorativa"
           width={345}
           height={109}
           className="hidden sm:block w-[100px] md:w-[160px] lg:w-[220px] h-auto object-contain shrink-0 absolute right-0"

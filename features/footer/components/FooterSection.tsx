@@ -13,7 +13,7 @@ export default function FooterSection() {
         <div className="pointer-events-none absolute left-0 top-[98px] w-[163px] h-[217px] hidden lg:block">
           <Image
             src="/assets/fondo.svg"
-            alt=""
+            alt="Fondo decorativo"
             fill
             className="object-contain object-left"
           />
@@ -73,7 +73,7 @@ export default function FooterSection() {
               <br />
               una historia
             </h2>
-            <p className="font-gotham max-w-[46ch] text-sm leading-relaxed text-white/85 sm:text-base">
+            <p className="font-gotham  text-sm leading-relaxed text-white/85 sm:text-base">
               {FOOTER_TEXTS.taglineSupport}
             </p>
           </div>

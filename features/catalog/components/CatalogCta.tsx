@@ -13,10 +13,9 @@ export default function CatalogCta() {
       >
         <Image
           src="/icon-pedidos.svg"
-          alt=""
+          alt="PedidosYa"
           width={17}
           height={16}
-          aria-hidden="true"
         />
         {CTA.label}
       </Link>

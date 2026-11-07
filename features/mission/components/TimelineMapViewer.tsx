@@ -8,7 +8,7 @@ import { useInViewOnce } from "../hooks/useInViewOnce";
 const MIN_SCALE = 0.35;
 const MAX_SCALE = 2.5;
 const SCALE_STEP = 0.15;
-const DEFAULT_SCALE = 1;
+const DEFAULT_SCALE = 1.75;
 
 export default function TimelineMapViewer() {
   const [isOpen, setIsOpen] = useState(false);
