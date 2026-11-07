@@ -22,7 +22,7 @@ export default function NotFound() {
         </p>
         <Link
           href="/"
-          className="rounded-full bg-[#9a3412] px-6 py-3 text-sm font-chronica font-bold text-white"
+          className="rounded-full bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark px-6 py-3 text-sm font-chronica font-bold text-lilian-purple"
         >
           Volver al inicio
         </Link>

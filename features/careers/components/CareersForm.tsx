@@ -61,7 +61,7 @@ export default function CareersForm({ formHook, positions }: CareersFormProps) {
         <div className="flex justify-center">
           <button
             onClick={handleReset}
-            className="py-3.5 px-6 rounded-full bg-[#9a3412] text-white font-chronica font-bold text-sm shadow-md hover:shadow-lg hover:brightness-105 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
+            className="py-3.5 px-6 rounded-full bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark text-lilian-purple font-chronica font-bold text-sm shadow-md hover:shadow-lg hover:brightness-105 transition-all hover:scale-[1.02] active:scale-[0.98] cursor-pointer"
           >
             {CAREERS_TEXTS.sendAnotherLabel}
           </button>
@@ -320,7 +320,7 @@ export default function CareersForm({ formHook, positions }: CareersFormProps) {
         <button
           type="submit"
           disabled={submitting || uploading}
-          className="w-full py-4 px-6 rounded-full bg-[#9a3412] hover:brightness-110 text-white font-chronica font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:shadow-lilian-orange/30 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-60 group"
+          className="w-full py-4 px-6 rounded-full bg-gradient-to-r from-lilian-orange-light to-lilian-orange-dark hover:brightness-110 text-lilian-purple font-chronica font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-lg hover:shadow-xl hover:shadow-lilian-orange/30 transition-all duration-200 hover:scale-[1.01] active:scale-[0.99] cursor-pointer disabled:opacity-60 group"
         >
           {submitting || uploading ? (
             <span className="flex items-center gap-2">

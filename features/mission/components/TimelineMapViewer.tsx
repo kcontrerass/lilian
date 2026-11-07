@@ -88,7 +88,7 @@ export default function TimelineMapViewer() {
             <button
               type="button"
               onClick={close}
-              className="rounded-full bg-lilian-orange px-4 py-2.5 text-xs font-chronica font-bold text-white hover:brightness-105 cursor-pointer"
+              className="rounded-full bg-lilian-orange px-4 py-2.5 text-xs font-chronica font-bold text-lilian-purple hover:brightness-105 cursor-pointer"
             >
               {MISSION_TEXTS.timelineMapCloseLabel}
             </button>

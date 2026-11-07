@@ -84,7 +84,7 @@ export default function JobCard({ job, onApply }: JobCardProps) {
       {/* Apply Button */}
       <button
         onClick={() => onApply(job.title)}
-        className="w-full py-3.5 px-4 rounded-full bg-lilian-purple/5 hover:bg-lilian-orange text-lilian-purple hover:text-white font-chronica font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer group-hover:bg-lilian-orange group-hover:text-white shadow-sm hover:shadow-lg hover:shadow-lilian-orange/30 active:scale-[0.98] group/btn"
+        className="w-full py-3.5 px-4 rounded-full bg-lilian-purple/5 hover:bg-lilian-orange text-lilian-purple font-chronica font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all duration-300 cursor-pointer group-hover:bg-lilian-orange shadow-sm hover:shadow-lg hover:shadow-lilian-orange/30 active:scale-[0.98] group/btn"
       >
         <span>{CAREERS_TEXTS.applyButtonLabel}</span>
         <svg

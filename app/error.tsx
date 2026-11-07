@@ -27,7 +27,7 @@ export default function ErrorBoundary({
         </p>
         <button
           onClick={() => reset()}
-          className="bg-lilian-orange hover:bg-lilian-orange-dark text-white font-chronica font-semibold px-6 py-2.5 rounded-full transition-colors cursor-pointer shadow-sm"
+          className="bg-lilian-orange hover:bg-lilian-orange-dark text-lilian-purple font-chronica font-semibold px-6 py-2.5 rounded-full transition-colors cursor-pointer shadow-sm"
         >
           Intentar de nuevo
         </button>
