@@ -7,8 +7,9 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "build:static": "NEXT_STATIC_EXPORT=1 next build",
+    "build:static": "node scripts/build-static.mjs",
     "export:zip": "npm run build:static && (cd out && zip -r ../out.zip .)",
+    "export:tar": "npm run build:static && tar -czf out.tar.gz -C out .",
     "optimize:mapa": "node scripts/optimize-mapa.mjs"
   },
   "dependencies": {

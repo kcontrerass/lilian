@@ -24,7 +24,7 @@ export default function MissionSection() {
       </div>
 
       <div className="max-w-[1440px] mx-auto w-full px-4 sm:px-6 lg:px-8 relative z-10 flex flex-col">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-16">
           <MissionImage />
           <MissionText />
         </div>

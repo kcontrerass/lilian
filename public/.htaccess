@@ -3,7 +3,37 @@
 # En el administrador: "Mostrar archivos ocultos" y verifica que .htaccess exista.
 
 Options -MultiViews
-DirectoryIndex index.html
+DirectoryIndex index.html index.php
+
+# Caché de estáticos (CSS/JS/imágenes/fuentes)
+<IfModule mod_expires.c>
+ExpiresActive On
+ExpiresByType text/css "access plus 1 year"
+ExpiresByType application/javascript "access plus 1 year"
+ExpiresByType image/jpeg "access plus 30 days"
+ExpiresByType image/webp "access plus 30 days"
+ExpiresByType image/png "access plus 30 days"
+ExpiresByType image/svg+xml "access plus 30 days"
+ExpiresByType font/woff2 "access plus 1 year"
+</IfModule>
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# WordPress vive en /admin-backend y usa index.php. No aplicar las reglas del sitio estático.
+RewriteRule ^admin-backend(/.*)?$ - [L]
+
+# /pagina.html → /pagina/
+RewriteCond %{THE_REQUEST} \s/+([^?\s]*?)\.html[\s?] [NC]
+RewriteRule ^ /%1/ [R=301,L]
+
+# /pagina → /pagina/ (carpeta con index.html del export)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_URI} !/$
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.+)$ $1/ [R=301,L]
+</IfModule>
 
 # Caché de estáticos (CSS/JS/imágenes/fuentes)
 <IfModule mod_expires.c>
