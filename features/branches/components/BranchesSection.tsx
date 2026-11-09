@@ -1,12 +1,15 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { useBranchesFilter } from "../hooks/useBranchesFilter";
 import BranchSearch from "./BranchSearch";
 import BranchCard from "./BranchCard";
 import { BRANCHES_TEXTS } from "../constants";
 
 export default function BranchesSection() {
+  const searchParams = useSearchParams();
+  const selectedBranchId = searchParams.get("sucursal");
   const {
     filteredBranches,
     searchQuery,
@@ -15,6 +18,24 @@ export default function BranchesSection() {
     isLoading,
     loadError,
   } = useBranchesFilter();
+
+  useEffect(() => {
+    if (isLoading || !selectedBranchId) return;
+
+    const scrollToBranch = () => {
+      const node = document.getElementById(`sucursal-${selectedBranchId}`);
+      if (!node) return;
+      const top = node.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top, behavior: "smooth" });
+    };
+
+    const frame = window.requestAnimationFrame(scrollToBranch);
+    const timer = window.setTimeout(scrollToBranch, 150);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
+  }, [isLoading, selectedBranchId, filteredBranches]);
 
   return (
     <section
@@ -74,7 +95,11 @@ export default function BranchesSection() {
             }`}
           >
             {filteredBranches.map((branch) => (
-              <BranchCard key={branch.id} branch={branch} />
+              <BranchCard
+                key={branch.id}
+                branch={branch}
+                highlighted={branch.id === selectedBranchId}
+              />
             ))}
           </div>
         ) : !isLoading && !loadError ? (

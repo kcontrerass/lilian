@@ -18,7 +18,9 @@ export default function TrabajaConNosotrosPage() {
         <Header />
       </Suspense>
       <main id="contenido" className="flex-grow pb-24 sm:pb-28">
-        <CareersSection />
+        <Suspense>
+          <CareersSection />
+        </Suspense>
       </main>
       <FooterSection />
       <FloatingChatButton />

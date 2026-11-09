@@ -43,6 +43,7 @@ export default function SearchResultsPanel({
                   <li key={result.id}>
                     <Link
                       href={result.href}
+                      scroll={!result.href.includes("sucursal=") && !result.href.includes("plaza=")}
                       role="option"
                       onClick={onSelect}
                       className="block rounded-xl px-4 py-2.5 transition-colors hover:bg-lilian-orange/10"

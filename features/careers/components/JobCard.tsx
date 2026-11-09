@@ -5,11 +5,19 @@ import { CAREERS_TEXTS } from "../constants";
 interface JobCardProps {
   job: JobPosition;
   onApply: (title: string) => void;
+  highlighted?: boolean;
 }
 
-export default function JobCard({ job, onApply }: JobCardProps) {
+export default function JobCard({ job, onApply, highlighted = false }: JobCardProps) {
   return (
-    <div className="relative overflow-hidden bg-white rounded-3xl p-6 sm:p-7 border border-lilian-purple/10 hover:border-lilian-orange/40 shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col justify-between h-full group">
+    <div
+      id={`plaza-${job.id}`}
+      className={`relative overflow-hidden bg-white rounded-3xl p-6 sm:p-7 border shadow-md hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 ease-out flex flex-col justify-between h-full group scroll-mt-28 ${
+        highlighted
+          ? "border-lilian-orange ring-4 ring-lilian-orange/30"
+          : "border-lilian-purple/10 hover:border-lilian-orange/40"
+      }`}
+    >
       {/* Top Animated Color Bar */}
       <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-lilian-orange via-lilian-pink to-lilian-teal transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
 

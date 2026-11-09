@@ -45,7 +45,7 @@ export function useGlobalSearch(): UseGlobalSearchResult {
               type: "branch" as const,
               title: branch.name,
               subtitle: [branch.address, ...branch.phones].filter(Boolean).join(" · "),
-              href: "/sucursales",
+              href: `/sucursales/?sucursal=${encodeURIComponent(branch.id)}`,
             }))
           : [];
 
@@ -56,7 +56,7 @@ export function useGlobalSearch(): UseGlobalSearchResult {
               type: "job" as const,
               title: job.title,
               subtitle: [job.department, job.location].filter(Boolean).join(" · "),
-              href: "/trabaja-con-nosotros",
+              href: `/trabaja-con-nosotros/?plaza=${encodeURIComponent(job.id)}`,
             }))
           : [];
 

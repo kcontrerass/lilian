@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { includesFolded } from "@/lib/normalizeText";
 import { CAREERS_TEXTS } from "../constants";
 import { useCareersForm } from "../hooks/useCareersForm";
@@ -10,6 +11,8 @@ import JobSearch from "./JobSearch";
 import CareersForm from "./CareersForm";
 
 export default function CareersSection() {
+  const searchParams = useSearchParams();
+  const selectedJobId = searchParams.get("plaza");
   const formHook = useCareersForm();
   const { jobs, departments, isLoading, loadError } = useJobPositions();
   const [selectedDept, setSelectedDept] = useState<string>("Todas");
@@ -37,6 +40,24 @@ export default function CareersSection() {
       return includesFolded(haystack, query);
     });
   }, [jobs, selectedDept, searchQuery]);
+
+  useEffect(() => {
+    if (isLoading || !selectedJobId) return;
+
+    const scrollToJob = () => {
+      const node = document.getElementById(`plaza-${selectedJobId}`);
+      if (!node) return;
+      const top = node.getBoundingClientRect().top + window.scrollY - 120;
+      window.scrollTo({ top, behavior: "smooth" });
+    };
+
+    const frame = window.requestAnimationFrame(scrollToJob);
+    const timer = window.setTimeout(scrollToJob, 150);
+    return () => {
+      window.cancelAnimationFrame(frame);
+      window.clearTimeout(timer);
+    };
+  }, [isLoading, selectedJobId, filteredJobs]);
 
   const showApplicationForm = !isLoading && !loadError && jobs.length > 0;
 
@@ -145,6 +166,7 @@ export default function CareersSection() {
                 <JobCard
                   key={job.id}
                   job={job}
+                  highlighted={job.id === selectedJobId}
                   onApply={(title) => formHook.handleSelectPosition(title)}
                 />
               ))}

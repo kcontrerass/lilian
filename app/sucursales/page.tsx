@@ -18,7 +18,9 @@ export default function SucursalesPage() {
         <Header />
       </Suspense>
       <main id="contenido" className="flex-grow pb-24 sm:pb-28">
-        <BranchesSection />
+        <Suspense>
+          <BranchesSection />
+        </Suspense>
       </main>
       <FooterSection />
       <FloatingChatButton />

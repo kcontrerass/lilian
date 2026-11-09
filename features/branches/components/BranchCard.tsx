@@ -9,9 +9,10 @@ import { formatPhoneDisplay, toTelHref } from "@/lib/phone";
 
 interface BranchCardProps {
   branch: Branch;
+  highlighted?: boolean;
 }
 
-export default function BranchCard({ branch }: BranchCardProps) {
+export default function BranchCard({ branch, highlighted = false }: BranchCardProps) {
   const [imageSrc, setImageSrc] = useState(branch.image?.trim() || BRANCH_IMAGE);
 
   useEffect(() => {
@@ -19,7 +20,14 @@ export default function BranchCard({ branch }: BranchCardProps) {
   }, [branch.image]);
 
   return (
-    <div className="group bg-white rounded-3xl overflow-hidden border border-lilian-purple/10 hover:border-lilian-orange/30 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full">
+    <div
+      id={`sucursal-${branch.id}`}
+      className={`group scroll-mt-28 bg-white rounded-3xl overflow-hidden border shadow-md hover:shadow-xl transition-all duration-300 flex flex-col h-full ${
+        highlighted
+          ? "border-lilian-orange ring-4 ring-lilian-orange/30"
+          : "border-lilian-purple/10 hover:border-lilian-orange/30"
+      }`}
+    >
       {/* Branch Image */}
       <div className="relative w-full h-52 sm:h-64 bg-brand-cream overflow-hidden">
         <Image
